@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Afterglowr – Cinematic Wallpapers</title>
+    <meta name="description" id="metaDescription" content="Download cinematic wallpapers with realistic lighting, dark atmosphere, and no CGI feel.">
+    <meta property="og:title" id="ogTitle" content="Afterglowr – Cinematic Wallpapers">
+    <meta property="og:description" id="ogDescription" content="Download cinematic wallpapers with realistic lighting, dark atmosphere, and no CGI feel.">
+    <meta property="og:image" id="ogImage" content="">
+    <meta property="og:url" id="ogUrl" content="https://afterglowr.com/">
+    <meta property="og:type" id="ogType" content="website">
+    <link rel="canonical" id="canonicalUrl" href="https://afterglowr.com/">
+    <link rel="alternate" hreflang="en" href="https://afterglowr.com/">
+    <link rel="alternate" hreflang="zh" href="https://afterglowr.com/zh/">
+    <link rel="alternate" hreflang="x-default" href="https://afterglowr.com/">
+    <script type="application/ld+json" id="structuredData"></script>
+    <link rel="stylesheet" href="/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+</head>
+<body>
+    <div class="orb-container">
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
+        <div class="bg-orb orb-3"></div>
+    </div>
+
+    <header class="glass-header">
+        <div class="logo">
+  <img src="/assets/afterglowr-logo-web.png" alt="Afterglowr Logo">
+</div>
+        <nav id="navMenu" style="display: flex; align-items: center;">
+            <button id="langToggleBtn" class="btn glass-btn" style="padding: 6px 12px; font-size: 0.9rem; margin-right: 15px;">🌐 中文</button>
+            <a href="#" id="supportBtn" data-i18n="support">Support</a>
+            <button id="navLoginBtn" class="btn glass-btn" style="padding: 8px 16px; margin-left: 20px; font-size: 0.9rem;" data-i18n="login">Login</button>
+        </nav>
+    </header>
+
+    <main>
+        <div id="homeView">
+        <div class="hero animate-on-scroll">
+            <h1 data-i18n-html="hero_title">Afterglowr <span class="highlight">Wallpapers</span></h1>
+            <p data-i18n="hero_desc">Download cinematic wallpapers with realistic lighting, dark atmosphere, and no CGI feel.</p>
+        </div>
+        
+        <div class="category-filters animate-on-scroll">
+            <button class="filter-btn active" data-filter="all" data-i18n="filter_all">All</button>
+            <button class="filter-btn" data-filter="Portrait" data-i18n="filter_portrait">Portrait</button>
+            <button class="filter-btn" data-filter="Animals" data-i18n="filter_animals">Animals</button>
+            <button class="filter-btn" data-filter="Landscape" data-i18n="filter_landscape">Landscape</button>
+            <button class="filter-btn" data-filter="Gaming" data-i18n="filter_gaming">Gaming</button>
+            <button class="filter-btn" data-filter="Vibe" data-i18n="filter_vibe">Vibe</button>
+        </div>
+
+        <section class="gallery-tools animate-on-scroll" aria-label="Wallpaper search and sort controls">
+            <div class="gallery-search-wrap">
+                <span class="gallery-search-icon">⌕</span>
+                <input id="gallerySearchInput" class="gallery-search-input" type="search" placeholder="Search wallpapers..." autocomplete="off" aria-label="Search wallpapers">
+            </div>
+            <select id="gallerySortSelect" class="gallery-sort-select" aria-label="Sort wallpapers">
+                <option value="newest">Newest</option>
+                <option value="popular">Popular</option>
+                <option value="az">A–Z</option>
+                <option value="random">Random</option>
+            </select>
+        </section>
+
+        <div class="gallery" id="gallery">
+            <!-- Dynamically generated -->
+        </div>
+
+        </div>
+
+        <div id="categoryView" class="hidden">
+            <button id="catBackToHomeBtn" class="btn glass-btn back-btn" style="margin-bottom: 2rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>
+                <span data-i18n="back_to_home">Back to Home</span>
+            </button>
+            <h1 id="catTitle" style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-color);">Category Name</h1>
+            <p id="catDesc" style="color: var(--text-secondary); margin-bottom: 3rem; font-size: 1.1rem;">Category Description</p>
+            
+            <div class="gallery" id="categoryGallery">
+                <!-- Dynamically generated -->
+            </div>
+        </div>
+
+        <div id="wallpaperView" class="hidden">
+            <button id="backToGalleryBtn" class="back-btn">← <span data-i18n="back">Back to Gallery</span></button>
+
+            <section class="wp-modal-style-page">
+                <div class="wp-full-card">
+
+                    <div class="wp-full-image-panel">
+                        <button id="wpPrevBtn" class="wallpaper-nav-arrow wallpaper-nav-prev" type="button" aria-label="Previous wallpaper">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        </button>
+                        <button id="wpNextBtn" class="wallpaper-nav-arrow wallpaper-nav-next" type="button" aria-label="Next wallpaper">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        </button>
+                        <img id="wpMainImage" src="" alt="">
+                        <div class="watermark-overlay">AFTERGLOWR</div>
+                    </div>
+
+                    <div class="wp-full-info-panel">
+                        <div class="wp-detail-header">
+                            <h1 id="wpTitle"></h1>
+                            <div class="wp-engagement-panel">
+                                <button id="wpLikeBtn" class="like-btn wp-like-btn" title="Like this wallpaper" onclick="window.fullPageLikeClick && window.fullPageLikeClick(); return false;">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="heart-icon"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                                    <span id="wpLikeCount" class="like-count">0</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="wpTags"></div>
+                        <p id="wpDesc"></p>
+
+                        <div class="wp-comments-section">
+                            <h3 class="comments-title"><span data-i18n="comments">Comments</span> <span id="wpCommentCount">(0)</span></h3>
+                            <div id="wpCommentsList" class="comments-list"></div>
+                            <div class="comment-form-container">
+                                <div id="wpLoginPrompt" class="login-prompt">
+                                    <span data-i18n="please">Please</span> <a href="javascript:void(0)" id="wpPromptLoginLink" data-i18n="log_in" onclick="document.getElementById('loginModal').classList.add('active'); return false;">log in</a> <span data-i18n="to_leave_comment">to leave a comment.</span>
+                                </div>
+<form id="wpCommentForm" class="comment-form hidden">
+  <div class="user-avatar-small" id="wpCurrentUserAvatar"></div>
+  <div class="input-group">
+    <input type="text" id="wpCommentInput" placeholder="Add a comment..." required autocomplete="off">
+    <button type="submit" class="send-btn" title="Send">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+    </button>
+  </div>
+</form>
+                            </div>
+                        </div>
+
+                        <div class="wp-full-actions">
+                            
+
+                            
+
+<div class="size-switch-group" id="wpSizeSwitchGroup">
+    <button class="size-btn active" id="wpDesktopBtn" type="button" aria-label="Desktop size">
+        <span class="size-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="12" rx="2"></rect>
+                <path d="M8 20h8"></path>
+                <path d="M12 16v4"></path>
+            </svg>
+        </span>
+        <span class="label" data-i18n="desktop_version">Desktop Size</span>
+    </button>
+    <button class="size-btn" id="wpMobileBtn" type="button" aria-label="Mobile size">
+        <span class="size-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="7" y="2.5" width="10" height="19" rx="2.5"></rect>
+                <path d="M10 5h4"></path>
+                <circle cx="12" cy="18" r="0.8"></circle>
+            </svg>
+        </span>
+        <span class="label" data-i18n="mobile_version">Mobile Size</span>
+    </button>
+</div>
+
+<button id="copyPinBtn" class="btn glass-btn pinterest-copy-btn" type="button">
+                                <span class="icon">📌</span>
+                                <span>Copy Pinterest Text</span>
+                            </button>
+
+<button id="wpDownloadBtn" class="btn focus-btn premium-download-btn">
+                                <span class="download-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24">
+        <path d="M12 3v11"></path>
+        <path d="M7 10l5 5 5-5"></path>
+        <path d="M5 20h14"></path>
+    </svg>
+</span>
+                                <span data-i18n="download">Download</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <aside class="wp-full-ad-panel">
+                        <div class="ad-label">ADVERTISEMENT</div>
+                        <div class="ad-placeholder">Google Ads<br>300 × 250</div>
+                    </aside>
+
+                </div>
+            </section>
+
+            <section id="relatedWallpapersSection" class="related-wallpapers-section related-upgraded-section">
+                <div class="related-section-header">
+                    <div>
+                        <span class="related-kicker">KEEP EXPLORING</span>
+                        <h3 class="related-title" data-i18n="related_wallpapers">You may also like</h3>
+                    </div>
+                    <p class="related-subtitle">More cinematic wallpapers selected by category, mood, and freshness.</p>
+                </div>
+
+                <div class="related-group" id="relatedSameCategoryGroup">
+                    <div class="related-group-title">
+                        <h4>More from this category</h4>
+                        <span id="relatedSameCategoryCount"></span>
+                    </div>
+                    <div class="related-grid related-smart-grid" id="relatedSameCategoryGrid"></div>
+                </div>
+
+                <div class="related-group" id="relatedSimilarMoodGroup">
+                    <div class="related-group-title">
+                        <h4>Similar mood</h4>
+                        <span id="relatedSimilarMoodCount"></span>
+                    </div>
+                    <div class="related-grid related-smart-grid" id="relatedSimilarMoodGrid"></div>
+                </div>
+
+                <div class="related-group" id="relatedLatestGroup">
+                    <div class="related-group-title">
+                        <h4>Latest wallpapers</h4>
+                        <span id="relatedLatestCount"></span>
+                    </div>
+                    <div class="related-grid related-smart-grid" id="relatedLatestGrid"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <hr class="section-divider">
+
+    <!-- Modal -->
+    <div class="modal" id="wallpaperModal">
+        <div class="modal-backdrop delay-fade"></div>
+        <div class="modal-content glass-panel">
+            <button class="close-btn" id="closeModal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+            </button>
+            <div class="modal-body">
+                <div class="image-container" id="imageContainer">
+                    <button id="modalPrevBtn" class="wallpaper-nav-arrow wallpaper-nav-prev" type="button" aria-label="Previous wallpaper">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </button>
+                    <button id="modalNextBtn" class="wallpaper-nav-arrow wallpaper-nav-next" type="button" aria-label="Next wallpaper">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </button>
+                    <img id="modalImage" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Wallpaper Preview">
+                    <div class="watermark-overlay">
+                        Afterglowr Cinematic Wallpapers &nbsp;&nbsp;&nbsp; Afterglowr Cinematic Wallpapers<br>
+                        Afterglowr Cinematic Wallpapers &nbsp;&nbsp;&nbsp; Afterglowr Cinematic Wallpapers<br>
+                        Afterglowr Cinematic Wallpapers &nbsp;&nbsp;&nbsp; Afterglowr Cinematic Wallpapers<br>
+                        Afterglowr Cinematic Wallpapers &nbsp;&nbsp;&nbsp; Afterglowr Cinematic Wallpapers<br>
+                        Afterglowr Cinematic Wallpapers &nbsp;&nbsp;&nbsp; Afterglowr Cinematic Wallpapers
+                    </div>
+                </div>
+                <div class="info-container">
+                    <div class="info-text">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 15px;">
+                            <h2 id="modalTitle">Wallpaper Title</h2>
+                            <button id="modalLikeBtn" class="like-btn" title="Like this wallpaper">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="heart-icon"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                                <span id="modalLikeCount" class="like-count">0</span>
+                            </button>
+                        </div>
+                        <div id="modalTags" class="modal-tags"></div>
+                        <p id="modalDesc"><span data-i18n="desktop_version">Desktop Version</span></p>
+                    </div>
+                    <div id="noMobileMsg" class="warning-msg hidden" data-i18n="no_mobile_msg">This artwork is not available in mobile ratio.</div>
+                    <div class="action-buttons">
+                        
+
+<div class="size-switch-group" id="modalSizeSwitchGroup">
+    <button class="size-btn active" id="modalDesktopBtn" type="button" aria-label="Desktop size">
+        <span class="size-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="12" rx="2"></rect>
+                <path d="M8 20h8"></path>
+                <path d="M12 16v4"></path>
+            </svg>
+        </span>
+        <span class="label" data-i18n="desktop_version">Desktop Size</span>
+    </button>
+    <button class="size-btn" id="modalMobileBtn" type="button" aria-label="Mobile size">
+        <span class="size-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="7" y="2.5" width="10" height="19" rx="2.5"></rect>
+                <path d="M10 5h4"></path>
+                <circle cx="12" cy="18" r="0.8"></circle>
+            </svg>
+        </span>
+        <span class="label" data-i18n="mobile_version">Mobile Size</span>
+    </button>
+</div>
+
+<button id="viewFullPageBtn" class="btn secondary-btn">
+                            <span class="icon">🔗</span> <span data-i18n="view_full_page">View Full Page</span>
+                        </button>
+
+                        <button id="modalCopyPinBtn" class="btn glass-btn pinterest-copy-btn" type="button">
+                            <span class="icon">📌</span>
+                            <span>Copy Pinterest Text</span>
+                        </button>
+                        
+                        <button id="downloadBtn" class="btn focus-btn premium-download-btn">
+                            <span class="download-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24">
+        <path d="M12 3v11"></path>
+        <path d="M7 10l5 5 5-5"></path>
+        <path d="M5 20h14"></path>
+    </svg>
+</span>
+                            <span data-i18n="download">Download</span>
+                        </button>
+                    </div>
+                    
+                    <div class="comments-section">
+                        <h3 class="comments-title"><span data-i18n="comments">Comments</span> <span id="commentCount">(0)</span></h3>
+                        <div id="commentsList" class="comments-list">
+                            <!-- Comments injected here -->
+                        </div>
+                        <div id="commentFormContainer" class="comment-form-container">
+                            <div id="loginPrompt" class="login-prompt">
+                                <span data-i18n="please">Please</span> <a href="#" id="promptLoginLink" data-i18n="log_in">log in</a> <span data-i18n="to_leave_comment">to leave a comment.</span>
+                            </div>
+                            <form id="commentForm" class="comment-form hidden">
+                                <div class="user-avatar-small" id="currentUserAvatar"></div>
+                                <div class="input-group">
+                                    <input type="text" id="commentInput" placeholder="Add a comment..." required autocomplete="off" data-i18n-placeholder="add_comment">
+                                    <button type="submit" class="send-btn" title="Send">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-ad-space">
+                    <div class="ad-placeholder">
+                        <span class="ad-label">ADVERTISEMENT</span>
+                        <div class="ad-box">Google Ads<br>300 x 250</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ad Mock Modal -->
+    <div class="modal" id="adModal">
+        <div class="modal-backdrop" id="adBackdrop" style="background: rgba(0,0,0,0.85); backdrop-filter: blur(20px);"></div>
+        <div class="ad-content">
+            <div class="ad-header">
+                <h3 data-i18n="sponsor_ad">Sponsor Advertisement</h3>
+                <span class="ad-badge">AD</span>
+            </div>
+            <div class="ad-body">
+                <div class="ad-video-mock">
+                    <div class="spinner"></div>
+                    <p data-i18n="preparing_files">Preparing highest quality files...</p>
+                </div>
+            </div>
+            <div class="ad-footer">
+                <p id="adTimerMsg"><span data-i18n="download_starts_in">Download starts in</span> <span id="adCountdown">5</span> <span data-i18n="seconds">seconds</span></p>
+                <button id="skipAdBtn" class="btn unlock-btn hidden" data-i18n="close_ad">Close Ad & Download</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-backdrop" id="loginBackdrop"></div>
+        <div class="auth-content premium-login-card" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+            <button class="close-btn premium-login-close" id="closeLoginModal" type="button" aria-label="Close login modal">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                    <path d="M18 6L6 18M6 6l12 12"></path>
+                </svg>
+            </button>
+
+            <div class="auth-brand-mark">
+                <span>A</span>
+            </div>
+
+            <div class="auth-header">
+                <p class="auth-eyebrow">AFTERGLOWR ACCOUNT</p>
+                <h2 id="loginTitle">Welcome Back</h2>
+                <p>Sign in to leave comments on wallpapers.</p>
+            </div>
+
+            <div class="auth-body">
+                <button id="googleLoginBtn" class="auth-btn google-auth-btn" type="button">
+                    <span class="auth-provider-icon google-g">G</span>
+                    <span>Continue with Google</span>
+                    <span class="auth-spinner" aria-hidden="true"></span>
+                </button>
+
+                <button id="fbLoginBtn" class="auth-btn facebook-auth-btn" type="button">
+                    <span class="auth-provider-icon facebook-f">f</span>
+                    <span>Continue with Facebook</span>
+                    <span class="auth-spinner" aria-hidden="true"></span>
+                </button>
+            </div>
+
+            <div class="auth-divider">
+                <span></span>
+            </div>
+
+            <p class="auth-note">Demo login stores a local profile in your browser for comments and likes.</p>
+
+            <div class="auth-success hidden" id="authSuccessState">
+                <div class="auth-success-check">✓</div>
+                <div>
+                    <strong>Signed in</strong>
+                    <span>Your profile is ready.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-layout">
+            <div class="footer-left">
+                <div class="music-player glass-panel animate-on-scroll">
+                    <h4 class="player-title" data-i18n="radio">🎵 Afterglowr Radio</h4>
+                    <div class="iframe-container">
+                        <div id="yt-player"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-content animate-on-scroll" style="transition-delay: 0.2s;">
+                <div class="footer-logo">AFTERGLOWR</div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/Afterglowr.Wallpapers" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                    <a href="#" aria-label="Instagram"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    <a href="https://x.com/Afterglowr_" target="_blank" rel="noopener noreferrer" aria-label="X"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg></a>
+                </div>
+                <p data-i18n="copyright">Copyright &copy; 2026 Afterglowr. Cinematic wallpapers crafted with atmosphere.</p>
+                <p class="disclaimer" data-i18n="disclaimer">Disclaimer: The images on this website are for personal creation and testing. They are protected by copyright. Please do not copy, modify, or use them commercially without authorization.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="/script.js"></script>
+
+
+<!-- Support Modal -->
+<div class="modal support-modal" id="supportModal" aria-hidden="true">
+  <div class="modal-backdrop" id="supportBackdrop"></div>
+
+  <div class="modal-content support-modal-content glass-panel" role="dialog" aria-modal="true" aria-labelledby="supportModalTitle">
+    <button class="close-btn" id="closeSupportModal" type="button" aria-label="Close support modal">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <div class="support-content">
+      <div class="support-kicker" id="supportKicker">AFTERGLOWR PROJECT</div>
+      <h2 id="supportModalTitle">About Afterglowr Wallpapers</h2>
+
+      <p class="support-lead" id="supportLead">
+        Afterglowr Wallpapers is a curated collection of high-quality wallpapers built around cinematic lighting,
+        atmospheric depth, and photorealistic detail.
+      </p>
+
+      <p id="supportStory">
+        This project started as a personal archive of creative experiments — exploring visual moods through original ideas,
+        AI-assisted workflows, and refined compositions. Over time, it evolved into a platform for sharing these creations
+        with others who appreciate immersive and carefully crafted visuals.
+      </p>
+
+      <div class="support-highlight">
+        <strong id="supportFreeText">All wallpapers on this site are free to download and use.</strong>
+      </div>
+
+      <p id="supportGoal">
+        Our goal is simple: to create visuals that feel real, emotional, and timeless — not artificial or overly stylized.
+      </p>
+
+      <p id="supportDonateText">
+        If you enjoy the work and would like to support the project, you’re welcome to contribute.
+        Your support helps maintain the site and allows continuous creation of new content.
+      </p>
+
+      <div class="support-actions">
+        <a class="support-primary-btn" id="supportProjectBtn" href="mailto:Afterglowr.Wallpaper@gmail.com?subject=Support%20Afterglowr%20Wallpapers">
+          Support the Project
+        </a>
+        <a class="support-secondary-btn" id="supportCopyrightBtn" href="mailto:Afterglowr.Wallpaper@gmail.com?subject=Copyright%20Concern%20-%20Afterglowr%20Wallpapers">
+          Report Copyright Concern
+        </a>
+      </div>
+
+      <div class="support-contact-card">
+        <div>
+          <span class="support-label" id="supportContactLabel">Contact</span>
+          <a href="mailto:Afterglowr.Wallpaper@gmail.com">Afterglowr.Wallpaper@gmail.com</a>
+        </div>
+        <div>
+          <span class="support-label" id="supportUpdatedLabel">Last updated</span>
+          <span id="supportUpdatedValue">May 2026</span>
+        </div>
+      </div>
+
+      <p class="support-note" id="supportCopyrightNote">
+        If any content raises copyright concerns, please contact us and it will be reviewed and removed promptly.
+      </p>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>

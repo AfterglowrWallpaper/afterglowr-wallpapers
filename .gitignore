@@ -1,0 +1,5 @@
+node_modules/
+private/
+backup_20260501/
+dist/
+.env
