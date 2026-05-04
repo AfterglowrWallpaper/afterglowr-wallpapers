@@ -1029,7 +1029,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function forceDownload(data) {
         try {
             // 向後端 API 請求一次性下載 token，必須使用 encodeURIComponent 避免 URL 特殊符號解析錯誤
-            const response = await fetch(`/api/generate-link?id=${encodeURIComponent(data.id)}&type=${encodeURIComponent(data.type)}`);
+            const response = await fetch(`https://afterglowr.onrender.com/api/generate-link?id=${encodeURIComponent(data.id)}&type=${encodeURIComponent(data.type)}`);
             if (!response.ok) {
                 let errorMsg = 'Network response was not ok';
                 try {
