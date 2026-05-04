@@ -1,303 +1,274 @@
 import express from 'express';
 import cors from 'cors';
-import path from 'path';
-import fs from 'fs';
 import crypto from 'crypto';
-import chokidar from 'chokidar';
-import { execFile } from 'child_process';
+import path from 'path';
 import { fileURLToPath } from 'url';
+import { S3Client, GetObjectCommand, ListObjectsV2Command } from '@aws-sdk/client-s3';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
+app.set('trust proxy', 1);
 app.use(cors());
 
-const originalsDir = path.join(__dirname, 'private', 'originals');
+const PORT = process.env.PORT || 3000;
+
+const R2_ENDPOINT = process.env.R2_ENDPOINT;
+const R2_ACCESS_KEY_ID = process.env.R2_ACCESS_KEY_ID;
+const R2_SECRET_ACCESS_KEY = process.env.R2_SECRET_ACCESS_KEY;
+const R2_BUCKET_NAME = process.env.R2_BUCKET_NAME;
+
+if (!R2_ENDPOINT || !R2_ACCESS_KEY_ID || !R2_SECRET_ACCESS_KEY || !R2_BUCKET_NAME) {
+  console.warn('[R2] Missing environment variables. Please check Render Environment settings.');
+}
+
+const r2 = new S3Client({
+  region: 'auto',
+  endpoint: R2_ENDPOINT,
+  credentials: {
+    accessKeyId: R2_ACCESS_KEY_ID,
+    secretAccessKey: R2_SECRET_ACCESS_KEY,
+  },
+});
 
 function toSlug(str) {
-    return str.toLowerCase()
-              .replace(/&/g, 'and')
-              .replace(/[\s_]+/g, '-')
-              .replace(/[^\w-]+/g, '')
-              .replace(/--+/g, '-')
-              .replace(/^-+/, '')
-              .replace(/-+$/, '');
+  return String(str)
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[\s_]+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
 }
 
-function createDownloadFilename(filePath, downloadType) {
-    const ext = path.extname(filePath).toLowerCase();
-    let base = path.basename(filePath, ext);
+function getTypeAndBaseName(objectKey) {
+  const filename = path.basename(objectKey);
+  const ext = path.extname(filename);
+  const nameWithoutExt = path.basename(filename, ext);
 
-    if (base.endsWith('_PC')) {
-        base = base.replace(/_PC$/, '');
-        downloadType = 'desktop';
-    } else if (base.endsWith('_MP')) {
-        base = base.replace(/_MP$/, '');
-        downloadType = 'mobile';
-    }
+  let id = nameWithoutExt;
+  let type = 'desktop';
 
-    const safeName = base
-        .toLowerCase()
-        .replace(/&/g, 'and')
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/--+/g, '-')
-        .replace(/^-+/, '')
-        .replace(/-+$/, '');
+  if (nameWithoutExt.endsWith('_MP')) {
+    id = nameWithoutExt.replace(/_MP$/, '');
+    type = 'mobile';
+  } else if (nameWithoutExt.endsWith('_PC')) {
+    id = nameWithoutExt.replace(/_PC$/, '');
+    type = 'desktop';
+  }
 
-    const typeLabel = downloadType === 'mobile' ? 'mobile' : 'desktop';
-    return `${safeName}-${typeLabel}-wallpaper${ext}`;
+  return { id, type, ext };
 }
 
-// 建立檔案索引，加快下載時的檔案尋找速度
+function createDownloadFilename(objectKey, downloadType) {
+  const filename = path.basename(objectKey);
+  const ext = path.extname(filename).toLowerCase();
+  const nameWithoutExt = path.basename(filename, ext);
+
+  let base = nameWithoutExt;
+  if (base.endsWith('_PC')) base = base.replace(/_PC$/, '');
+  if (base.endsWith('_MP')) base = base.replace(/_MP$/, '');
+
+  const safeName = base
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/--+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '');
+
+  const typeLabel = downloadType === 'mobile' ? 'mobile' : 'desktop';
+  return `${safeName}-${typeLabel}-wallpaper${ext}`;
+}
+
+// R2 object index: `${wallpaperSlug}_${desktop|mobile}` -> R2 object key
 const fileIndex = new Map();
+let lastIndexBuildAt = 0;
+let isBuildingIndex = false;
 
-function buildFileIndex(dir) {
-    if (!fs.existsSync(dir)) return;
-    const files = fs.readdirSync(dir);
-    for (const file of files) {
-        const fullPath = path.join(dir, file);
-        if (fs.statSync(fullPath).isDirectory()) {
-            buildFileIndex(fullPath);
-        } else if (/\.(png|jpe?g|webp)$/i.test(file)) {
-            const ext = path.extname(file);
-            const nameWithoutExt = path.basename(file, ext);
-            let id = nameWithoutExt;
-            let type = 'desktop';
-            
-            if (nameWithoutExt.endsWith('_MP')) {
-                id = nameWithoutExt.replace('_MP', '');
-                type = 'mobile';
-            } else if (nameWithoutExt.endsWith('_PC')) {
-                id = nameWithoutExt.replace('_PC', '');
-                type = 'desktop';
-            }
-            
-            const slugId = toSlug(id);
-            fileIndex.set(`${slugId}_${type}`, fullPath);
-        }
-    }
-}
+async function buildR2FileIndex() {
+  if (isBuildingIndex) return;
+  isBuildingIndex = true;
 
-function rebuildFileIndex() {
+  try {
     fileIndex.clear();
-    buildFileIndex(originalsDir);
+    let continuationToken;
+
+    do {
+      const result = await r2.send(new ListObjectsV2Command({
+        Bucket: R2_BUCKET_NAME,
+        ContinuationToken: continuationToken,
+      }));
+
+      for (const obj of result.Contents || []) {
+        const key = obj.Key;
+        if (!key || !/\.(png|jpe?g|webp)$/i.test(key)) continue;
+
+        const { id, type } = getTypeAndBaseName(key);
+        const slugId = toSlug(id);
+        fileIndex.set(`${slugId}_${type}`, key);
+      }
+
+      continuationToken = result.NextContinuationToken;
+    } while (continuationToken);
+
+    lastIndexBuildAt = Date.now();
+    console.log(`[R2] File index loaded: ${fileIndex.size} objects ready for secure download.`);
+  } catch (err) {
+    console.error('[R2] Failed to build file index:', err);
+  } finally {
+    isBuildingIndex = false;
+  }
 }
 
-// 伺服器啟動時建立索引
-rebuildFileIndex(originalsDir);
+async function ensureFreshIndex() {
+  // Rebuild at most once every 10 minutes, or if empty.
+  if (fileIndex.size === 0 || Date.now() - lastIndexBuildAt > 10 * 60 * 1000) {
+    await buildR2FileIndex();
+  }
+}
 
-// Token 儲存池 (記憶體)
-// 結構: token -> { id, type, expiresAt }
-
+// Token pool: token -> { objectKey, type, expiresAt }
 const tokenPool = new Map();
 
-// ===== Realtime wallpaper update system (SSE) =====
-const sseClients = new Set();
-let thumbnailTimer = null;
-let isGeneratingWallpapers = false;
-let pendingRegeneration = false;
-
-function broadcastEvent(payload) {
-    const data = `data: ${JSON.stringify(payload)}
-
-`;
-    for (const client of sseClients) {
-        client.write(data);
-    }
+function cleanupExpiredTokens() {
+  const now = Date.now();
+  for (const [token, data] of tokenPool.entries()) {
+    if (now > data.expiresAt) tokenPool.delete(token);
+  }
 }
 
-function runWallpaperGeneration(reason = 'file-change') {
-    if (isGeneratingWallpapers) {
-        pendingRegeneration = true;
-        return;
-    }
-
-    isGeneratingWallpapers = true;
-    console.log(`[Realtime] Regenerating wallpapers.json because: ${reason}`);
-
-    execFile('node', ['generate_thumbnails.js'], { cwd: __dirname }, (err, stdout, stderr) => {
-        isGeneratingWallpapers = false;
-
-        if (stdout) console.log(stdout.trim());
-        if (stderr) console.warn(stderr.trim());
-
-        if (err) {
-            console.error('[Realtime] generate_thumbnails.js failed:', err);
-            broadcastEvent({ type: 'wallpapers-error', message: 'Failed to regenerate wallpapers.json', ts: Date.now() });
-        } else {
-            rebuildFileIndex();
-            broadcastEvent({ type: 'wallpapers-updated', reason, ts: Date.now() });
-            console.log('[Realtime] wallpapers.json updated and clients notified.');
-        }
-
-        if (pendingRegeneration) {
-            pendingRegeneration = false;
-            runWallpaperGeneration('pending-file-change');
-        }
-    });
-}
-
-function scheduleWallpaperGeneration(reason) {
-    clearTimeout(thumbnailTimer);
-    thumbnailTimer = setTimeout(() => runWallpaperGeneration(reason), 900);
-}
-
-if (fs.existsSync(originalsDir)) {
-    chokidar.watch(originalsDir, {
-        ignoreInitial: true,
-        awaitWriteFinish: {
-            stabilityThreshold: 1200,
-            pollInterval: 100
-        }
-    }).on('add', filePath => {
-        console.log('[Realtime] image added:', filePath);
-        scheduleWallpaperGeneration('image-added');
-    }).on('change', filePath => {
-        console.log('[Realtime] image changed:', filePath);
-        scheduleWallpaperGeneration('image-changed');
-    }).on('unlink', filePath => {
-        console.log('[Realtime] image removed:', filePath);
-        scheduleWallpaperGeneration('image-removed');
-    }).on('addDir', dirPath => {
-        console.log('[Realtime] folder added:', dirPath);
-        scheduleWallpaperGeneration('folder-added');
-    });
-}
-
-
-app.get('/api/events', (req, res) => {
-    res.setHeader('Content-Type', 'text/event-stream');
-    res.setHeader('Cache-Control', 'no-cache');
-    res.setHeader('Connection', 'keep-alive');
-    res.flushHeaders?.();
-
-    res.write(`data: ${JSON.stringify({ type: 'connected', ts: Date.now() })}
-
-`);
-    sseClients.add(res);
-
-    req.on('close', () => {
-        sseClients.delete(res);
-    });
-});
-
-app.post('/api/regenerate-wallpapers', (req, res) => {
-    scheduleWallpaperGeneration('manual-api');
-    res.json({ ok: true, message: 'Wallpaper regeneration scheduled.' });
-});
+setInterval(cleanupExpiredTokens, 60 * 1000).unref?.();
 
 app.get('/api/health', (req, res) => {
-    res.json({ status: 'ok', message: 'Backend is running' });
+  res.json({
+    status: 'ok',
+    message: 'Backend is running',
+    storage: 'cloudflare-r2',
+    indexedFiles: fileIndex.size,
+  });
 });
 
-// API: 產生一次性下載連結
-app.get('/api/generate-link', (req, res) => {
-    const { id, type } = req.query;
-    
-    if (!id || !type) {
-        return res.status(400).json({ error: 'Missing id or type parameter' });
-    }
-
-    const lookupKey = `${id}_${type}`;
-    const filePath = fileIndex.get(lookupKey);
-    const fileExists = !!(filePath && fs.existsSync(filePath));
-    
-    console.log(`[Generate Link] received id: ${id}`);
-    console.log(`[Generate Link] received type: ${type}`);
-    console.log(`[Generate Link] lookup key: ${lookupKey}`);
-    console.log(`[Generate Link] file exists: ${fileExists}`);
-    console.log(`[Generate Link] file path: ${filePath || 'N/A'}`);
-
-    if (!fileExists) {
-        return res.status(404).json({ 
-            error: 'Original file not found',
-            id: id,
-            type: type,
-            lookupKey: lookupKey
-        });
-    }
-
-    // 產生一組無法預測的 Token
-    const token = crypto.randomUUID();
-    
-    // 設定 Token 60秒後過期
-    const expiresAt = Date.now() + 60 * 1000;
-    
-    tokenPool.set(token, { id, type, expiresAt });
-
-    // 設定定時器主動清除過期 Token
-    setTimeout(() => {
-        if (tokenPool.has(token)) {
-            tokenPool.delete(token);
-        }
-    }, 60 * 1000);
-
-    res.json({ url: `/api/download?token=${token}` });
+// Keep these endpoints so the frontend will not break if it still connects to them.
+app.get('/api/events', (req, res) => {
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Connection', 'keep-alive');
+  res.write(`data: ${JSON.stringify({ type: 'connected', ts: Date.now() })}\n\n`);
 });
 
-// API: 驗證 Token 並下載檔案
-app.get('/api/download', (req, res) => {
-    const { token } = req.query;
-    
-    if (!token) {
-        return res.status(400).send('Missing token');
-    }
+app.post('/api/regenerate-wallpapers', async (req, res) => {
+  await buildR2FileIndex();
+  res.json({ ok: true, message: 'R2 file index rebuilt.' });
+});
 
-    const tokenData = tokenPool.get(token);
-    
-    if (!tokenData) {
-        return res.status(403).send('Invalid or expired token');
-    }
+// API: generate one-time download link.
+app.get('/api/generate-link', async (req, res) => {
+  const { id, type } = req.query;
 
-    if (Date.now() > tokenData.expiresAt) {
-        tokenPool.delete(token);
-        return res.status(403).send('Token has expired');
-    }
+  if (!id || !type) {
+    return res.status(400).json({ error: 'Missing id or type parameter' });
+  }
 
-    // Token 驗證成功，立即銷毀，確保只能用一次
-    tokenPool.delete(token);
+  await ensureFreshIndex();
 
-    const filePath = fileIndex.get(`${tokenData.id}_${tokenData.type}`);
-    
-    if (!filePath || !fs.existsSync(filePath)) {
-        return res.status(404).send('Original file not found');
-    }
+  const lookupKey = `${id}_${type}`;
+  const objectKey = fileIndex.get(lookupKey);
 
-    const filename = createDownloadFilename(filePath, tokenData.type);
+  console.log(`[Generate Link] id=${id}, type=${type}, lookupKey=${lookupKey}, objectKey=${objectKey || 'N/A'}`);
 
-    // 串流傳送實體檔案，瀏覽器會直接觸發下載
-    res.download(filePath, filename, (err) => {
-        if (err) {
-            console.error('File download failed:', err);
-        }
+  if (!objectKey) {
+    return res.status(404).json({
+      error: 'Original file not found in R2',
+      id,
+      type,
+      lookupKey,
+      indexedFiles: fileIndex.size,
     });
+  }
+
+  const token = crypto.randomUUID();
+  const expiresAt = Date.now() + 60 * 1000;
+
+  tokenPool.set(token, { objectKey, type, expiresAt });
+
+  const baseUrl = `${req.protocol}://${req.get('host')}`;
+
+  res.json({
+    url: `${baseUrl}/api/download?token=${token}`,
+  });
 });
 
+// API: validate token and stream file from R2.
+app.get('/api/download', async (req, res) => {
+  const { token } = req.query;
 
-// SEO URL routes for traffic landing pages
+  if (!token) {
+    return res.status(400).send('Missing token');
+  }
+
+  const tokenData = tokenPool.get(token);
+
+  if (!tokenData) {
+    return res.status(403).send('Invalid or expired token');
+  }
+
+  if (Date.now() > tokenData.expiresAt) {
+    tokenPool.delete(token);
+    return res.status(403).send('Token has expired');
+  }
+
+  tokenPool.delete(token);
+
+  try {
+    const result = await r2.send(new GetObjectCommand({
+      Bucket: R2_BUCKET_NAME,
+      Key: tokenData.objectKey,
+    }));
+
+    const filename = createDownloadFilename(tokenData.objectKey, tokenData.type);
+
+    res.setHeader('Content-Type', result.ContentType || 'application/octet-stream');
+    res.setHeader('Content-Disposition', `attachment; filename*=UTF-8''${encodeURIComponent(filename)}`);
+    res.setHeader('Cache-Control', 'no-store');
+
+    if (result.ContentLength) {
+      res.setHeader('Content-Length', String(result.ContentLength));
+    }
+
+    result.Body.pipe(res);
+  } catch (err) {
+    console.error('[Download] R2 download failed:', err);
+    res.status(500).send('Download failed');
+  }
+});
+
+// SEO URL routes for traffic landing pages.
 const seoRoutes = [
-    '/cyberpunk-wallpapers',
-    '/dark-wallpapers',
-    '/rainy-city-wallpapers',
-    '/minimal-wallpapers',
-    '/anime-wallpapers',
-    '/zh/cyberpunk-wallpapers',
-    '/zh/dark-wallpapers',
-    '/zh/rainy-city-wallpapers',
-    '/zh/minimal-wallpapers',
-    '/zh/anime-wallpapers'
+  '/cyberpunk-wallpapers',
+  '/dark-wallpapers',
+  '/rainy-city-wallpapers',
+  '/minimal-wallpapers',
+  '/anime-wallpapers',
+  '/zh/cyberpunk-wallpapers',
+  '/zh/dark-wallpapers',
+  '/zh/rainy-city-wallpapers',
+  '/zh/minimal-wallpapers',
+  '/zh/anime-wallpapers',
 ];
 
-seoRoutes.forEach(route => {
-    app.get(route, (req, res) => {
-        res.sendFile(path.join(__dirname, 'index.html'));
-    });
+seoRoutes.forEach((route) => {
+  app.get(route, (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+  });
 });
 
-app.listen(PORT, () => {
-    console.log(`Backend Server running on http://localhost:${PORT}`);
-    console.log(`Originals index loaded: ${fileIndex.size} files ready for secure download.`);
+buildR2FileIndex().finally(() => {
+  app.listen(PORT, () => {
+    console.log(`Backend Server running on port ${PORT}`);
+    console.log(`R2 bucket: ${R2_BUCKET_NAME}`);
+    console.log(`R2 indexed files: ${fileIndex.size}`);
+  });
 });
