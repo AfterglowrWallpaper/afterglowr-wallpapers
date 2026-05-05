@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import crypto from 'crypto';
 import path from 'path';
+import { exec } from 'child_process';
 import { fileURLToPath } from 'url';
 import { S3Client, GetObjectCommand, ListObjectsV2Command } from '@aws-sdk/client-s3';
 
@@ -10,7 +11,23 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 app.set('trust proxy', 1);
-app.use(cors());
+const allowedOrigins = [
+  'https://afterglowr-wallpapers.vercel.app',
+  'http://localhost:5173',
+  'http://localhost:3000'
+];
+
+app.use(cors({
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error(`CORS blocked origin: ${origin}`));
+  },
+  credentials: true
+}));
+
+app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 
@@ -83,6 +100,23 @@ function createDownloadFilename(objectKey, downloadType) {
   return `${safeName}-${typeLabel}-wallpaper${ext}`;
 }
 
+
+function runGenerateSitemap() {
+  return new Promise((resolve) => {
+    exec('node generate_sitemap.js', { cwd: __dirname }, (err, stdout, stderr) => {
+      if (err) {
+        console.error('[Sitemap] Failed to generate sitemap:', err.message);
+        if (stderr) console.error(stderr);
+        return resolve(false);
+      }
+
+      if (stdout) console.log(stdout.trim());
+      console.log('[Sitemap] sitemap.xml generated successfully.');
+      resolve(true);
+    });
+  });
+}
+
 // R2 object index: `${wallpaperSlug}_${desktop|mobile}` -> R2 object key
 const fileIndex = new Map();
 let lastIndexBuildAt = 0;
@@ -141,6 +175,11 @@ function cleanupExpiredTokens() {
 }
 
 setInterval(cleanupExpiredTokens, 60 * 1000).unref?.();
+
+
+app.get('/sitemap.xml', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
+});
 
 app.get('/api/health', (req, res) => {
   res.json({
@@ -265,10 +304,12 @@ seoRoutes.forEach((route) => {
   });
 });
 
-buildR2FileIndex().finally(() => {
-  app.listen(PORT, () => {
-    console.log(`Backend Server running on port ${PORT}`);
-    console.log(`R2 bucket: ${R2_BUCKET_NAME}`);
-    console.log(`R2 indexed files: ${fileIndex.size}`);
+buildR2FileIndex()
+  .then(() => runGenerateSitemap())
+  .finally(() => {
+    app.listen(PORT, () => {
+      console.log(`Backend Server running on port ${PORT}`);
+      console.log(`R2 bucket: ${R2_BUCKET_NAME}`);
+      console.log(`R2 indexed files: ${fileIndex.size}`);
+    });
   });
-});

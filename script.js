@@ -12,6 +12,14 @@ function updateLangFromUrl() {
 }
 updateLangFromUrl();
 
+const API_BASE_URL = 'https://afterglowr.onrender.com';
+
+function apiUrl(path) {
+    if (!path) return API_BASE_URL;
+    return `${API_BASE_URL}${path.startsWith('/') ? path : '/' + path}`;
+}
+
+
 function normalizeTextForSearch(value) {
     return String(value || '').toLowerCase().trim();
 }
@@ -152,7 +160,7 @@ function getSeoTrafficPage(path = window.location.pathname) {
 function updateTrafficSeoMeta(seoPage) {
     if (!seoPage) return;
 
-    const baseUrl = 'https://afterglowr.com';
+    const baseUrl = 'https://afterglowr-wallpapers.vercel.app';
     const key = window.location.pathname.replace(/^\/zh\/?/, '').replace(/^\/+|\/+$/g, '');
     const url = `${baseUrl}${currentLang === 'zh' ? '/zh/' : '/'}${key}`;
     const title = currentLang === 'zh' ? `${seoPage.zhTitle} | Afterglowr` : `${seoPage.enTitle} | Afterglowr`;
@@ -658,7 +666,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     function updateHomeSEOMeta(page) {
-        const baseUrl = 'https://afterglowr.com';
+        const baseUrl = 'https://afterglowr-wallpapers.vercel.app';
         const pageTitle = document.getElementById('pageTitle');
         const metaDesc = document.getElementById('metaDescription');
         const ogTitle = document.getElementById('ogTitle');
@@ -1029,7 +1037,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function forceDownload(data) {
         try {
             // 向後端 API 請求一次性下載 token，必須使用 encodeURIComponent 避免 URL 特殊符號解析錯誤
-            const response = await fetch(`https://afterglowr.onrender.com/api/generate-link?id=${encodeURIComponent(data.id)}&type=${encodeURIComponent(data.type)}`);
+            const response = await fetch(apiUrl(`/api/generate-link?id=${encodeURIComponent(data.id)}&type=${encodeURIComponent(data.type)}`));
             if (!response.ok) {
                 let errorMsg = 'Network response was not ok';
                 try {
@@ -1224,7 +1232,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const canonicalUrl = document.getElementById('canonicalUrl');
         const structuredData = document.getElementById('structuredData');
         
-        const baseUrl = 'https://afterglowr.com';
+        const baseUrl = 'https://afterglowr-wallpapers.vercel.app';
         
         if (wp) {
             const title = buildSeoTitle(wp);
@@ -1854,7 +1862,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
-        const events = new EventSource('/api/events');
+        const events = new EventSource(apiUrl('/api/events'));
 
         events.onopen = () => {
             console.log('[Realtime] SSE connected');

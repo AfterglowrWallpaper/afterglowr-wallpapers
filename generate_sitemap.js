@@ -9,7 +9,24 @@ const wallpapersFile = path.join(__dirname, 'public', 'wallpapers.json');
 const sitemapFile = path.join(__dirname, 'public', 'sitemap.xml');
 
 // 您可以隨時在此處修改為您的正式上線網域
-const BASE_URL = 'https://afterglowr.com';
+const BASE_URL = 'https://afterglowr-wallpapers.vercel.app';
+
+const SEO_CATEGORY_ROUTES = [
+    'cyberpunk-wallpapers',
+    'dark-wallpapers',
+    'rainy-city-wallpapers',
+    'minimal-wallpapers',
+    'anime-wallpapers'
+];
+
+function xmlEscape(value = '') {
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&apos;');
+}
 
 function generateSitemap() {
     if (!fs.existsSync(wallpapersFile)) {
@@ -40,6 +57,31 @@ function generateSitemap() {
     xml += `    <changefreq>daily</changefreq>\n`;
     xml += `    <priority>1.0</priority>\n`;
     xml += `  </url>\n`;
+
+    // 中文首頁
+    xml += `  <url>\n`;
+    xml += `    <loc>${BASE_URL}/zh/</loc>\n`;
+    xml += `    <lastmod>${today}</lastmod>\n`;
+    xml += `    <changefreq>daily</changefreq>\n`;
+    xml += `    <priority>0.95</priority>\n`;
+    xml += `  </url>\n`;
+
+    // SEO Category Landing Pages
+    for (const route of SEO_CATEGORY_ROUTES) {
+        xml += `  <url>\n`;
+        xml += `    <loc>${BASE_URL}/${route}</loc>\n`;
+        xml += `    <lastmod>${today}</lastmod>\n`;
+        xml += `    <changefreq>weekly</changefreq>\n`;
+        xml += `    <priority>0.92</priority>\n`;
+        xml += `  </url>\n`;
+
+        xml += `  <url>\n`;
+        xml += `    <loc>${BASE_URL}/zh/${route}</loc>\n`;
+        xml += `    <lastmod>${today}</lastmod>\n`;
+        xml += `    <changefreq>weekly</changefreq>\n`;
+        xml += `    <priority>0.88</priority>\n`;
+        xml += `  </url>\n`;
+    }
 
     // 2. 分類頁 (Category Pages)
     const categories = [...new Set(wallpapers.filter(wp => wp.category).map(wp => wp.category.toLowerCase()))];
@@ -74,6 +116,14 @@ function generateSitemap() {
         xml += `    <lastmod>${today}</lastmod>\n`;
         xml += `    <changefreq>weekly</changefreq>\n`;
         xml += `    <priority>0.8</priority>\n`;
+        if (wp.desktopImg) {
+            const safeImageUrl = xmlEscape(`${BASE_URL}${wp.desktopImg}`);
+            const safeImageTitle = xmlEscape(`${wp.title || wp.slug} 4K Wallpaper`);
+            xml += `    <image:image>\n`;
+            xml += `      <image:loc>${safeImageUrl}</image:loc>\n`;
+            xml += `      <image:title>${safeImageTitle}</image:title>\n`;
+            xml += `    </image:image>\n`;
+        }
         xml += `  </url>\n`;
     }
 
