@@ -1010,6 +1010,39 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.addEventListener('click', fullPageArrowFallbackHandler);
 
     let adInterval;
+
+    function startDownloadAdFlow(downloadData) {
+        if (!downloadData || !downloadData.id || !downloadData.type) {
+            alert(translations[currentLang]?.download_error || 'Download failed, please try again later.');
+            return;
+        }
+
+        if (!adModal || !skipAdBtn || !adTimerMsg || !adCountdown) {
+            forceDownload(downloadData);
+            return;
+        }
+
+        adModal.classList.add('active');
+        skipAdBtn.classList.add('hidden');
+        adTimerMsg.classList.remove('hidden');
+
+        let secondsLeft = 5;
+        adCountdown.textContent = secondsLeft;
+
+        if (adInterval) clearInterval(adInterval);
+
+        adInterval = setInterval(() => {
+            secondsLeft--;
+            adCountdown.textContent = secondsLeft;
+            if (secondsLeft <= 0) {
+                clearInterval(adInterval);
+                adTimerMsg.classList.add('hidden');
+                skipAdBtn.classList.remove('hidden');
+                forceDownload(downloadData);
+            }
+        }, 1000);
+    }
+
     downloadBtn.addEventListener('click', (e) => {
         e.preventDefault();
         adModal.classList.add('active');
@@ -1031,6 +1064,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }, 1000);
     });
+
+    if (wpDownloadBtn) {
+        wpDownloadBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            startDownloadAdFlow(wpDownloadUrl);
+        });
+    }
 
     skipAdBtn.addEventListener('click', () => adModal.classList.remove('active'));
 
