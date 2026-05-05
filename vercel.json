@@ -1,40 +1,13 @@
 {
   "rewrites": [
-    {
-      "source": "/zh/:path*",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/wallpaper/:path*",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/category/:path*",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/page/:path*",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/cyberpunk-wallpapers",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/dark-wallpapers",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/rainy-city-wallpapers",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/minimal-wallpapers",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/anime-wallpapers",
-      "destination": "/index.html"
-    }
+    { "source": "/zh/:path*", "destination": "/index.html" },
+    { "source": "/wallpaper/:path*", "destination": "/index.html" },
+    { "source": "/category/:path*", "destination": "/index.html" },
+    { "source": "/page/:path*", "destination": "/index.html" },
+    { "source": "/cyberpunk-wallpapers", "destination": "/index.html" },
+    { "source": "/dark-wallpapers", "destination": "/index.html" },
+    { "source": "/rainy-city-wallpapers", "destination": "/index.html" },
+    { "source": "/minimal-wallpapers", "destination": "/index.html" },
+    { "source": "/anime-wallpapers", "destination": "/index.html" }
   ]
 }
