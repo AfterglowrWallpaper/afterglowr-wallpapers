@@ -1065,12 +1065,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         }, 1000);
     });
 
-    if (wpDownloadBtn) {
-        wpDownloadBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            startDownloadAdFlow(wpDownloadUrl);
-        });
-    }
+
+    // AFTERGLOWR_DOWNLOAD_AD_GUARD
+    document.addEventListener('click', (e) => {
+        const targetDownloadBtn = e.target.closest('#downloadBtn, #wpDownloadBtn');
+        if (!targetDownloadBtn) return;
+
+        e.preventDefault();
+        e.stopImmediatePropagation();
+
+        const data = targetDownloadBtn.id === 'wpDownloadBtn' ? wpDownloadUrl : downloadUrl;
+        startDownloadAdFlow(data);
+    }, true);
 
     skipAdBtn.addEventListener('click', () => adModal.classList.remove('active'));
 

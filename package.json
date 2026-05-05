@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node generate_thumbnails.js && node generate_sitemap.js && concurrently \"vite --open\" \"node server.js\"",
-    "build": "node generate_thumbnails.js && node generate_sitemap.js && vite build",
+    "build": "node generate_thumbnails.js && node generate_sitemap.js && vite build && node postbuild_routes.js",
     "start": "node server.js",
     "preview": "vite preview"
   },
