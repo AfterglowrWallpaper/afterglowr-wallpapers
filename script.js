@@ -1049,7 +1049,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         if (!adModal || !skipAdBtn || !adTimerMsg || !adCountdown) {
-            forceDownload(downloadData);
+            console.error('Download ad modal elements are missing.', {
+                adModal: !!adModal,
+                skipAdBtn: !!skipAdBtn,
+                adTimerMsg: !!adTimerMsg,
+                adCountdown: !!adCountdown
+            });
+            alert(translations[currentLang]?.download_error || 'Download failed, please try again later.');
             return;
         }
 
