@@ -1042,7 +1042,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (adCountdown) adCountdown.textContent = '5';
     }
 
-    function startDownloadAdFlow(downloadData) {
+    function startDownloadFlow(downloadData) {
         if (!downloadData || !downloadData.id || !downloadData.type) {
             alert(translations[currentLang]?.download_error || 'Download failed, please try again later.');
             return;
@@ -1074,42 +1074,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         }, 1000);
     }
 
-    downloadBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        adModal.classList.add('active');
-        skipAdBtn.classList.add('hidden');
-        adTimerMsg.classList.remove('hidden');
-        
-        let secondsLeft = 5;
-        adCountdown.textContent = secondsLeft;
-        if (adInterval) clearInterval(adInterval);
-        
-        adInterval = setInterval(() => {
-            secondsLeft--;
-            adCountdown.textContent = secondsLeft;
-            if (secondsLeft <= 0) {
-                clearInterval(adInterval);
-                adTimerMsg.classList.add('hidden');
-                skipAdBtn.classList.remove('hidden');
-                forceDownload(downloadUrl);
-            }
-        }, 1000);
-    });
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            startDownloadFlow(downloadUrl);
+        });
+    }
 
+    if (wpDownloadBtn) {
+        wpDownloadBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            startDownloadFlow(wpDownloadUrl);
+        });
+    }
 
-    // AFTERGLOWR_DOWNLOAD_AD_GUARD
-    document.addEventListener('click', (e) => {
-        const targetDownloadBtn = e.target.closest('#downloadBtn, #wpDownloadBtn');
-        if (!targetDownloadBtn) return;
-
-        e.preventDefault();
-        e.stopImmediatePropagation();
-
-        const data = targetDownloadBtn.id === 'wpDownloadBtn' ? wpDownloadUrl : downloadUrl;
-        startDownloadAdFlow(data);
-    }, true);
-
-    skipAdBtn.addEventListener('click', resetDownloadAdState);
+    if (skipAdBtn) {
+        skipAdBtn.addEventListener('click', resetDownloadAdState);
+    }
 
     async function forceDownload(data) {
         try {
@@ -1126,7 +1107,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const result = await response.json();
             
             if (result.url) {
-                // 收到 token 下載連結後，透過 a 標籤觸發下載
+                // 收到 token 下載連結後，用 hidden iframe 觸發下載，避免導走目前 SPA URL
                 const frame = document.createElement('iframe');
                 frame.hidden = true;
                 frame.src = result.url;
@@ -1771,26 +1752,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             closeModal();
             navigateTo('/wallpaper/' + currentWallpaper.id);
         }
-    });
-
-    wpDownloadBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        adModal.classList.add('active');
-        skipAdBtn.classList.add('hidden');
-        adTimerMsg.classList.remove('hidden');
-        let secondsLeft = 5;
-        adCountdown.textContent = secondsLeft;
-        if (adInterval) clearInterval(adInterval);
-        adInterval = setInterval(() => {
-            secondsLeft--;
-            adCountdown.textContent = secondsLeft;
-            if (secondsLeft <= 0) {
-                clearInterval(adInterval);
-                adTimerMsg.classList.add('hidden');
-                skipAdBtn.classList.remove('hidden');
-                forceDownload(wpDownloadUrl);
-            }
-        }, 1000);
     });
 
     document.addEventListener('click', (e) => {
