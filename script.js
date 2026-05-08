@@ -321,14 +321,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         const res = await fetch('/wallpapers.json');
         if (res.ok) {
             wallpapers = await res.json();
-            wallpapers.forEach(wp => wallpaperMap.set(wp.id, wp));
+            wallpapers.forEach(wp => {
+                if (wp.id) wallpaperMap.set(wp.id, wp);
+                if (wp.slug && wp.slug !== wp.id) wallpaperMap.set(wp.slug, wp);
+            });
             wallpapers = wallpapers.sort(() => Math.random() - 0.5);
         }
     } catch (e) {
         console.error('Failed to load wallpapers.json', e);
     }
 
-    wallpapers = Array.from(wallpaperMap.values());
+    wallpapers = wallpapers.filter((wp, index, list) => {
+        const key = wp.id || wp.slug;
+        return key && list.findIndex(item => (item.id || item.slug) === key) === index;
+    });
     wallpapers = wallpapers.filter(wp => wp.desktopImg); 
     wallpapers = wallpapers.sort(() => Math.random() - 0.5); 
     
@@ -1376,12 +1382,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         if (route.routeName === 'wallpaper') {
             const slug = route.params.slug;
-            const wp = wallpapers.find(w => w.id === slug) || wallpaperMap.get(slug);
+            const wp = wallpaperMap.get(slug) || wallpapers.find(w => w.id === slug || w.slug === slug);
             if (wp) {
                 renderWallpaperPage(wp);
                 updateSEOMeta(wp, null);
             } else {
-                navigateTo('/');
+                homeView.classList.remove('hidden');
+                wallpaperView.classList.add('hidden');
+                if (categoryView) categoryView.classList.add('hidden');
+                renderGallery({ updateUrl: false });
+                updateHomeSEOMeta(currentPage || 1);
             }
         } else if (route.routeName === 'category') {
             const catSlug = route.params.slug;
@@ -1862,8 +1872,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             const oldCount = wallpapers.length;
 
             wallpaperMap.clear();
-            freshWallpapers.forEach(wp => wallpaperMap.set(wp.id, wp));
-            wallpapers = Array.from(wallpaperMap.values()).filter(wp => wp.desktopImg);
+            freshWallpapers.forEach(wp => {
+                if (wp.id) wallpaperMap.set(wp.id, wp);
+                if (wp.slug && wp.slug !== wp.id) wallpaperMap.set(wp.slug, wp);
+            });
+            wallpapers = freshWallpapers.filter((wp, index, list) => {
+                const key = wp.id || wp.slug;
+                return key && wp.desktopImg && list.findIndex(item => (item.id || item.slug) === key) === index;
+            });
 
             const totalPages = typeof getTotalPages === 'function' ? getTotalPages() : 1;
             if (typeof currentPage !== 'undefined') {
