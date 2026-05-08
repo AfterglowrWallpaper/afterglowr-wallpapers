@@ -1,14 +1,24 @@
 import { translations } from './translations.js';
+import {
+    getLocaleFromPath,
+    normalizePathname,
+    stripLocalePrefix,
+    switchLocalePath,
+    withLocalePath
+} from './src/router/path.js';
 
 let currentLang = 'en';
 
 function updateLangFromUrl() {
-    const path = window.location.pathname;
-    if (path.startsWith('/zh')) {
-        currentLang = 'zh';
-    } else {
-        currentLang = 'en';
+    const normalizedPath = normalizePathname(window.location.pathname);
+    if (normalizedPath !== window.location.pathname) {
+        window.history.replaceState(
+            window.history.state || {},
+            '',
+            `${normalizedPath}${window.location.search}${window.location.hash}`
+        );
     }
+    currentLang = getLocaleFromPath(normalizedPath);
 }
 updateLangFromUrl();
 
@@ -57,11 +67,7 @@ function buildSeoDescription(wp, typeLabel = '') {
 }
 
 function localizePath(pathValue) {
-    const cleanPath = pathValue || '/';
-    if (currentLang !== 'zh') return cleanPath;
-    if (cleanPath === '/') return '/zh/';
-    if (cleanPath.startsWith('/zh')) return cleanPath;
-    return '/zh' + cleanPath;
+    return withLocalePath(pathValue || '/', currentLang);
 }
 
 function applyTranslations() {
@@ -1238,34 +1244,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (langToggleBtn) {
         langToggleBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            const path = window.location.pathname;
-            const isZhPath = path.startsWith('/zh');
-
-            let targetPath;
-            if (isZhPath) {
-                targetPath = path.replace(/^\/zh\/?/, '/');
-                if (!targetPath || targetPath === '') targetPath = '/';
-            } else {
-                targetPath = '/zh' + (path === '/' ? '/' : path);
-            }
-
-            window.location.href = targetPath;
+            const targetPath = `${switchLocalePath(window.location.pathname)}${window.location.search}${window.location.hash}`;
+            window.history.pushState({}, '', targetPath);
+            updateLangFromUrl();
+            applyTranslations();
+            handleRoute();
         });
     }
 
     function getRoutePath(path = window.location.pathname) {
-        if (path === '/zh') return '/';
-        if (path.startsWith('/zh/')) return path.replace(/^\/zh/, '') || '/';
-        return path;
+        return stripLocalePrefix(path);
     }
 
     function localizePath(path) {
-        if (currentLang === 'zh') {
-            if (path === '/') return '/zh/';
-            if (path.startsWith('/zh/')) return path;
-            return '/zh' + path;
-        }
-        return path.replace(/^\/zh\/?/, '/') || '/';
+        return withLocalePath(path || '/', currentLang);
     }
 
     function updateSEOMeta(wp, context) {
@@ -2228,5 +2220,3 @@ document.addEventListener('keydown', (e) => {
 });
 
 });
-
-
