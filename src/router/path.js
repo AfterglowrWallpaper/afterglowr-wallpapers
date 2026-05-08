@@ -44,3 +44,47 @@ export function switchLocalePath(pathname = '/') {
     const nextLocale = currentLocale === LOCALE_PREFIX ? DEFAULT_LOCALE : LOCALE_PREFIX;
     return withLocalePath(pathname, nextLocale);
 }
+
+export function parseRoute(pathname = '/') {
+    const normalizedPath = normalizePathname(pathname);
+    const locale = getLocaleFromPath(normalizedPath);
+    const routePath = stripLocalePrefix(normalizedPath);
+    const wallpaperMatch = routePath.match(/^\/wallpaper\/([^/]+)\/?$/);
+    const categoryMatch = routePath.match(/^\/category\/([^/]+)\/?$/);
+    const pageMatch = routePath.match(/^\/page\/(\d+)\/?$/);
+
+    if (wallpaperMatch) {
+        return {
+            locale,
+            routePath,
+            routeName: 'wallpaper',
+            params: { slug: decodeURIComponent(wallpaperMatch[1]) }
+        };
+    }
+
+    if (categoryMatch) {
+        return {
+            locale,
+            routePath,
+            routeName: 'category',
+            params: { slug: decodeURIComponent(categoryMatch[1]) }
+        };
+    }
+
+    if (pageMatch) {
+        const page = parseInt(pageMatch[1], 10);
+        return {
+            locale,
+            routePath,
+            routeName: 'page',
+            params: { page: Number.isFinite(page) && page > 0 ? page : 1 }
+        };
+    }
+
+    return {
+        locale,
+        routePath,
+        routeName: routePath === '/' ? 'home' : 'seoLanding',
+        params: {}
+    };
+}

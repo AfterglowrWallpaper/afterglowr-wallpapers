@@ -2,6 +2,7 @@ import { translations } from './translations.js';
 import {
     getLocaleFromPath,
     normalizePathname,
+    parseRoute,
     stripLocalePrefix,
     switchLocalePath,
     withLocalePath
@@ -23,10 +24,36 @@ function updateLangFromUrl() {
 updateLangFromUrl();
 
 const API_BASE_URL = 'https://afterglowr.onrender.com';
+const SITE_URL = 'https://afterglowr-wallpapers.vercel.app';
 
 function apiUrl(path) {
     if (!path) return API_BASE_URL;
     return `${API_BASE_URL}${path.startsWith('/') ? path : '/' + path}`;
+}
+
+function getAbsoluteUrl(pathValue = '/', locale = currentLang) {
+    return `${SITE_URL}${withLocalePath(pathValue || '/', locale)}`;
+}
+
+function setUrlMetaTags(routePath = '/') {
+    const canonical = getAbsoluteUrl(routePath, currentLang);
+    const enUrl = getAbsoluteUrl(routePath, 'en');
+    const zhUrl = getAbsoluteUrl(routePath, 'zh');
+
+    const ogUrl = document.getElementById('ogUrl');
+    const canonicalUrl = document.getElementById('canonicalUrl');
+    const hrefLangEn = document.getElementById('hrefLangEn') || document.querySelector('link[rel="alternate"][hreflang="en"]');
+    const hrefLangZh = document.getElementById('hrefLangZh') || document.querySelector('link[rel="alternate"][hreflang="zh"]');
+    const hrefLangDefault = document.getElementById('hrefLangDefault') || document.querySelector('link[rel="alternate"][hreflang="x-default"]');
+
+    document.documentElement.lang = currentLang === 'zh' ? 'zh' : 'en';
+    if (ogUrl) ogUrl.setAttribute('content', canonical);
+    if (canonicalUrl) canonicalUrl.setAttribute('href', canonical);
+    if (hrefLangEn) hrefLangEn.setAttribute('href', enUrl);
+    if (hrefLangZh) hrefLangZh.setAttribute('href', zhUrl);
+    if (hrefLangDefault) hrefLangDefault.setAttribute('href', enUrl);
+
+    return canonical;
 }
 
 
@@ -64,10 +91,6 @@ function buildSeoDescription(wp, typeLabel = '') {
     const resolution = wp?.resolution || 'high resolution';
     const typePart = typeLabel ? `${typeLabel.toLowerCase()} ` : '';
     return `Download ${title} as a ${typePart}wallpaper in ${resolution}. Explore cinematic, realistic, atmospheric wallpapers${tags ? ` featuring ${tags}` : ''}.`;
-}
-
-function localizePath(pathValue) {
-    return withLocalePath(pathValue || '/', currentLang);
 }
 
 function applyTranslations() {
@@ -159,16 +182,17 @@ const SEO_TRAFFIC_PAGES = {
 };
 
 function getSeoTrafficPage(path = window.location.pathname) {
-    const key = path.replace(/^\/zh\/?/, '').replace(/^\/+|\/+$/g, '');
+    const key = stripLocalePrefix(path).replace(/^\/+|\/+$/g, '');
     return SEO_TRAFFIC_PAGES[key] || null;
 }
 
 function updateTrafficSeoMeta(seoPage) {
     if (!seoPage) return;
 
-    const baseUrl = 'https://afterglowr-wallpapers.vercel.app';
-    const key = window.location.pathname.replace(/^\/zh\/?/, '').replace(/^\/+|\/+$/g, '');
-    const url = `${baseUrl}${currentLang === 'zh' ? '/zh/' : '/'}${key}`;
+    const baseUrl = SITE_URL;
+    const key = stripLocalePrefix(window.location.pathname).replace(/^\/+|\/+$/g, '');
+    const routePath = key ? `/${key}` : '/';
+    const url = setUrlMetaTags(routePath);
     const title = currentLang === 'zh' ? `${seoPage.zhTitle} | Afterglowr` : `${seoPage.enTitle} | Afterglowr`;
     const desc = currentLang === 'zh' ? seoPage.zhDesc : seoPage.enDesc;
 
@@ -176,17 +200,12 @@ function updateTrafficSeoMeta(seoPage) {
     const metaDesc = document.getElementById('metaDescription');
     const ogTitle = document.getElementById('ogTitle');
     const ogDesc = document.getElementById('ogDescription');
-    const ogUrl = document.getElementById('ogUrl');
-    const canonicalUrl = document.getElementById('canonicalUrl');
     const structuredData = document.getElementById('structuredData');
 
     if (pageTitle) pageTitle.textContent = title;
     if (metaDesc) metaDesc.setAttribute('content', desc);
     if (ogTitle) ogTitle.setAttribute('content', title);
     if (ogDesc) ogDesc.setAttribute('content', desc);
-    if (ogUrl) ogUrl.setAttribute('content', url);
-    if (canonicalUrl) canonicalUrl.setAttribute('href', url);
-
     if (structuredData) {
         structuredData.textContent = JSON.stringify({
             "@context": "https://schema.org",
@@ -612,7 +631,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             // 更新網址但不新增瀏覽器歷史紀錄
-            const nextUrl = `/wallpaper/${nextWallpaper.id}`;
+            const nextUrl = localizePath(`/wallpaper/${nextWallpaper.id}`);
             if (window.location.pathname !== nextUrl) {
                 window.history.replaceState({ page: 'wallpaper', id: nextWallpaper.id }, '', nextUrl);
             }
@@ -628,13 +647,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     let sortMode = 'newest';
     let isInfiniteLoading = false;
     const ITEMS_PER_PAGE = 20;
-
-    function getPageFromPath(path = window.location.pathname) {
-        const match = path.match(/^\/page\/(\d+)\/?$/);
-        if (!match) return 1;
-        const page = parseInt(match[1], 10);
-        return Number.isFinite(page) && page > 0 ? page : 1;
-    }
 
     function getFilteredWallpapers() {
         let result = currentCategory === 'all'
@@ -672,13 +684,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     function updateHomeSEOMeta(page) {
-        const baseUrl = 'https://afterglowr-wallpapers.vercel.app';
         const pageTitle = document.getElementById('pageTitle');
         const metaDesc = document.getElementById('metaDescription');
         const ogTitle = document.getElementById('ogTitle');
         const ogDesc = document.getElementById('ogDescription');
-        const ogUrl = document.getElementById('ogUrl');
-        const canonicalUrl = document.getElementById('canonicalUrl');
         const structuredData = document.getElementById('structuredData');
 
         const defaultTitle = currentLang === 'zh' ? 'Afterglowr 電影感桌布下載' : 'Afterglowr – Cinematic Wallpapers';
@@ -687,14 +696,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         const desc = page <= 1
             ? (currentLang === 'zh' ? '下載電影感、真實光影、暗色氛圍的高質感桌布，支援電腦與手機版本。' : 'Download cinematic wallpapers with realistic lighting, dark atmosphere, and no CGI feel.')
             : (currentLang === 'zh' ? `瀏覽 Afterglowr 電影感桌布第 ${page} 頁，探索適合電腦與手機的 4K 高質感桌布。` : `Browse page ${page} of Afterglowr Cinematic Wallpapers. Explore premium 4K artistic wallpapers for desktop and mobile devices.`);
-        const url = `${baseUrl}${getHomePageUrl(page)}`;
+        const routePath = page <= 1 ? '/' : `/page/${page}`;
+        const url = setUrlMetaTags(routePath);
 
         if (pageTitle) pageTitle.textContent = title;
         if (metaDesc) metaDesc.setAttribute('content', desc);
         if (ogTitle) ogTitle.setAttribute('content', title);
         if (ogDesc) ogDesc.setAttribute('content', desc);
-        if (ogUrl) ogUrl.setAttribute('content', url);
-        if (canonicalUrl) canonicalUrl.setAttribute('href', url);
         if (structuredData) {
             const schema = {
                 "@context": "https://schema.org",
@@ -1017,6 +1025,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     let adInterval;
 
+    function resetDownloadAdState() {
+        if (adInterval) {
+            clearInterval(adInterval);
+            adInterval = null;
+        }
+        if (adModal) adModal.classList.remove('active');
+        if (skipAdBtn) skipAdBtn.classList.add('hidden');
+        if (adTimerMsg) adTimerMsg.classList.remove('hidden');
+        if (adCountdown) adCountdown.textContent = '5';
+    }
+
     function startDownloadAdFlow(downloadData) {
         if (!downloadData || !downloadData.id || !downloadData.type) {
             alert(translations[currentLang]?.download_error || 'Download failed, please try again later.');
@@ -1084,7 +1103,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         startDownloadAdFlow(data);
     }, true);
 
-    skipAdBtn.addEventListener('click', () => adModal.classList.remove('active'));
+    skipAdBtn.addEventListener('click', resetDownloadAdState);
 
     async function forceDownload(data) {
         try {
@@ -1102,12 +1121,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             if (result.url) {
                 // 收到 token 下載連結後，透過 a 標籤觸發下載
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = result.url;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
+                const frame = document.createElement('iframe');
+                frame.hidden = true;
+                frame.src = result.url;
+                frame.addEventListener('load', () => setTimeout(() => frame.remove(), 1000), { once: true });
+                document.body.appendChild(frame);
             } else {
                 throw new Error(result.error || 'Failed to get download link');
             }
@@ -1244,16 +1262,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (langToggleBtn) {
         langToggleBtn.addEventListener('click', (e) => {
             e.preventDefault();
+            resetDownloadAdState();
             const targetPath = `${switchLocalePath(window.location.pathname)}${window.location.search}${window.location.hash}`;
             window.history.pushState({}, '', targetPath);
             updateLangFromUrl();
             applyTranslations();
             handleRoute();
         });
-    }
-
-    function getRoutePath(path = window.location.pathname) {
-        return stripLocalePrefix(path);
     }
 
     function localizePath(path) {
@@ -1266,27 +1281,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         const ogTitle = document.getElementById('ogTitle');
         const ogDesc = document.getElementById('ogDescription');
         const ogImage = document.getElementById('ogImage');
-        const ogUrl = document.getElementById('ogUrl');
-        const canonicalUrl = document.getElementById('canonicalUrl');
         const structuredData = document.getElementById('structuredData');
         
-        const baseUrl = 'https://afterglowr-wallpapers.vercel.app';
+        const baseUrl = SITE_URL;
         
         if (wp) {
             const title = buildSeoTitle(wp);
             const desc = buildSeoDescription(wp);
             const imgPath = wp.desktopImg || wp.mobileImg || '';
             const fullImgUrl = imgPath ? baseUrl + imgPath : '';
-            const url = `${baseUrl}${localizePath(`/wallpaper/${wp.slug}`)}`;
+            const url = setUrlMetaTags(`/wallpaper/${wp.slug}`);
             
             if (pageTitle) pageTitle.textContent = title;
             if (metaDesc) metaDesc.setAttribute('content', desc);
             if (ogTitle) ogTitle.setAttribute('content', title);
             if (ogDesc) ogDesc.setAttribute('content', desc);
             if (ogImage) ogImage.setAttribute('content', fullImgUrl);
-            if (ogUrl) ogUrl.setAttribute('content', url);
-            if (canonicalUrl) canonicalUrl.setAttribute('href', url);
-            
             if (structuredData) {
                 const schema = {
                     "@context": "https://schema.org",
@@ -1310,7 +1320,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const catName = context.name;
             const title = `${catName} Wallpapers 4K Download | Afterglowr Cinematic Wallpapers`;
             const desc = `Download high-quality ${catName} wallpapers including desktop and mobile versions. Explore premium AI-generated scenic backgrounds.`;
-            const url = `${baseUrl}${localizePath(`/category/${context.slug}`)}`;
+            const url = setUrlMetaTags(`/category/${context.slug}`);
             
             let catImgUrl = '';
             const filteredWps = wallpapers.filter(w => w.category && w.category.toLowerCase() === context.slug.toLowerCase());
@@ -1325,9 +1335,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (ogTitle) ogTitle.setAttribute('content', title);
             if (ogDesc) ogDesc.setAttribute('content', desc);
             if (ogImage) ogImage.setAttribute('content', catImgUrl);
-            if (ogUrl) ogUrl.setAttribute('content', url);
-            if (canonicalUrl) canonicalUrl.setAttribute('href', url);
-            
             if (structuredData) {
                 const schema = {
                     "@context": "https://schema.org",
@@ -1341,16 +1348,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         } else {
             const defaultTitle = currentLang === 'zh' ? 'Afterglowr 電影感桌布下載' : 'Afterglowr – Cinematic Wallpapers';
             const defaultDesc = currentLang === 'zh' ? '下載電影感、真實光影、暗色氛圍的高質感桌布，支援電腦與手機版本。' : 'Download cinematic wallpapers with realistic lighting, dark atmosphere, and no CGI feel.';
-            const url = `${baseUrl}${localizePath('/')}`;
+            const url = setUrlMetaTags('/');
             
             if (pageTitle) pageTitle.textContent = defaultTitle;
             if (metaDesc) metaDesc.setAttribute('content', defaultDesc);
             if (ogTitle) ogTitle.setAttribute('content', defaultTitle);
             if (ogDesc) ogDesc.setAttribute('content', defaultDesc);
             if (ogImage) ogImage.setAttribute('content', '');
-            if (ogUrl) ogUrl.setAttribute('content', url);
-            if (canonicalUrl) canonicalUrl.setAttribute('href', url);
-            
             if (structuredData) {
                 const schema = {
                     "@context": "https://schema.org",
@@ -1365,14 +1369,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     function handleRoute() {
-        const path = window.location.pathname;
-        const routePath = getRoutePath(path);
-        const wallpaperMatch = routePath.match(/^\/wallpaper\/([^\/]+)\/?$/);
-        const categoryMatch = routePath.match(/^\/category\/([^\/]+)\/?$/);
-        const pageMatch = routePath.match(/^\/page\/(\d+)\/?$/);
+        updateLangFromUrl();
+        const route = parseRoute(window.location.pathname);
+        const routePath = route.routePath;
+        const seoTrafficPage = getSeoTrafficPage(routePath);
         
-        if (wallpaperMatch) {
-            const slug = decodeURIComponent(wallpaperMatch[1]);
+        if (route.routeName === 'wallpaper') {
+            const slug = route.params.slug;
             const wp = wallpapers.find(w => w.id === slug) || wallpaperMap.get(slug);
             if (wp) {
                 renderWallpaperPage(wp);
@@ -1380,8 +1383,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 navigateTo('/');
             }
-        } else if (categoryMatch) {
-            const catSlug = decodeURIComponent(categoryMatch[1]);
+        } else if (route.routeName === 'category') {
+            const catSlug = route.params.slug;
             const catName = renderCategoryPage(catSlug);
             updateSEOMeta(null, { type: 'category', name: catName, slug: catSlug });
         } else {
@@ -1390,25 +1393,35 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (categoryView) categoryView.classList.add('hidden');
 
             currentCategory = 'all';
-            currentPage = pageMatch ? getPageFromPath(routePath) : 1;
+            currentPage = route.routeName === 'page' ? route.params.page : 1;
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.getAttribute('data-filter') === 'all');
             });
 
             renderGallery({ updateUrl: false });
             window.scrollTo(0, 0);
-            updateHomeSEOMeta(currentPage);
+            if (seoTrafficPage) {
+                updateTrafficSeoMeta(seoTrafficPage);
+            } else {
+                updateHomeSEOMeta(currentPage);
+            }
         }
     }
 
     function navigateTo(url) {
+        resetDownloadAdState();
         const targetUrl = localizePath(url);
         window.history.pushState({}, '', targetUrl);
         updateLangFromUrl();
         handleRoute();
     }
 
-    window.addEventListener('popstate', handleRoute);
+    window.addEventListener('popstate', () => {
+        resetDownloadAdState();
+        updateLangFromUrl();
+        applyTranslations();
+        handleRoute();
+    });
 
     function renderWallpaperPage(wp) {
         currentWpPage = wp;
