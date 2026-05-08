@@ -16,10 +16,15 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000'
 ];
-const allowedVercelPreviewOrigin = /^https:\/\/[a-z0-9-]+\.vercel\.app$/i;
-
 function isAllowedOrigin(origin) {
-  return !origin || allowedOrigins.includes(origin) || allowedVercelPreviewOrigin.test(origin);
+  if (!origin || allowedOrigins.includes(origin)) return true;
+
+  try {
+    const url = new URL(origin);
+    return url.protocol === 'https:' && url.hostname.endsWith('.vercel.app');
+  } catch {
+    return false;
+  }
 }
 
 const corsOptions = {
