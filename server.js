@@ -16,16 +16,27 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000'
 ];
+const allowedVercelPreviewOrigin = /^https:\/\/[a-z0-9-]+\.vercel\.app$/i;
 
-app.use(cors({
+function isAllowedOrigin(origin) {
+  return !origin || allowedOrigins.includes(origin) || allowedVercelPreviewOrigin.test(origin);
+}
+
+const corsOptions = {
   origin(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (isAllowedOrigin(origin)) {
       return callback(null, true);
     }
     return callback(new Error(`CORS blocked origin: ${origin}`));
   },
-  credentials: true
-}));
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: false,
+  optionsSuccessStatus: 204
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 app.use(express.json());
 
