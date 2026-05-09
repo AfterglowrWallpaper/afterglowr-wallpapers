@@ -5092,3 +5092,148 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* === Mobile Gallery Density and Modal Scroll === */
+@media (max-width: 640px) {
+    #homeView .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 12px !important;
+        padding: 0 12px 56px !important;
+    }
+
+    #homeView .wallpaper-card {
+        border-radius: 16px !important;
+        box-shadow: 0 14px 36px rgba(0, 0, 0, 0.34) !important;
+    }
+
+    #homeView .wallpaper-card:hover {
+        transform: translateY(-2px) !important;
+    }
+
+    #homeView .wallpaper-card::before {
+        border-radius: 16px !important;
+    }
+
+    #homeView .card-image-wrap {
+        padding: 8px 8px 0 !important;
+    }
+
+    #homeView .card-image {
+        aspect-ratio: 4 / 5 !important;
+        border-radius: 12px !important;
+    }
+
+    #homeView .card-info {
+        padding: 9px 9px 11px !important;
+    }
+
+    #homeView .card-title {
+        margin-bottom: 7px !important;
+        font-size: 0.82rem !important;
+        line-height: 1.2 !important;
+        letter-spacing: 0 !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    #homeView .card-badges {
+        gap: 5px !important;
+    }
+
+    #homeView .badge {
+        padding: 4px 7px !important;
+        border-radius: 999px !important;
+        font-size: 0.62rem !important;
+        line-height: 1 !important;
+    }
+
+    #homeView .card-actions {
+        right: 10px !important;
+        bottom: 10px !important;
+        width: 32px !important;
+        height: 32px !important;
+    }
+
+    #homeView .card-like-count,
+    #homeView .card-popularity {
+        font-size: 0.65rem !important;
+        line-height: 1.15 !important;
+    }
+}
+
+@media (max-width: 899px) {
+    #wallpaperModal {
+        align-items: stretch !important;
+        justify-content: center !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #wallpaperModal.active {
+        touch-action: pan-y;
+    }
+
+    #wallpaperModal .modal-backdrop {
+        position: fixed !important;
+        inset: 0 !important;
+    }
+
+    #wallpaperModal .modal-content {
+        align-self: stretch !important;
+        width: 100% !important;
+        max-width: none !important;
+        max-height: 100vh !important;
+        max-height: 100dvh !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #wallpaperModal .modal-body {
+        min-height: 100%;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    #wallpaperModal .image-container {
+        flex: 0 0 auto !important;
+        min-height: 0 !important;
+        padding: max(58px, calc(env(safe-area-inset-top) + 46px)) 12px 12px !important;
+        border-radius: 0 !important;
+    }
+
+    #wallpaperModal #modalImage {
+        width: 100% !important;
+        max-height: 52vh !important;
+        object-fit: contain !important;
+    }
+
+    #wallpaperModal .info-container {
+        flex: 0 0 auto !important;
+        justify-content: flex-start !important;
+        min-height: 0 !important;
+        padding: 18px 16px max(28px, calc(env(safe-area-inset-bottom) + 18px)) !important;
+        overflow: visible !important;
+    }
+
+    #wallpaperModal .action-buttons {
+        padding-bottom: max(14px, env(safe-area-inset-bottom)) !important;
+    }
+
+    #wallpaperModal .close-btn {
+        position: fixed !important;
+        top: max(12px, env(safe-area-inset-top)) !important;
+        right: 12px !important;
+        z-index: 1200 !important;
+    }
+}
