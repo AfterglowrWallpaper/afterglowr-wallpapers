@@ -334,6 +334,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     const homeView = document.getElementById('homeView');
     const wallpaperView = document.getElementById('wallpaperView');
     const categoryView = document.getElementById('categoryView');
+    const infoPageView = document.getElementById('infoPageView');
+    const infoPageKicker = document.getElementById('infoPageKicker');
+    const infoPageTitle = document.getElementById('infoPageTitle');
+    const infoPageLead = document.getElementById('infoPageLead');
+    const infoPageContent = document.getElementById('infoPageContent');
     const categoryGallery = document.getElementById('categoryGallery');
     const catTitle = document.getElementById('catTitle');
     const catDesc = document.getElementById('catDesc');
@@ -342,6 +347,193 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (catBackToHomeBtn) {
         catBackToHomeBtn.addEventListener('click', () => navigateTo('/'));
     }
+
+    const infoPages = {
+        about: {
+            en: {
+                nav: 'About',
+                title: 'About Afterglowr',
+                lead: 'Afterglowr is a curated AI-assisted wallpaper project focused on cinematic lighting, atmospheric depth, and polished visual storytelling.',
+                sections: [
+                    {
+                        title: 'What This Site Is',
+                        body: 'Afterglowr Wallpapers collects original and AI-assisted wallpaper concepts, then refines them for desktop and mobile use. The goal is to share images that feel cinematic, realistic, moody, and carefully composed.'
+                    },
+                    {
+                        title: 'Creative Approach',
+                        body: 'Each wallpaper is selected around visual atmosphere: light, shadow, location, subject, texture, and mood. AI tools may support ideation and image creation, while curation, naming, presentation, and publishing decisions are handled by the Afterglowr project.'
+                    },
+                    {
+                        title: 'Free Access',
+                        body: 'Wallpapers are provided for free download for personal use. Ads and voluntary support help maintain hosting, image processing, and ongoing publishing work.'
+                    }
+                ]
+            },
+            zh: {
+                nav: '關於',
+                title: '關於 Afterglowr',
+                lead: 'Afterglowr 是一個 AI 輔助桌布策展網站，專注於電影感光影、氛圍深度與精緻視覺敘事。',
+                sections: [
+                    {
+                        title: '網站定位',
+                        body: 'Afterglowr Wallpapers 收集原創與 AI 輔助生成的桌布概念，並整理成適合電腦與手機使用的作品。網站目標是分享具備電影感、真實感、情緒與構圖品質的視覺作品。'
+                    },
+                    {
+                        title: '創作方式',
+                        body: '每張桌布都圍繞光影、場景、主體、材質與氛圍進行篩選。AI 工具可能參與發想與影像生成，而作品整理、命名、呈現與發布由 Afterglowr 專案負責。'
+                    },
+                    {
+                        title: '免費使用',
+                        body: '本站桌布提供免費下載供個人使用。廣告與自願支持會用於維持主機、影像處理與持續更新。'
+                    }
+                ]
+            }
+        },
+        privacy: {
+            en: {
+                nav: 'Privacy',
+                title: 'Privacy Policy',
+                lead: 'This Privacy Policy explains how Afterglowr handles basic website data, cookies, analytics, and advertising services.',
+                sections: [
+                    {
+                        title: 'Google AdSense and Third-Party Advertising',
+                        list: [
+                            'This site may display advertisements through Google AdSense or other third-party advertising partners.',
+                            'Advertising partners may use cookies or similar technologies to show, measure, and improve ads.',
+                            'Ad partners may process information such as browser type, approximate location, page views, and interactions with ads.'
+                        ]
+                    },
+                    {
+                        title: 'Cookies',
+                        body: 'Cookies may be used to remember preferences, support analytics, prevent abuse, and deliver relevant advertising. You can control or disable cookies through your browser settings.'
+                    },
+                    {
+                        title: 'Google Analytics',
+                        body: 'This site may use Google Analytics to understand traffic, popular pages, device types, and general visitor behavior. Analytics data is used to improve the website experience and does not require account login.'
+                    },
+                    {
+                        title: 'User Data',
+                        body: 'Afterglowr does not require user accounts for downloads. Local actions such as likes may be stored in your browser localStorage. Contact emails are used only to respond to the message you send.'
+                    },
+                    {
+                        title: 'Contact',
+                        body: 'For privacy questions, contact afterglowr.wallpaper@gmail.com.'
+                    }
+                ]
+            },
+            zh: {
+                nav: '隱私權',
+                title: '隱私權政策',
+                lead: '本政策說明 Afterglowr 如何處理基本網站資料、cookies、分析工具與廣告服務。',
+                sections: [
+                    {
+                        title: 'Google AdSense 與第三方廣告',
+                        list: [
+                            '本站可能透過 Google AdSense 或其他第三方廣告合作夥伴顯示廣告。',
+                            '廣告合作夥伴可能使用 cookies 或類似技術，用於顯示、衡量與改善廣告。',
+                            '廣告合作夥伴可能處理瀏覽器類型、概略位置、頁面瀏覽與廣告互動等資訊。'
+                        ]
+                    },
+                    {
+                        title: 'Cookies',
+                        body: '本站可能使用 cookies 記住偏好、支援分析、防止濫用並提供相關廣告。你可以透過瀏覽器設定控制或停用 cookies。'
+                    },
+                    {
+                        title: 'Google Analytics',
+                        body: '本站可能使用 Google Analytics 了解流量、熱門頁面、裝置類型與一般訪客行為。分析資料用於改善網站體驗，不需要使用者登入。'
+                    },
+                    {
+                        title: '使用者資料',
+                        body: 'Afterglowr 下載不需要帳號。愛心等本機操作可能儲存在你的瀏覽器 localStorage。聯絡信件僅用於回覆你的來信。'
+                    },
+                    {
+                        title: '聯絡',
+                        body: '如有隱私相關問題，請聯絡 afterglowr.wallpaper@gmail.com。'
+                    }
+                ]
+            }
+        },
+        terms: {
+            en: {
+                nav: 'Terms',
+                title: 'Terms of Use',
+                lead: 'By using Afterglowr, you agree to use the wallpapers and website responsibly and within the limits described below.',
+                sections: [
+                    {
+                        title: 'Free Downloads',
+                        body: 'Wallpapers on this site are free to download for personal use, including personal devices, mood boards, and non-commercial personal projects.'
+                    },
+                    {
+                        title: 'No Resale',
+                        body: 'You may not resell, redistribute, package, upload, or offer these wallpapers as paid products, NFT assets, stock files, marketplace items, or competing wallpaper collections.'
+                    },
+                    {
+                        title: 'Copyright and Disclaimer',
+                        body: 'Images are provided for personal creation, testing, and wallpaper use. Some works may be AI-assisted. If any content raises copyright concerns, contact us and we will review it promptly.'
+                    },
+                    {
+                        title: 'Service Changes',
+                        body: 'Afterglowr may update, remove, or reorganize wallpapers and pages at any time to maintain quality, safety, and availability.'
+                    }
+                ]
+            },
+            zh: {
+                nav: '使用條款',
+                title: '使用條款',
+                lead: '使用 Afterglowr 即表示你同意依照以下限制合理使用本站桌布與服務。',
+                sections: [
+                    {
+                        title: '免費下載',
+                        body: '本站桌布可免費下載供個人使用，包括個人裝置、靈感參考與非商業個人專案。'
+                    },
+                    {
+                        title: '禁止二次販售',
+                        body: '你不得將本站桌布轉售、重新包裝、上架、作為付費商品、NFT 素材、圖庫素材、商城項目或競爭性桌布合集散布。'
+                    },
+                    {
+                        title: '版權與免責聲明',
+                        body: '圖片提供個人創作、測試與桌布用途。部分作品可能由 AI 輔助生成。如任何內容涉及版權疑慮，請聯絡我們，我們會盡快審視。'
+                    },
+                    {
+                        title: '服務調整',
+                        body: 'Afterglowr 可能隨時更新、移除或重新整理桌布與頁面，以維持品質、安全與可用性。'
+                    }
+                ]
+            }
+        },
+        contact: {
+            en: {
+                nav: 'Contact',
+                title: 'Contact',
+                lead: 'For support, copyright concerns, privacy questions, or collaboration inquiries, contact the Afterglowr project by email.',
+                sections: [
+                    {
+                        title: 'Email',
+                        body: '<a href="mailto:afterglowr.wallpaper@gmail.com">afterglowr.wallpaper@gmail.com</a>'
+                    },
+                    {
+                        title: 'Response Scope',
+                        body: 'Please include the related wallpaper title or page URL when reporting copyright, privacy, or technical issues so we can review the request efficiently.'
+                    }
+                ]
+            },
+            zh: {
+                nav: '聯絡',
+                title: '聯絡我們',
+                lead: '如需支援、版權疑慮、隱私問題或合作洽詢，請透過電子郵件聯絡 Afterglowr 專案。',
+                sections: [
+                    {
+                        title: '電子郵件',
+                        body: '<a href="mailto:afterglowr.wallpaper@gmail.com">afterglowr.wallpaper@gmail.com</a>'
+                    },
+                    {
+                        title: '來信建議',
+                        body: '回報版權、隱私或技術問題時，請附上相關桌布名稱或頁面網址，方便我們更有效率地檢視。'
+                    }
+                ]
+            }
+        }
+    };
 
     const backToGalleryBtn = document.getElementById('backToGalleryBtn');
     const wpMainImage = document.getElementById('wpMainImage');
@@ -1341,13 +1533,97 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    function getInfoPageKey(routePath = '/') {
+        const key = String(routePath || '/').replace(/^\/+|\/+$/g, '');
+        return infoPages[key] ? key : null;
+    }
+
+    function updateFooterPageLinks() {
+        document.querySelectorAll('[data-page-link]').forEach(link => {
+            const key = link.getAttribute('data-page-link');
+            const page = infoPages[key]?.[currentLang] || infoPages[key]?.en;
+            if (!page) return;
+
+            link.textContent = page.nav;
+            link.setAttribute('href', localizePath(`/${key}`));
+        });
+    }
+
+    function renderInfoPage(pageKey) {
+        const page = infoPages[pageKey]?.[currentLang] || infoPages[pageKey]?.en;
+        if (!page || !infoPageView) return false;
+
+        homeView.classList.add('hidden');
+        wallpaperView.classList.add('hidden');
+        if (categoryView) categoryView.classList.add('hidden');
+        infoPageView.classList.remove('hidden');
+
+        if (infoPageKicker) infoPageKicker.textContent = 'AFTERGLOWR';
+        if (infoPageTitle) infoPageTitle.textContent = page.title;
+        if (infoPageLead) infoPageLead.textContent = page.lead;
+        if (infoPageContent) {
+            infoPageContent.innerHTML = page.sections.map(section => {
+                const body = section.list
+                    ? `<ul>${section.list.map(item => `<li>${item}</li>`).join('')}</ul>`
+                    : `<p>${section.body || ''}</p>`;
+
+                return `
+                    <section class="info-section">
+                        <h2>${section.title}</h2>
+                        ${body}
+                    </section>
+                `;
+            }).join('');
+        }
+
+        window.scrollTo(0, 0);
+
+        const title = `${page.title} | Afterglowr`;
+        const desc = page.lead;
+        const routePath = `/${pageKey}`;
+        setUrlMetaTags(routePath);
+
+        const pageTitle = document.getElementById('pageTitle');
+        const metaDesc = document.getElementById('metaDescription');
+        const ogTitle = document.getElementById('ogTitle');
+        const ogDesc = document.getElementById('ogDescription');
+        const ogType = document.getElementById('ogType');
+        const structuredData = document.getElementById('structuredData');
+
+        if (pageTitle) pageTitle.textContent = title;
+        if (metaDesc) metaDesc.setAttribute('content', desc);
+        if (ogTitle) ogTitle.setAttribute('content', title);
+        if (ogDesc) ogDesc.setAttribute('content', desc);
+        if (ogType) ogType.setAttribute('content', 'website');
+        if (structuredData) {
+            structuredData.textContent = JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'WebPage',
+                name: title,
+                url: getAbsoluteUrl(routePath),
+                description: desc,
+                isPartOf: {
+                    '@type': 'WebSite',
+                    name: 'Afterglowr',
+                    url: SITE_URL
+                }
+            }, null, 2);
+        }
+
+        return true;
+    }
+
     function handleRoute() {
         updateLangFromUrl();
+        updateFooterPageLinks();
         const route = parseRoute(window.location.pathname);
         const routePath = route.routePath;
         const seoTrafficPage = getSeoTrafficPage(routePath);
+        const infoPageKey = getInfoPageKey(routePath);
         
-        if (route.routeName === 'wallpaper') {
+        if (infoPageKey) {
+            renderInfoPage(infoPageKey);
+        } else if (route.routeName === 'wallpaper') {
             const slug = route.params.slug;
             const wp = wallpaperMap.get(slug) || wallpapers.find(w => w.id === slug || w.slug === slug);
             if (wp) {
@@ -1357,6 +1633,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 homeView.classList.remove('hidden');
                 wallpaperView.classList.add('hidden');
                 if (categoryView) categoryView.classList.add('hidden');
+                if (infoPageView) infoPageView.classList.add('hidden');
                 renderGallery({ updateUrl: false });
                 updateHomeSEOMeta(currentPage || 1);
             }
@@ -1368,6 +1645,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             homeView.classList.remove('hidden');
             wallpaperView.classList.add('hidden');
             if (categoryView) categoryView.classList.add('hidden');
+            if (infoPageView) infoPageView.classList.add('hidden');
 
             currentCategory = 'all';
             currentPage = route.routeName === 'page' ? route.params.page : 1;
@@ -1393,6 +1671,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         handleRoute();
     }
 
+    document.querySelectorAll('[data-page-link]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (!href) return;
+
+            e.preventDefault();
+            navigateTo(href);
+        });
+    });
+
     window.addEventListener('popstate', () => {
         resetDownloadGateState();
         updateLangFromUrl();
@@ -1406,6 +1694,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         homeView.classList.add('hidden');
         if (categoryView) categoryView.classList.add('hidden');
+        if (infoPageView) infoPageView.classList.add('hidden');
         wallpaperView.classList.remove('hidden');
         window.scrollTo(0, 0);
 
@@ -1434,6 +1723,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         homeView.classList.add('hidden');
         wallpaperView.classList.add('hidden');
         if (categoryView) categoryView.classList.remove('hidden');
+        if (infoPageView) infoPageView.classList.add('hidden');
         window.scrollTo(0, 0);
 
         const filteredWallpapers = wallpapers.filter(w => w.category && w.category.toLowerCase() === categorySlug.toLowerCase());

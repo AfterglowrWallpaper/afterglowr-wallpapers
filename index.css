@@ -689,6 +689,10 @@ footer {
 @media (min-width: 900px) { .social-links { justify-content: flex-end; } }
 .social-links a { color: var(--text-secondary); transition: color 0.3s ease, transform 0.3s ease; display: flex; align-items: center; justify-content: center; }
 .social-links a:hover { color: var(--text-primary); transform: translateY(-3px); }
+.footer-page-links { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+@media (min-width: 900px) { .footer-page-links { justify-content: flex-end; } }
+.footer-page-link { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 700; transition: color 0.25s ease, transform 0.25s ease; }
+.footer-page-link:hover { color: var(--accent-primary); transform: translateY(-1px); }
 .footer-content p { color: var(--text-secondary); font-size: 1rem; margin-bottom: 10px; }
 .disclaimer { font-size: 0.85rem; color: #a1a1aa; max-width: 500px; margin-left: auto; line-height: 1.6; }
 
@@ -4754,6 +4758,85 @@ footer {
   .support-actions a {
     width: 100%;
   }
+}
+
+/* === Static Info Pages === */
+.info-page-view {
+  padding: 70px 5% 100px;
+}
+
+.info-page-shell {
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 56px);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(240,166,92,0.13), transparent 32%),
+    linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.045));
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 32px 90px rgba(0,0,0,0.24);
+}
+
+.info-page-kicker {
+  display: inline-flex;
+  margin-bottom: 16px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: rgba(240,166,92,0.12);
+  color: var(--accent-primary);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+.info-page-shell h1 {
+  margin: 0 0 16px;
+  color: var(--text-primary);
+  font-size: clamp(2.1rem, 5vw, 4.3rem);
+  line-height: 1.05;
+}
+
+.info-page-lead {
+  max-width: 760px;
+  color: var(--text-primary);
+  font-size: clamp(1.05rem, 2vw, 1.22rem);
+  line-height: 1.72;
+  margin-bottom: 34px;
+}
+
+.info-page-content {
+  display: grid;
+  gap: 22px;
+}
+
+.info-section {
+  padding: 22px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.055);
+  border: 1px solid rgba(255,255,255,0.09);
+}
+
+.info-section h2 {
+  margin: 0 0 10px;
+  color: var(--text-primary);
+  font-size: 1.18rem;
+}
+
+.info-section p,
+.info-section li {
+  color: var(--text-secondary);
+  line-height: 1.72;
+  font-size: 0.98rem;
+}
+
+.info-section ul {
+  margin: 10px 0 0;
+  padding-left: 20px;
+}
+
+.info-page-content a {
+  color: var(--accent-primary);
+  font-weight: 800;
 }
 
 
