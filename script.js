@@ -1042,6 +1042,51 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (adCountdown) adCountdown.textContent = '5';
     }
 
+    function getAdBlockerHintMessage() {
+        return currentLang === 'zh'
+            ? '請關閉廣告封鎖器並重新整理頁面後再下載。'
+            : 'Please turn off your ad blocker, refresh the page, and download again.';
+    }
+
+    function isVisibleElement(el) {
+        if (!el || !el.isConnected) return false;
+        const style = window.getComputedStyle(el);
+        const rect = el.getBoundingClientRect();
+        return style.display !== 'none'
+            && style.visibility !== 'hidden'
+            && Number(style.opacity) !== 0
+            && rect.width > 0
+            && rect.height > 0;
+    }
+
+    function isDownloadAdBlocked() {
+        if (!isVisibleElement(adModal)) return true;
+
+        const adContent = adModal.querySelector('.ad-content');
+        const adBody = adModal.querySelector('.ad-body');
+        const adSlot = adModal.querySelector('.ad-video-mock');
+
+        return !isVisibleElement(adContent)
+            || !isVisibleElement(adBody)
+            || !isVisibleElement(adSlot);
+    }
+
+    function showAdBlockerDownloadMessage() {
+        if (adInterval) {
+            clearInterval(adInterval);
+            adInterval = null;
+        }
+
+        if (adModal) adModal.classList.add('active');
+        if (adTimerMsg) adTimerMsg.classList.add('hidden');
+        if (skipAdBtn) skipAdBtn.classList.add('hidden');
+
+        const hint = adModal?.querySelector('.ad-blocker-hint');
+        if (hint) {
+            hint.textContent = getAdBlockerHintMessage();
+        }
+    }
+
     function startDownloadFlow(downloadData) {
         if (!downloadData || !downloadData.id || !downloadData.type) {
             alert(translations[currentLang]?.download_error || 'Download failed, please try again later.');
@@ -1068,16 +1113,30 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (adInterval) clearInterval(adInterval);
 
-        adInterval = setInterval(() => {
-            secondsLeft--;
-            adCountdown.textContent = secondsLeft;
-            if (secondsLeft <= 0) {
-                clearInterval(adInterval);
-                adTimerMsg.classList.add('hidden');
-                skipAdBtn.classList.remove('hidden');
-                forceDownload(downloadData);
+        window.setTimeout(() => {
+            if (isDownloadAdBlocked()) {
+                showAdBlockerDownloadMessage();
+                return;
             }
-        }, 1000);
+
+            adInterval = setInterval(() => {
+                secondsLeft--;
+                adCountdown.textContent = secondsLeft;
+                if (secondsLeft <= 0) {
+                    clearInterval(adInterval);
+                    adInterval = null;
+
+                    if (isDownloadAdBlocked()) {
+                        showAdBlockerDownloadMessage();
+                        return;
+                    }
+
+                    adTimerMsg.classList.add('hidden');
+                    skipAdBtn.classList.remove('hidden');
+                    forceDownload(downloadData);
+                }
+            }, 1000);
+        }, 80);
     }
 
     if (downloadBtn) {
