@@ -12,6 +12,8 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.set('trust proxy', 1);
 const allowedOrigins = [
+  'https://afterglowr.com',
+  'https://www.afterglowr.com',
   'https://afterglowr-wallpapers.vercel.app',
   'http://localhost:5173',
   'http://localhost:3000'
