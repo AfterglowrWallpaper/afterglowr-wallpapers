@@ -996,7 +996,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             downloadGateTimerId = null;
         }
         if (downloadGateModal) downloadGateModal.classList.remove('active');
-        if (downloadGateActionBtn) downloadGateActionBtn.classList.add('hidden');
+        if (downloadGateActionBtn) {
+            downloadGateActionBtn.classList.add('hidden');
+            downloadGateActionBtn.removeAttribute('data-download-url');
+            downloadGateActionBtn.textContent = translations[currentLang]?.close_download_gate || 'Close & Download';
+        }
         if (downloadGateTimerMsg) downloadGateTimerMsg.classList.remove('hidden');
         if (downloadGateCountdown) downloadGateCountdown.textContent = '5';
     }
@@ -1046,6 +1050,51 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    function shouldUseManualDownload() {
+        const ua = navigator.userAgent || '';
+        const isIOS = /iPad|iPhone|iPod/.test(ua)
+            || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        const isMobile = /Mobi|Android|iPad|iPhone|iPod/i.test(ua)
+            || window.matchMedia?.('(pointer: coarse)').matches;
+
+        return isIOS || isMobile;
+    }
+
+    function getManualDownloadLabel() {
+        return currentLang === 'zh' ? '點此下載' : 'Tap to Download';
+    }
+
+    async function generateDownloadLink(data) {
+        const response = await fetch(apiUrl(`/api/generate-link?id=${encodeURIComponent(data.id)}&type=${encodeURIComponent(data.type)}`));
+        if (!response.ok) {
+            let errorMsg = 'Network response was not ok';
+            try {
+                const errData = await response.json();
+                errorMsg = errData.error || errorMsg;
+            } catch(e) {}
+            throw new Error(errorMsg);
+        }
+
+        const result = await response.json();
+        if (!result.url) {
+            throw new Error(result.error || 'Failed to get download link');
+        }
+
+        return result.url;
+    }
+
+    async function prepareManualDownload(data) {
+        try {
+            const url = await generateDownloadLink(data);
+            downloadGateActionBtn.textContent = getManualDownloadLabel();
+            downloadGateActionBtn.setAttribute('data-download-url', url);
+            downloadGateActionBtn.classList.remove('hidden');
+        } catch (error) {
+            console.error('Download API error:', error);
+            alert(translations[currentLang]?.download_error || 'Download failed, please try again later.');
+        }
+    }
+
     function startDownloadFlow(downloadData) {
         if (!downloadData || !downloadData.id || !downloadData.type) {
             alert(translations[currentLang]?.download_error || 'Download failed, please try again later.');
@@ -1065,6 +1114,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         downloadGateModal.classList.add('active');
         downloadGateActionBtn.classList.add('hidden');
+        downloadGateActionBtn.removeAttribute('data-download-url');
+        downloadGateActionBtn.textContent = translations[currentLang]?.close_download_gate || 'Close & Download';
         downloadGateTimerMsg.classList.remove('hidden');
 
         let secondsLeft = 5;
@@ -1091,8 +1142,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                     }
 
                     downloadGateTimerMsg.classList.add('hidden');
-                    downloadGateActionBtn.classList.remove('hidden');
-                    forceDownload(downloadData);
+                    if (shouldUseManualDownload()) {
+                        prepareManualDownload(downloadData);
+                    } else {
+                        downloadGateActionBtn.classList.remove('hidden');
+                        forceDownload(downloadData);
+                    }
                 }
             }, 1000);
         }, 80);
@@ -1113,33 +1168,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     if (downloadGateActionBtn) {
-        downloadGateActionBtn.addEventListener('click', resetDownloadGateState);
+        downloadGateActionBtn.addEventListener('click', () => {
+            const url = downloadGateActionBtn.getAttribute('data-download-url');
+            if (url) {
+                window.location.href = url;
+                return;
+            }
+            resetDownloadGateState();
+        });
     }
 
     async function forceDownload(data) {
         try {
-            // 向後端 API 請求一次性下載 token，必須使用 encodeURIComponent 避免 URL 特殊符號解析錯誤
-            const response = await fetch(apiUrl(`/api/generate-link?id=${encodeURIComponent(data.id)}&type=${encodeURIComponent(data.type)}`));
-            if (!response.ok) {
-                let errorMsg = 'Network response was not ok';
-                try {
-                    const errData = await response.json();
-                    errorMsg = errData.error || errorMsg;
-                } catch(e) {}
-                throw new Error(errorMsg);
-            }
-            const result = await response.json();
-            
-            if (result.url) {
-                // 收到 token 下載連結後，用 hidden iframe 觸發下載，避免導走目前 SPA URL
-                const frame = document.createElement('iframe');
-                frame.hidden = true;
-                frame.src = result.url;
-                frame.addEventListener('load', () => setTimeout(() => frame.remove(), 1000), { once: true });
-                document.body.appendChild(frame);
-            } else {
-                throw new Error(result.error || 'Failed to get download link');
-            }
+            const url = await generateDownloadLink(data);
+            // Desktop keeps the existing hidden iframe behavior so the SPA URL does not change.
+            const frame = document.createElement('iframe');
+            frame.hidden = true;
+            frame.src = url;
+            frame.addEventListener('load', () => setTimeout(() => frame.remove(), 1000), { once: true });
+            document.body.appendChild(frame);
         } catch (error) {
             console.error('Download API error:', error);
             alert(translations[currentLang]?.download_error || 'Download failed, please try again later.');
