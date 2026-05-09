@@ -358,24 +358,24 @@
         </div>
     </div>
 
-    <!-- Ad Mock Modal -->
-    <div class="modal" id="adModal">
-        <div class="modal-backdrop" id="adBackdrop" style="background: rgba(0,0,0,0.85); backdrop-filter: blur(20px);"></div>
-        <div class="ad-content">
-            <div class="ad-header">
-                <h3 data-i18n="sponsor_ad">Sponsor Advertisement</h3>
-                <span class="ad-badge">AD</span>
+    <!-- Download Gate Modal -->
+    <div class="modal" id="downloadGateModal">
+        <div class="modal-backdrop" id="downloadGateBackdrop" style="background: rgba(0,0,0,0.85); backdrop-filter: blur(20px);"></div>
+        <div class="download-gate-content">
+            <div class="download-gate-header">
+                <h3 data-i18n="download_gate_title">Download Preparing</h3>
+                <span class="download-gate-badge">INFO</span>
             </div>
-            <div class="ad-body">
-                <div class="ad-video-mock">
+            <div class="download-gate-body">
+                <div class="download-gate-panel">
                     <div class="spinner"></div>
-                    <p data-i18n="preparing_files">Preparing highest quality files...</p>
+                    <p data-i18n="download_preparing">下載準備中</p>
                 </div>
             </div>
-            <div class="ad-footer">
-                <p id="adTimerMsg"><span data-i18n="download_starts_in">Download starts in</span> <span id="adCountdown">5</span> <span data-i18n="seconds">seconds</span></p>
-                <p class="ad-blocker-hint" data-i18n="ad_blocker_hint">If the ad or countdown does not appear properly, please turn off your ad blocker before downloading.</p>
-                <button id="skipAdBtn" class="btn unlock-btn hidden" data-i18n="close_ad">Close Ad & Download</button>
+            <div class="download-gate-footer">
+                <p id="downloadGateTimerMsg"><span data-i18n="download_starts_in">Download starts in</span> <span id="downloadGateCountdown">5</span> <span data-i18n="seconds">seconds</span></p>
+                <p class="blocker-download-hint" data-i18n="blocker_download_hint">If the countdown does not appear properly, please turn off your blocker before downloading.</p>
+                <button id="downloadGateActionBtn" class="btn unlock-btn hidden" data-i18n="close_download_gate">Close & Download</button>
             </div>
         </div>
     </div>

@@ -445,10 +445,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const wpNextBtn = document.getElementById('wpNextBtn');
     
     const imageContainer = document.getElementById('imageContainer');
-    const adModal = document.getElementById('adModal');
-    const adCountdown = document.getElementById('adCountdown');
-    const skipAdBtn = document.getElementById('skipAdBtn');
-    const adTimerMsg = document.getElementById('adTimerMsg');
+    const downloadGateModal = document.getElementById('downloadGateModal');
+    const downloadGateCountdown = document.getElementById('downloadGateCountdown');
+    const downloadGateActionBtn = document.getElementById('downloadGateActionBtn');
+    const downloadGateTimerMsg = document.getElementById('downloadGateTimerMsg');
 
     // App State (Mock DB)
     let currentUser = null;
@@ -1029,22 +1029,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
     document.addEventListener('click', fullPageArrowFallbackHandler);
 
-    let adInterval;
+    let downloadGateTimerId;
 
-    function resetDownloadAdState() {
-        if (adInterval) {
-            clearInterval(adInterval);
-            adInterval = null;
+    function resetDownloadGateState() {
+        if (downloadGateTimerId) {
+            clearInterval(downloadGateTimerId);
+            downloadGateTimerId = null;
         }
-        if (adModal) adModal.classList.remove('active');
-        if (skipAdBtn) skipAdBtn.classList.add('hidden');
-        if (adTimerMsg) adTimerMsg.classList.remove('hidden');
-        if (adCountdown) adCountdown.textContent = '5';
+        if (downloadGateModal) downloadGateModal.classList.remove('active');
+        if (downloadGateActionBtn) downloadGateActionBtn.classList.add('hidden');
+        if (downloadGateTimerMsg) downloadGateTimerMsg.classList.remove('hidden');
+        if (downloadGateCountdown) downloadGateCountdown.textContent = '5';
     }
 
-    function getAdBlockerHintMessage() {
+    function getBlockerDownloadMessage() {
         return currentLang === 'zh'
-            ? '請關閉廣告封鎖器並重新整理頁面後再下載。'
+            ? '\u8acb\u95dc\u9589\u5ee3\u544a\u5c01\u9396\u5668\u4e26\u91cd\u65b0\u6574\u7406\u9801\u9762\u5f8c\u518d\u4e0b\u8f09\u3002'
             : 'Please turn off your ad blocker, refresh the page, and download again.';
     }
 
@@ -1059,31 +1059,31 @@ document.addEventListener('DOMContentLoaded', async () => {
             && rect.height > 0;
     }
 
-    function isDownloadAdBlocked() {
-        if (!isVisibleElement(adModal)) return true;
+    function isDownloadGateBlocked() {
+        if (!isVisibleElement(downloadGateModal)) return true;
 
-        const adContent = adModal.querySelector('.ad-content');
-        const adBody = adModal.querySelector('.ad-body');
-        const adSlot = adModal.querySelector('.ad-video-mock');
+        const gateContent = downloadGateModal.querySelector('.download-gate-content');
+        const gateBody = downloadGateModal.querySelector('.download-gate-body');
+        const gatePanel = downloadGateModal.querySelector('.download-gate-panel');
 
-        return !isVisibleElement(adContent)
-            || !isVisibleElement(adBody)
-            || !isVisibleElement(adSlot);
+        return !isVisibleElement(gateContent)
+            || !isVisibleElement(gateBody)
+            || !isVisibleElement(gatePanel);
     }
 
-    function showAdBlockerDownloadMessage() {
-        if (adInterval) {
-            clearInterval(adInterval);
-            adInterval = null;
+    function showBlockedDownloadMessage() {
+        if (downloadGateTimerId) {
+            clearInterval(downloadGateTimerId);
+            downloadGateTimerId = null;
         }
 
-        if (adModal) adModal.classList.add('active');
-        if (adTimerMsg) adTimerMsg.classList.add('hidden');
-        if (skipAdBtn) skipAdBtn.classList.add('hidden');
+        if (downloadGateModal) downloadGateModal.classList.add('active');
+        if (downloadGateTimerMsg) downloadGateTimerMsg.classList.add('hidden');
+        if (downloadGateActionBtn) downloadGateActionBtn.classList.add('hidden');
 
-        const hint = adModal?.querySelector('.ad-blocker-hint');
+        const hint = downloadGateModal?.querySelector('.blocker-download-hint');
         if (hint) {
-            hint.textContent = getAdBlockerHintMessage();
+            hint.textContent = getBlockerDownloadMessage();
         }
     }
 
@@ -1093,46 +1093,46 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
-        if (!adModal || !skipAdBtn || !adTimerMsg || !adCountdown) {
-            console.error('Download ad modal elements are missing.', {
-                adModal: !!adModal,
-                skipAdBtn: !!skipAdBtn,
-                adTimerMsg: !!adTimerMsg,
-                adCountdown: !!adCountdown
+        if (!downloadGateModal || !downloadGateActionBtn || !downloadGateTimerMsg || !downloadGateCountdown) {
+            console.error('Download gate elements are missing.', {
+                downloadGateModal: !!downloadGateModal,
+                downloadGateActionBtn: !!downloadGateActionBtn,
+                downloadGateTimerMsg: !!downloadGateTimerMsg,
+                downloadGateCountdown: !!downloadGateCountdown
             });
             alert(translations[currentLang]?.download_error || 'Download failed, please try again later.');
             return;
         }
 
-        adModal.classList.add('active');
-        skipAdBtn.classList.add('hidden');
-        adTimerMsg.classList.remove('hidden');
+        downloadGateModal.classList.add('active');
+        downloadGateActionBtn.classList.add('hidden');
+        downloadGateTimerMsg.classList.remove('hidden');
 
         let secondsLeft = 5;
-        adCountdown.textContent = secondsLeft;
+        downloadGateCountdown.textContent = secondsLeft;
 
-        if (adInterval) clearInterval(adInterval);
+        if (downloadGateTimerId) clearInterval(downloadGateTimerId);
 
         window.setTimeout(() => {
-            if (isDownloadAdBlocked()) {
-                showAdBlockerDownloadMessage();
+            if (isDownloadGateBlocked()) {
+                showBlockedDownloadMessage();
                 return;
             }
 
-            adInterval = setInterval(() => {
+            downloadGateTimerId = setInterval(() => {
                 secondsLeft--;
-                adCountdown.textContent = secondsLeft;
+                downloadGateCountdown.textContent = secondsLeft;
                 if (secondsLeft <= 0) {
-                    clearInterval(adInterval);
-                    adInterval = null;
+                    clearInterval(downloadGateTimerId);
+                    downloadGateTimerId = null;
 
-                    if (isDownloadAdBlocked()) {
-                        showAdBlockerDownloadMessage();
+                    if (isDownloadGateBlocked()) {
+                        showBlockedDownloadMessage();
                         return;
                     }
 
-                    adTimerMsg.classList.add('hidden');
-                    skipAdBtn.classList.remove('hidden');
+                    downloadGateTimerMsg.classList.add('hidden');
+                    downloadGateActionBtn.classList.remove('hidden');
                     forceDownload(downloadData);
                 }
             }, 1000);
@@ -1153,8 +1153,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    if (skipAdBtn) {
-        skipAdBtn.addEventListener('click', resetDownloadAdState);
+    if (downloadGateActionBtn) {
+        downloadGateActionBtn.addEventListener('click', resetDownloadGateState);
     }
 
     async function forceDownload(data) {
@@ -1314,7 +1314,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (langToggleBtn) {
         langToggleBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            resetDownloadAdState();
+            resetDownloadGateState();
             const targetPath = `${switchLocalePath(window.location.pathname)}${window.location.search}${window.location.hash}`;
             window.history.pushState({}, '', targetPath);
             updateLangFromUrl();
@@ -1465,7 +1465,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     function navigateTo(url) {
-        resetDownloadAdState();
+        resetDownloadGateState();
         const targetUrl = localizePath(url);
         window.history.pushState({}, '', targetUrl);
         updateLangFromUrl();
@@ -1473,7 +1473,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     window.addEventListener('popstate', () => {
-        resetDownloadAdState();
+        resetDownloadGateState();
         updateLangFromUrl();
         applyTranslations();
         handleRoute();
