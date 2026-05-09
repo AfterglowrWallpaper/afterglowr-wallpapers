@@ -131,16 +131,6 @@ function applyTranslations() {
         langToggleBtn.textContent = currentLang === 'en' ? '🌐 中文' : '🌐 English';
     }
 
-    const navLoginBtn = document.getElementById('navLoginBtn');
-    const savedUser = localStorage.getItem('afterglowr_user');
-    if (navLoginBtn && savedUser) {
-        try {
-            const user = JSON.parse(savedUser);
-            const initials = (user.name || 'U').split(/\s+/).slice(0, 2).map(p => p[0]).join('').toUpperCase();
-            navLoginBtn.classList.add('logged-in');
-            navLoginBtn.innerHTML = `<span class="nav-avatar">${initials}</span><span>${user.name || 'User'}</span>`;
-        } catch (e) {}
-    }
 }
 
 const SEO_TRAFFIC_PAGES = {
@@ -365,13 +355,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const wpDownloadBtn = document.getElementById('wpDownloadBtn');
     const wpLikeBtn = document.getElementById('wpLikeBtn');
     const wpLikeCount = document.getElementById('wpLikeCount');
-    const wpCommentsList = document.getElementById('wpCommentsList');
-    const wpCommentCount = document.getElementById('wpCommentCount');
-    const wpCommentForm = document.getElementById('wpCommentForm');
-    const wpCommentInput = document.getElementById('wpCommentInput');
-    const wpCurrentUserAvatar = document.getElementById('wpCurrentUserAvatar');
-    const wpLoginPrompt = document.getElementById('wpLoginPrompt');
-    const wpPromptLogin = document.getElementById('wpPromptLoginLink');
     const copyPinBtn = document.getElementById('copyPinBtn');
     const modalCopyPinBtn = document.getElementById('modalCopyPinBtn');
 
@@ -450,20 +433,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     const downloadGateActionBtn = document.getElementById('downloadGateActionBtn');
     const downloadGateTimerMsg = document.getElementById('downloadGateTimerMsg');
 
-    // App State (Mock DB)
-    let currentUser = null;
-    let appData = { likes: {}, userLiked: {}, comments: {} };
+    // Local engagement state.
+    let appData = { likes: {}, userLiked: {} };
 
     try {
         const savedData = localStorage.getItem('afterglowr_app_data');
         if (savedData) {
             appData = JSON.parse(savedData);
-            if (!appData.comments) appData.comments = {};
             if (!appData.userLiked) appData.userLiked = {};
             if (!appData.likes) appData.likes = {};
         }
-        const savedUser = localStorage.getItem('afterglowr_user');
-        if (savedUser) currentUser = JSON.parse(savedUser);
     } catch (e) { console.warn(e); }
 
     function saveAppData() {
@@ -478,21 +457,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateFullPageSocial();
     };
 
-    const navLoginBtn = document.getElementById('navLoginBtn');
-    const loginModal = document.getElementById('loginModal');
-    const closeLoginModalBtn = document.getElementById('closeLoginModal');
-    const loginBackdrop = document.getElementById('loginBackdrop');
-    const googleLoginBtn = document.getElementById('googleLoginBtn');
-    const fbLoginBtn = document.getElementById('fbLoginBtn');
     const modalLikeBtn = document.getElementById('modalLikeBtn');
     const modalLikeCount = document.getElementById('modalLikeCount');
-    const commentsList = document.getElementById('commentsList');
-    const commentCount = document.getElementById('commentCount');
-    const commentForm = document.getElementById('commentForm');
-    const commentInput = document.getElementById('commentInput');
-    const loginPrompt = document.getElementById('loginPrompt');
-    const promptLoginLink = document.getElementById('promptLoginLink');
-    const currentUserAvatar = document.getElementById('currentUserAvatar');
 
     let currentWallpaper = null;
     let showingMobile = false;
@@ -604,12 +570,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (typeof updateFullPageSocial === 'function') {
             updateFullPageSocial();
-        }
-
-        if (typeof renderFullPageComments === 'function') {
-            renderFullPageComments();
-        } else if (typeof renderWpComments === 'function') {
-            renderWpComments();
         }
 
         if (typeof updateDetailSEOMeta === 'function') {
@@ -958,7 +918,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (isLikedVal) modalLikeBtn.classList.add('liked');
         else modalLikeBtn.classList.remove('liked');
 
-        renderComments();
     }
 
     closeModalBtn.addEventListener('click', closeModal);
@@ -1218,96 +1177,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    function renderComments() {
-        if (!currentWallpaper) return;
-        const id = currentWallpaper.id;
-        const imgComments = appData.comments[id] || [];
-        commentCount.textContent = `(${imgComments.length})`;
-        
-        if (imgComments.length === 0) {
-            commentsList.innerHTML = `<div style="color: var(--text-secondary); font-size: 0.9rem; text-align: center; padding: 20px 0;">${translations[currentLang].no_comments}</div>`;
-        } else {
-            commentsList.innerHTML = imgComments.map(c => `
-                <div class="comment-item">
-                    <div class="user-avatar-small">${c.avatar}</div>
-                    <div class="comment-content">
-                        <div class="comment-user">${c.user} <span style="font-weight: 400; color: var(--text-secondary); font-size: 0.75rem; margin-left: 8px;">${c.date}</span></div>
-                        <div class="comment-text">${c.text}</div>
-                    </div>
-                </div>
-            `).join('');
-            setTimeout(() => { commentsList.scrollTop = commentsList.scrollHeight; }, 10);
-        }
-    }
-
     modalLikeBtn.addEventListener('click', () => {
         if (currentWallpaper) {
             toggleLike(currentWallpaper.id, modalLikeBtn);
             renderGallery(); 
         }
-    });
-
-    function updateAuthState() {
-        if (currentUser) {
-            navLoginBtn.innerHTML = `<div class="user-avatar-small" style="width:28px; height:28px; margin-right: 8px; font-size:0.75rem;">${currentUser.avatar}</div> <span data-i18n="logout">${translations[currentLang].logout}</span>`;
-            navLoginBtn.style.padding = '4px 12px 4px 4px';
-            loginPrompt.classList.add('hidden');
-            commentForm.classList.remove('hidden');
-            currentUserAvatar.textContent = currentUser.avatar;
-        } else {
-            navLoginBtn.innerHTML = `<span data-i18n="login">${translations[currentLang].login}</span>`;
-            navLoginBtn.style.padding = '8px 16px';
-            loginPrompt.classList.remove('hidden');
-            commentForm.classList.add('hidden');
-        }
-        updateFullPageSocial();
-    }
-
-    navLoginBtn.addEventListener('click', () => {
-        if (currentUser) {
-            currentUser = null;
-            localStorage.removeItem('afterglowr_user');
-            updateAuthState();
-        } else {
-            loginModal.classList.add('active');
-        }
-    });
-
-    [closeLoginModalBtn, loginBackdrop].forEach(el => el.addEventListener('click', () => {
-        loginModal.classList.remove('active');
-    }));
-
-    promptLoginLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        loginModal.classList.add('active');
-    });
-
-    function handleLogin() {
-        currentUser = { name: "Demo User", avatar: "D" };
-        localStorage.setItem('afterglowr_user', JSON.stringify(currentUser));
-        updateAuthState();
-        loginModal.classList.remove('active');
-    }
-
-    googleLoginBtn.addEventListener('click', handleLogin);
-    fbLoginBtn.addEventListener('click', handleLogin);
-    
-    updateAuthState();
-
-    commentForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        if (!currentUser || !currentWallpaper) return;
-        const text = commentInput.value.trim();
-        if (!text) return;
-        const id = currentWallpaper.id;
-        if (!appData.comments[id]) appData.comments[id] = [];
-        const now = new Date();
-        const dateStr = now.toLocaleDateString() + ' ' + now.getHours() + ':' + String(now.getMinutes()).padStart(2, '0');
-        appData.comments[id].push({ user: currentUser.name, avatar: currentUser.avatar, text: text, date: dateStr });
-        saveAppData();
-        commentInput.value = '';
-        renderComments();
-        updateFullPageSocial();
     });
 
     const langToggleBtn = document.getElementById('langToggleBtn');
@@ -1501,44 +1375,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         const id = currentWpPage.id;
         const count = appData.likes[id] || 0;
         const liked = appData.userLiked[id] || false;
-        const comments = appData.comments[id] || [];
 
         if (wpLikeCount) wpLikeCount.textContent = count;
 
         if (wpLikeBtn) {
             wpLikeBtn.classList.toggle('liked', liked);
-        }
-
-        if (wpCommentCount) {
-            wpCommentCount.textContent = `(${comments.length})`;
-        }
-
-        if (wpCommentsList) {
-            if (comments.length === 0) {
-                wpCommentsList.innerHTML = `<div style="color: var(--text-secondary); font-size: 0.9rem; text-align: center; padding: 16px 0;">${translations[currentLang]?.no_comments || 'No comments yet.'}</div>`;
-            } else {
-                wpCommentsList.innerHTML = comments.map(c => `
-                    <div class="comment-item">
-                        <div class="user-avatar-small">${c.avatar || 'D'}</div>
-                        <div class="comment-content">
-                            <div class="comment-user">
-                                ${c.user}
-                                <span style="font-weight:400; color:var(--text-secondary); font-size:0.75rem; margin-left:8px;">${c.date || ''}</span>
-                            </div>
-                            <div class="comment-text">${c.text}</div>
-                        </div>
-                    </div>
-                `).join('');
-            }
-        }
-
-        if (currentUser) {
-            wpLoginPrompt?.classList.add('hidden');
-            wpCommentForm?.classList.remove('hidden');
-            if (wpCurrentUserAvatar) wpCurrentUserAvatar.textContent = currentUser.avatar;
-        } else {
-            wpLoginPrompt?.classList.remove('hidden');
-            wpCommentForm?.classList.add('hidden');
         }
     }
 
@@ -1828,47 +1669,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             navigateTo('/wallpaper/' + currentWallpaper.id);
             return;
         }
-
-        const loginLink = e.target.closest('#wpPromptLoginLink');
-        if (loginLink) {
-            e.preventDefault();
-            loginModal.classList.add('active');
-            return;
-        }
     });
-
-    if (wpCommentForm) {
-        wpCommentForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            if (!currentUser || !currentWpPage) {
-                loginModal.classList.add('active');
-                updateFullPageSocial();
-                return;
-            }
-
-            const text = wpCommentInput.value.trim();
-            if (!text) return;
-
-            const id = currentWpPage.id;
-            if (!appData.comments[id]) appData.comments[id] = [];
-
-            const now = new Date();
-            const dateStr = now.toLocaleDateString() + ' ' + now.getHours() + ':' + String(now.getMinutes()).padStart(2, '0');
-
-            appData.comments[id].push({
-                user: currentUser.name,
-                avatar: currentUser.avatar,
-                text,
-                date: dateStr
-            });
-
-            saveAppData();
-            wpCommentInput.value = '';
-            updateFullPageSocial();
-            renderComments();
-        });
-    }
 
 
     // ===== Realtime wallpaper update system (SSE) =====
@@ -2004,124 +1805,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Initialize
-
-
-    /* === COMPLETE LOGIN UI PATCH === */
-    function getUserInitials(user) {
-        const name = (user && (user.name || user.provider || user.email)) || 'U';
-        return name
-            .split(/\s+/)
-            .filter(Boolean)
-            .slice(0, 2)
-            .map(part => part[0])
-            .join('')
-            .toUpperCase();
-    }
-
-    function openLoginModal() {
-        if (loginModal) loginModal.classList.add('active');
-    }
-
-    function closeLoginModal() {
-        if (loginModal) loginModal.classList.remove('active');
-    }
-
-    function setLoginLoading(button, isLoading) {
-        if (!button) return;
-        button.classList.toggle('loading', !!isLoading);
-    }
-
-    function mockLogin(provider, button) {
-        setLoginLoading(button, true);
-
-        setTimeout(() => {
-            const providerName = provider === 'google' ? 'Google User' : 'Facebook User';
-            currentUser = {
-                name: providerName,
-                provider,
-                email: provider === 'google' ? 'google-user@afterglowr.local' : 'facebook-user@afterglowr.local',
-                signedInAt: new Date().toISOString()
-            };
-
-            localStorage.setItem('afterglowr_user', JSON.stringify(currentUser));
-            setLoginLoading(button, false);
-
-            const successBox = document.getElementById('authSuccessState');
-            if (successBox) successBox.classList.remove('hidden');
-
-            updateAuthUI();
-
-            setTimeout(() => {
-                closeLoginModal();
-                if (successBox) successBox.classList.add('hidden');
-            }, 850);
-        }, 650);
-    }
-
-    function updateAuthUI() {
-        if (currentUser) {
-            if (navLoginBtn) {
-                navLoginBtn.classList.add('logged-in');
-                navLoginBtn.innerHTML = `<span class="nav-avatar">${getUserInitials(currentUser)}</span><span>${currentUser.name}</span>`;
-            }
-
-            if (loginPrompt) loginPrompt.classList.add('hidden');
-            if (commentForm) commentForm.classList.remove('hidden');
-            if (currentUserAvatar) currentUserAvatar.textContent = getUserInitials(currentUser);
-
-            if (wpLoginPrompt) wpLoginPrompt.classList.add('hidden');
-            if (wpCommentForm) wpCommentForm.classList.remove('hidden');
-            if (wpCurrentUserAvatar) wpCurrentUserAvatar.textContent = getUserInitials(currentUser);
-        } else {
-            if (navLoginBtn) {
-                navLoginBtn.classList.remove('logged-in');
-                navLoginBtn.textContent = translations[currentLang]?.login || 'Login';
-            }
-
-            if (loginPrompt) loginPrompt.classList.remove('hidden');
-            if (commentForm) commentForm.classList.add('hidden');
-
-            if (wpLoginPrompt) wpLoginPrompt.classList.remove('hidden');
-            if (wpCommentForm) wpCommentForm.classList.add('hidden');
-        }
-    }
-
-    if (navLoginBtn) {
-        navLoginBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (currentUser) {
-                const shouldLogout = window.confirm('Sign out of Afterglowr?');
-                if (shouldLogout) {
-                    currentUser = null;
-                    localStorage.removeItem('afterglowr_user');
-                    updateAuthUI();
-                }
-                return;
-            }
-            openLoginModal();
-        });
-    }
-
-    if (promptLoginLink) {
-        promptLoginLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            openLoginModal();
-        });
-    }
-
-    if (wpPromptLogin) {
-        wpPromptLogin.addEventListener('click', (e) => {
-            e.preventDefault();
-            openLoginModal();
-        });
-    }
-
-    if (closeLoginModalBtn) closeLoginModalBtn.addEventListener('click', closeLoginModal);
-    if (loginBackdrop) loginBackdrop.addEventListener('click', closeLoginModal);
-    if (googleLoginBtn) googleLoginBtn.addEventListener('click', () => mockLogin('google', googleLoginBtn));
-    if (fbLoginBtn) fbLoginBtn.addEventListener('click', () => mockLogin('facebook', fbLoginBtn));
-
-    updateAuthUI();
 
     applyTranslations();
     handleRoute();

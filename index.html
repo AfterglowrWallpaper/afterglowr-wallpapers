@@ -38,7 +38,6 @@
         <nav id="navMenu" style="display: flex; align-items: center;">
             <button id="langToggleBtn" class="btn glass-btn" style="padding: 6px 12px; font-size: 0.9rem; margin-right: 15px;">🌐 中文</button>
             <a href="#" id="supportBtn" data-i18n="support">Support</a>
-            <button id="navLoginBtn" class="btn glass-btn" style="padding: 8px 16px; margin-left: 20px; font-size: 0.9rem;" data-i18n="login">Login</button>
         </nav>
     </header>
 
@@ -123,29 +122,6 @@
                         </div>
                         <div id="wpTags"></div>
                         <p id="wpDesc"></p>
-
-                        <div class="wp-comments-section">
-                            <h3 class="comments-title"><span data-i18n="comments">Comments</span> <span id="wpCommentCount">(0)</span></h3>
-                            <div id="wpCommentsList" class="comments-list"></div>
-                            <div class="comment-form-container">
-                                <div id="wpLoginPrompt" class="login-prompt">
-                                    <span data-i18n="please">Please</span> <a href="javascript:void(0)" id="wpPromptLoginLink" data-i18n="log_in" onclick="document.getElementById('loginModal').classList.add('active'); return false;">log in</a> <span data-i18n="to_leave_comment">to leave a comment.</span>
-                                </div>
-<form id="wpCommentForm" class="comment-form hidden">
-  <div class="user-avatar-small" id="wpCurrentUserAvatar"></div>
-  <div class="input-group">
-    <input type="text" id="wpCommentInput" placeholder="Add a comment..." required autocomplete="off">
-    <button type="submit" class="send-btn" title="Send">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="22" y1="2" x2="11" y2="13"></line>
-        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-      </svg>
-    </button>
-  </div>
-</form>
-                            </div>
-                        </div>
 
                         <div class="wp-full-actions">
                             
@@ -327,26 +303,6 @@
                         </button>
                     </div>
                     
-                    <div class="comments-section">
-                        <h3 class="comments-title"><span data-i18n="comments">Comments</span> <span id="commentCount">(0)</span></h3>
-                        <div id="commentsList" class="comments-list">
-                            <!-- Comments injected here -->
-                        </div>
-                        <div id="commentFormContainer" class="comment-form-container">
-                            <div id="loginPrompt" class="login-prompt">
-                                <span data-i18n="please">Please</span> <a href="#" id="promptLoginLink" data-i18n="log_in">log in</a> <span data-i18n="to_leave_comment">to leave a comment.</span>
-                            </div>
-                            <form id="commentForm" class="comment-form hidden">
-                                <div class="user-avatar-small" id="currentUserAvatar"></div>
-                                <div class="input-group">
-                                    <input type="text" id="commentInput" placeholder="Add a comment..." required autocomplete="off" data-i18n-placeholder="add_comment">
-                                    <button type="submit" class="send-btn" title="Send">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-ad-space">
                     <div class="ad-placeholder">
@@ -379,58 +335,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Login Modal -->
-    <!-- Login Modal -->
-    <div class="modal" id="loginModal">
-        <div class="modal-backdrop" id="loginBackdrop"></div>
-        <div class="auth-content premium-login-card" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
-            <button class="close-btn premium-login-close" id="closeLoginModal" type="button" aria-label="Close login modal">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-                    <path d="M18 6L6 18M6 6l12 12"></path>
-                </svg>
-            </button>
-
-            <div class="auth-brand-mark">
-                <span>A</span>
-            </div>
-
-            <div class="auth-header">
-                <p class="auth-eyebrow">AFTERGLOWR ACCOUNT</p>
-                <h2 id="loginTitle">Welcome Back</h2>
-                <p>Sign in to leave comments on wallpapers.</p>
-            </div>
-
-            <div class="auth-body">
-                <button id="googleLoginBtn" class="auth-btn google-auth-btn" type="button">
-                    <span class="auth-provider-icon google-g">G</span>
-                    <span>Continue with Google</span>
-                    <span class="auth-spinner" aria-hidden="true"></span>
-                </button>
-
-                <button id="fbLoginBtn" class="auth-btn facebook-auth-btn" type="button">
-                    <span class="auth-provider-icon facebook-f">f</span>
-                    <span>Continue with Facebook</span>
-                    <span class="auth-spinner" aria-hidden="true"></span>
-                </button>
-            </div>
-
-            <div class="auth-divider">
-                <span></span>
-            </div>
-
-            <p class="auth-note">Demo login stores a local profile in your browser for comments and likes.</p>
-
-            <div class="auth-success hidden" id="authSuccessState">
-                <div class="auth-success-check">✓</div>
-                <div>
-                    <strong>Signed in</strong>
-                    <span>Your profile is ready.</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <footer>
         <div class="footer-layout">
             <div class="footer-left">
