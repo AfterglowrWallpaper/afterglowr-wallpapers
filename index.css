@@ -2381,6 +2381,37 @@ footer {
     }
 }
 
+/* Category filter overflow: keep one row and scroll inside the bar. */
+.category-filters {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    scrollbar-width: thin !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x proximity !important;
+}
+
+.category-filters::-webkit-scrollbar {
+    height: 6px !important;
+}
+
+.category-filters::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+.category-filters::-webkit-scrollbar-thumb {
+    background: rgba(247, 242, 232, 0.22) !important;
+    border-radius: 999px !important;
+}
+
+.category-filters .filter-btn {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+    scroll-snap-align: start !important;
+}
+
 
 /* =========================================================
    AFTERGLOWR — FINAL DETAIL PAGE OVERRIDE

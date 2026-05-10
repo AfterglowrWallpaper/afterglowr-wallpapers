@@ -355,10 +355,21 @@ function addOriginalToMap(map, parsed) {
       mobileKey: null,
       desktopThumbKey: null,
       mobileThumbKey: null,
+      sourceCategories: new Set([parsed.category]),
+      sourceKeys: [parsed.key],
     });
   }
 
   const item = map.get(parsed.slug);
+  item.sourceCategories.add(parsed.category);
+  if (!item.sourceKeys.includes(parsed.key)) item.sourceKeys.push(parsed.key);
+
+  if (item.category !== parsed.category) {
+    item.hasDuplicateCategory = true;
+  } else {
+    item.category = parsed.category;
+  }
+
   if (parsed.type === 'desktop') item.desktopKey = parsed.key;
   if (parsed.type === 'mobile') item.mobileKey = parsed.key;
 }
@@ -449,11 +460,11 @@ function mergeWallpaperRecord(existing, generated) {
     slug: existing.slug || generated.slug,
     title: existing.title || generated.title,
     tags: hasOnlyDefaultTags(existing.tags) || hasStopWordTag(existing.tags) ? generated.tags : existing.tags,
-    category: existing.category || generated.category,
+    category: generated.category,
     desktopImg: generated.desktopImg || null,
     mobileImg: generated.mobileImg || null,
-    desktopOriginalKey: generated.desktopOriginalKey || existing.desktopOriginalKey || null,
-    mobileOriginalKey: generated.mobileOriginalKey || existing.mobileOriginalKey || null,
+    desktopOriginalKey: generated.desktopOriginalKey || null,
+    mobileOriginalKey: generated.mobileOriginalKey || null,
     hasDesktop: generated.hasDesktop,
     hasMobile: generated.hasMobile,
     resolution: generated.resolution || existing.resolution || 'High Resolution',
@@ -513,6 +524,17 @@ async function main() {
     if (parsed) {
       parsedOriginals += 1;
       addOriginalToMap(discovered, parsed);
+    }
+  }
+
+  const duplicateSlugItems = [...discovered.values()].filter(item => item.hasDuplicateCategory);
+  if (duplicateSlugItems.length > 0) {
+    console.warn('[R2 Sync] Duplicate slugs found in multiple original categories:');
+    for (const item of duplicateSlugItems) {
+      console.warn(`[R2 Sync]   ${item.slug}: ${[...item.sourceCategories].join(', ')}`);
+      for (const key of item.sourceKeys) {
+        console.warn(`[R2 Sync]     ${key}`);
+      }
     }
   }
 
@@ -593,6 +615,7 @@ async function main() {
   console.log(`[R2 Sync] Failed thumbnails: ${failedThumbnails}`);
   console.log(`[R2 Sync] Added new wallpapers: ${newRecords.length}`);
   console.log(`[R2 Sync] Removed missing originals: ${removedWallpapers}`);
+  console.log(`[R2 Sync] Duplicate slugs: ${duplicateSlugItems.length}`);
   console.log(`[R2 Sync] public/wallpapers.json updated with ${nextWallpapers.length + newRecords.length} records.`);
 }
 
