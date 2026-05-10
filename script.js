@@ -104,26 +104,184 @@ function buildSeoTitle(wp, typeLabel = '') {
 }
 
 function buildSeoDescription(wp, typeLabel = '') {
-    if (wp?.seoDescription) return wp.seoDescription;
-    const title = wp?.title || 'this cinematic wallpaper';
-    const category = wp?.category || 'wallpaper';
-    const tags = (wp?.tags || []).filter(Boolean);
-    const [tag1 = 'cinematic', tag2 = 'aesthetic', tag3 = 'high quality'] = tags;
-    const typePart = typeLabel ? `${typeLabel.toLowerCase()} ` : '';
-    return `Download ${title} in high quality for ${typePart || 'desktop and mobile'}. A cinematic ${String(category).toLowerCase()} wallpaper with ${tag1}, ${tag2}, and ${tag3} aesthetics.`;
+    const desc = getMetaDescription(wp);
+    if (!typeLabel) return desc;
+    return desc.replace('desktop and mobile', `${typeLabel.toLowerCase()} and companion`);
 }
 
 function getWallpaperAltText(wp) {
-    if (wp?.altText) return wp.altText;
-    const title = wp?.title || 'Wallpaper';
-    const category = wp?.category || 'Wallpaper';
-    return `${title} 4K ${category} wallpaper for desktop and mobile`;
+    return getWallpaperImageDescription(wp);
 }
 
 function getWallpaperKeywords(wp) {
     if (Array.isArray(wp?.keywords)) return wp.keywords.join(', ');
     if (typeof wp?.keywords === 'string') return wp.keywords;
     return (wp?.tags || []).join(', ');
+}
+
+const SEO_STOP_WORDS = new Set(['a', 'an', 'and', 'at', 'by', 'for', 'from', 'in', 'into', 'of', 'on', 'or', 'the', 'to', 'under', 'with']);
+
+function getWordsFromTitle(value = '') {
+    return String(value)
+        .replace(/&/g, ' and ')
+        .split(/[^a-z0-9]+/i)
+        .map(word => word.toLowerCase().trim())
+        .filter(word => word.length > 1 && !SEO_STOP_WORDS.has(word));
+}
+
+function titleCaseWords(words) {
+    return words.map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+}
+
+function getPrimaryTags(wp, limit = 4) {
+    const defaultTags = new Set(['premium', 'aesthetic', 'wallpaper', 'desktop', 'mobile']);
+    const tags = (wp?.tags || [])
+        .flatMap(tag => getWordsFromTitle(tag))
+        .filter(tag => !defaultTags.has(tag));
+    const titleWords = getWordsFromTitle(wp?.title || wp?.slug || wp?.id || '');
+    return titleCaseWords([...new Set([...tags, ...titleWords])]).slice(0, limit);
+}
+
+function sentenceJoin(items) {
+    const clean = items.filter(Boolean);
+    if (clean.length <= 1) return clean[0] || '';
+    if (clean.length === 2) return `${clean[0]} and ${clean[1]}`;
+    return `${clean.slice(0, -1).join(', ')}, and ${clean[clean.length - 1]}`;
+}
+
+function getCategoryDescriptor(category = 'cinematic') {
+    const key = String(category || 'cinematic').toLowerCase();
+    const descriptors = {
+        animals: 'animal',
+        anime: 'anime',
+        gaming: 'gaming',
+        landscape: 'landscape',
+        portrait: 'portrait',
+        vibe: 'moody vibe',
+        cyberpunk: 'cyberpunk'
+    };
+    return descriptors[key] || key.replace(/s$/, '') || 'cinematic';
+}
+
+function getArticleFor(value = '') {
+    return /^[aeiou]/i.test(String(value).trim()) ? 'an' : 'a';
+}
+
+function getWallpaperMoodProfile(wp) {
+    const haystack = `${wp?.title || ''} ${wp?.category || ''} ${(wp?.tags || []).join(' ')}`.toLowerCase();
+    if (/(cyberpunk|neon|futuristic|sci[- ]?fi|rainy|city)/.test(haystack)) {
+        return {
+            tone: 'neon-lit futuristic',
+            visuals: 'rainy reflections, glowing city detail, and cinematic contrast',
+            focus: 'futuristic atmosphere, dramatic light, and crisp urban texture',
+            meta: 'neon detail, futuristic mood, and rainy cinematic atmosphere',
+            altDetail: 'neon lighting, futuristic detail, and rainy cinematic atmosphere'
+        };
+    }
+    if (/(cozy|warm|cafe|cabin|calm|relax|morning|quiet|piano)/.test(haystack)) {
+        return {
+            tone: 'warm and relaxing',
+            visuals: 'soft light, calm color, and a quiet cozy mood',
+            focus: 'comforting ambience, gentle contrast, and a relaxed visual rhythm',
+            meta: 'warm light, relaxing detail, and calm cozy atmosphere',
+            altDetail: 'warm lighting, relaxed details, and calm cozy atmosphere'
+        };
+    }
+    if (/(landscape|nature|mountain|forest|ocean|lake|canyon|aurora|sunrise|sunset|scenery)/.test(haystack)) {
+        return {
+            tone: 'wide cinematic landscape',
+            visuals: 'natural scenery, layered depth, and atmospheric light',
+            focus: 'nature detail, cinematic scenery, and a strong sense of place',
+            meta: 'nature scenery, atmospheric light, and cinematic landscape depth',
+            altDetail: 'natural scenery, atmospheric lighting, and cinematic landscape depth'
+        };
+    }
+    if (/(portrait|lady|warrior|samurai|queen|swordsman|noble|knight|anime)/.test(haystack)) {
+        return {
+            tone: 'character-focused cinematic',
+            visuals: 'expressive detail, dramatic styling, and polished depth',
+            focus: 'character presence, refined lighting, and detailed texture',
+            meta: 'character detail, dramatic lighting, and cinematic portrait style',
+            altDetail: 'dramatic lighting, character detail, and cinematic portrait style'
+        };
+    }
+    if (/(gaming|game|firefight|weapon|armor|battle|action)/.test(haystack)) {
+        return {
+            tone: 'high-energy gaming',
+            visuals: 'bold contrast, action-ready detail, and immersive mood',
+            focus: 'dynamic composition, sharp texture, and cinematic game-inspired energy',
+            meta: 'gaming detail, bold contrast, and immersive cinematic energy',
+            altDetail: 'bold contrast, gaming detail, and immersive cinematic energy'
+        };
+    }
+    return {
+        tone: 'cinematic dark',
+        visuals: 'realistic lighting, moody atmosphere, and ultra-detailed texture',
+        focus: 'visual depth, balanced contrast, and a premium dark aesthetic',
+        meta: 'realistic lighting, moody detail, and dark cinematic atmosphere',
+        altDetail: 'realistic lighting, moody detail, and a cinematic dark atmosphere'
+    };
+}
+
+function getWallpaperSeoContent(wp) {
+    const title = wp?.title || 'Afterglowr Wallpaper';
+    const category = wp?.category || 'Cinematic';
+    const tags = getPrimaryTags(wp, 4);
+    const tagText = tags.length ? sentenceJoin(tags.slice(0, 3).map(tag => tag.toLowerCase())) : `${category.toLowerCase()} atmosphere`;
+    const mood = getWallpaperMoodProfile(wp);
+
+    return [
+        `${title} brings a ${mood.tone} atmosphere to the ${category} collection, blending ${tagText} with ${mood.visuals}.`,
+        'Designed for both desktop and mobile screens, it gives your setup a polished background that feels immersive without becoming visually distracting.',
+        `The composition focuses on ${mood.focus}, so it has enough depth for larger displays while staying clean and balanced on a phone.`,
+        'It suits home screens, creative workspaces, and lock screens where a refined visual mood matters more than loud decoration.'
+    ].join(' ').replace(/\s+/g, ' ').trim();
+}
+
+function trimMetaDescription(value) {
+    const text = String(value || '').replace(/\s+/g, ' ').trim();
+    if (text.length <= 160) return text;
+    const shortened = text.slice(0, 157);
+    const lastSpace = shortened.lastIndexOf(' ');
+    const clean = shortened.slice(0, lastSpace > 120 ? lastSpace : 157).trim().replace(/[.,;:!?]+$/, '');
+    return `${clean}...`;
+}
+
+function getMetaDescription(wp) {
+    const title = wp?.title || 'Afterglowr Wallpaper';
+    const category = getCategoryDescriptor(wp?.category || 'cinematic');
+    const tags = getPrimaryTags(wp, 3).map(tag => tag.toLowerCase());
+    const tagText = tags.length ? sentenceJoin(tags) : 'cinematic atmosphere';
+    const mood = getWallpaperMoodProfile(wp);
+    return trimMetaDescription(`${title} is a cinematic ${category} wallpaper with ${tagText}, ${mood.meta}. Download high-quality desktop and mobile versions on Afterglowr.`);
+}
+
+function getWallpaperImageDescription(wp) {
+    const title = wp?.title || 'Afterglowr wallpaper';
+    const category = getCategoryDescriptor(wp?.category || 'cinematic');
+    const tags = getPrimaryTags(wp, 3);
+    const tagPhrase = tags.length ? `${sentenceJoin(tags.map(tag => tag.toLowerCase()))} scene` : 'cinematic scene';
+    const mood = getWallpaperMoodProfile(wp);
+    return `${tagPhrase} inspired by ${title}, with ${mood.altDetail} in ${getArticleFor(category)} ${category} wallpaper style`;
+}
+
+function getCategoryIntro(categoryName = 'Cinematic') {
+    const key = String(categoryName || 'Cinematic').toLowerCase();
+    const intros = {
+        animals: 'Explore cinematic animal wallpapers featuring expressive cats, wildlife portraits, soft natural light, and atmospheric details for desktop and mobile devices. This collection is built for users who want nature-inspired backgrounds with a polished visual style, from calm companion scenes to dramatic creature-focused artwork. Each image is selected to feel detailed without becoming noisy, giving your screen a warm, immersive look that works across wide monitors, laptops, tablets, and phones.',
+        anime: 'Explore cinematic anime wallpapers with expressive characters, dramatic lighting, detailed outfits, and atmospheric fantasy scenes for desktop and mobile devices. This collection focuses on polished character art that feels modern and immersive while still remaining clean enough for daily use. Whether you prefer quiet emotional portraits, action-ready heroes, or stylized fantasy worlds, these wallpapers bring a refined anime aesthetic to your screen without overwhelming icons, widgets, or app layouts.',
+        cyberpunk: 'Explore cinematic cyberpunk wallpapers featuring futuristic neon skylines, rainy city streets, glowing signs, and dark sci-fi atmospheres for desktop and mobile devices. This collection is made for screens that look best with contrast, color, and a sense of urban depth. Expect reflective streets, electric highlights, futuristic silhouettes, and immersive night scenes that feel bold without turning chaotic, giving your setup a premium science-fiction mood across wide displays and phone screens.',
+        gaming: 'Explore cinematic gaming wallpapers with bold contrast, high-energy action, dramatic characters, and immersive game-inspired environments for desktop and mobile devices. This collection is designed for players who want a stronger visual identity on their setup while keeping the background clean enough for everyday use. From tactical scenes to fantasy battles and futuristic moods, each wallpaper balances sharp detail, atmosphere, and screen-friendly composition for monitors, laptops, tablets, and phones.',
+        landscape: 'Explore cinematic landscape wallpapers featuring nature, atmospheric scenery, mountain light, forests, skies, oceans, and wide environmental depth for desktop and mobile devices. This collection is built around the feeling of place: quiet horizons, dramatic weather, soft color, and natural detail that gives your screen room to breathe. Each wallpaper works as a calming backdrop while still carrying enough cinematic presence to make a desktop monitor or phone lock screen feel distinctive.',
+        portrait: 'Explore cinematic portrait wallpapers featuring expressive characters, refined lighting, detailed styling, and atmospheric backgrounds for desktop and mobile devices. This collection focuses on strong subject presence without losing the clean composition needed for daily screens. From fantasy figures to modern character studies, each wallpaper blends face, costume, mood, and texture into a polished visual that feels premium on large displays while remaining balanced on mobile layouts.',
+        vibe: 'Explore cinematic vibe wallpapers built around mood, atmosphere, color, and calm visual storytelling for desktop and mobile devices. This collection is ideal for users who want a screen background that feels stylish but not distracting, with dark ambience, soft light, cozy details, or minimalist scenes depending on the image. Each wallpaper is chosen for its ability to shape the feeling of a setup while staying practical for icons, widgets, and everyday browsing.'
+    };
+    const title = `${categoryName || 'Cinematic'} Wallpapers`;
+    let intro = intros[key] || 'Explore high-quality cinematic wallpapers for desktop and mobile devices, featuring realistic lighting, dark atmosphere, polished detail, and screen-friendly composition. This collection is designed for users who want backgrounds that feel premium without looking like generic stock imagery. Each wallpaper balances visual depth, mood, and usability, making it suitable for wide desktop displays, laptops, tablets, and phones while keeping the overall look clean and immersive.';
+    if (intro.split(/\s+/).filter(Boolean).length < 100) {
+        intro = `${intro} Browse the collection when you want a practical wallpaper that adds atmosphere to your setup while keeping icons, widgets, browser windows, and mobile app layouts easy to read. New images are selected for mood, clarity, and everyday usability across screens.`;
+    }
+    return { title, intro };
 }
 
 function setMetaContent(id, value) {
@@ -557,7 +715,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     },
                     {
                         title: 'Response Scope',
-                        body: 'Please include the related wallpaper title or page URL when reporting copyright, privacy, or technical issues so we can review the request efficiently.'
+                        body: 'Please include the related wallpaper name or page URL when reporting copyright, privacy, or technical issues so we can review the request efficiently.'
                     }
                 ]
             },
@@ -632,7 +790,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function setSwitchButtonLabel(button, mode) {
         if (!button) return;
-        const label = mode === 'desktop' ? 'View Desktop Size' : 'View Mobile Size';
+        const label = mode === 'desktop' ? 'View Desktop Version' : 'View Mobile Version';
         const icon = mode === 'desktop' ? '💻' : '📱';
         button.classList.add('finger-hint');
         button.innerHTML = `<span class="finger" aria-hidden="true"></span><span class="icon">${icon}</span><span class="btn-text">${label}</span>`;
@@ -795,6 +953,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 : (translations[currentLang].desktop_version || 'Desktop Version');
             const resolution = wp.resolution || 'High Resolution';
             wpDesc.textContent = `${baseText} • ${resolution}`;
+        }
+        const wallpaperSeoDescription = document.getElementById('wallpaperSeoDescription');
+        if (wallpaperSeoDescription) {
+            wallpaperSeoDescription.textContent = getWallpaperSeoContent(wp);
         }
 
         wpDownloadUrl = {
@@ -1516,6 +1678,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (wp) {
             const title = buildSeoTitle(wp);
             const desc = buildSeoDescription(wp);
+            const seoContent = getWallpaperSeoContent(wp);
             const imgPath = wp.desktopImg || wp.mobileImg || '';
             const fullImgUrl = absoluteAssetUrl(imgPath);
             const url = setUrlMetaTags(`/wallpaper/${wp.slug}`);
@@ -1531,11 +1694,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                     "@context": "https://schema.org",
                     "@type": "ImageObject",
                     "name": wp.title,
-                    "description": desc,
+                    "description": seoContent,
+                    "image": fullImgUrl,
                     "thumbnailUrl": fullImgUrl,
                     "contentUrl": fullImgUrl,
                     "encodingFormat": "image/webp",
                     "keywords": getWallpaperKeywords(wp),
+                    "genre": wp.category || "Wallpaper",
+                    "category": wp.category || "Wallpaper",
                     "contentLocation": wp.category || "Wallpaper",
                     "creator": {
                         "@type": "Organization",
@@ -1547,8 +1713,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         } else if (context && context.type === 'category' && context.name) {
             const catName = context.name;
-            const title = `${catName} Wallpapers 4K Download | Afterglowr Cinematic Wallpapers`;
-            const desc = `Download high-quality ${catName} wallpapers including desktop and mobile versions. Explore premium AI-generated scenic backgrounds.`;
+            const categoryContent = getCategoryIntro(catName);
+            const title = `${categoryContent.title} | Afterglowr`;
+            const desc = trimMetaDescription(categoryContent.intro);
             const url = setUrlMetaTags(`/category/${context.slug}`);
             
             let catImgUrl = '';
@@ -1569,9 +1736,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const schema = {
                     "@context": "https://schema.org",
                     "@type": "CollectionPage",
-                    "name": `${catName} Wallpapers`,
-                    "description": `High-quality ${catName.toLowerCase()} wallpapers collection`,
-                    "url": url
+                    "name": categoryContent.title,
+                    "description": categoryContent.intro,
+                    "url": url,
+                    "keywords": `${catName}, 4K wallpapers, desktop wallpaper, mobile wallpaper, cinematic wallpaper`,
+                    "genre": catName,
+                    "category": catName
                 };
                 structuredData.textContent = JSON.stringify(schema, null, 2);
             }
@@ -1797,14 +1967,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         const catName = categorySlug.charAt(0).toUpperCase() + categorySlug.slice(1);
         
         if (filteredWallpapers.length === 0) {
-            catTitle.textContent = "Category Not Found";
-            catDesc.textContent = "Sorry, we couldn't find any wallpapers for this category.";
+            const fallbackCategory = getCategoryIntro('Cinematic');
+            catTitle.textContent = fallbackCategory.title;
+            catDesc.textContent = fallbackCategory.intro;
             categoryGallery.innerHTML = '';
-            return "Not Found";
+            return "Cinematic";
         }
 
-        catTitle.textContent = `${catName} Wallpapers`;
-        catDesc.textContent = `High-quality ${categorySlug.toLowerCase()} wallpapers collection`;
+        const categoryContent = getCategoryIntro(catName);
+        catTitle.textContent = categoryContent.title;
+        catDesc.textContent = categoryContent.intro;
         
         categoryGallery.innerHTML = '';
         filteredWallpapers.forEach(wp => {
@@ -1884,6 +2056,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <div><strong>${currentLang === 'zh' ? '標籤' : 'Tags'}:</strong> ${(currentWpPage.tags || []).join(', ') || 'Cinematic, Wallpaper'}</div>
             </div>
         `;
+        const wallpaperSeoDescription = document.getElementById('wallpaperSeoDescription');
+        if (wallpaperSeoDescription) {
+            wallpaperSeoDescription.textContent = getWallpaperSeoContent(currentWpPage);
+        }
     }
 
     function getWallpaperScore(baseWp, targetWp) {

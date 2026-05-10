@@ -2510,6 +2510,20 @@ footer {
     margin: 0 0 22px !important;
 }
 
+#wallpaperView .wallpaper-seo-description {
+    color: rgba(224,226,235,0.74) !important;
+    font-size: 0.98rem !important;
+    line-height: 1.75 !important;
+    margin: 0 0 24px !important;
+    padding-top: 18px !important;
+    border-top: 1px solid rgba(255,255,255,0.10) !important;
+}
+
+#categoryView #catDesc {
+    max-width: 920px !important;
+    line-height: 1.75 !important;
+}
+
 #wallpaperView #wpTags {
     display: flex !important;
     flex-wrap: wrap !important;

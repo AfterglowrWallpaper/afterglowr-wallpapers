@@ -85,8 +85,8 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>
                 <span data-i18n="back_to_home">Back to Home</span>
             </button>
-            <h1 id="catTitle" style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-color);">Category Name</h1>
-            <p id="catDesc" style="color: var(--text-secondary); margin-bottom: 3rem; font-size: 1.1rem;">Category Description</p>
+            <h1 id="catTitle" style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-color);"></h1>
+            <p id="catDesc" style="color: var(--text-secondary); margin-bottom: 3rem; font-size: 1.1rem;"></p>
             
             <div class="gallery" id="categoryGallery">
                 <!-- Dynamically generated -->
@@ -126,6 +126,7 @@
                         </div>
                         <div id="wpTags"></div>
                         <p id="wpDesc"></p>
+                        <section class="wallpaper-seo-description" id="wallpaperSeoDescription" aria-live="polite"></section>
 
                         <div class="wp-full-actions">
                             
@@ -133,7 +134,7 @@
                             
 
 <div class="size-switch-group" id="wpSizeSwitchGroup">
-    <button class="size-btn active" id="wpDesktopBtn" type="button" aria-label="Desktop size">
+    <button class="size-btn active" id="wpDesktopBtn" type="button" aria-label="Desktop version">
         <span class="size-icon">
             <svg viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="3" y="4" width="18" height="12" rx="2"></rect>
@@ -141,9 +142,9 @@
                 <path d="M12 16v4"></path>
             </svg>
         </span>
-        <span class="label" data-i18n="desktop_version">Desktop Size</span>
+        <span class="label" data-i18n="desktop_version"></span>
     </button>
-    <button class="size-btn" id="wpMobileBtn" type="button" aria-label="Mobile size">
+    <button class="size-btn" id="wpMobileBtn" type="button" aria-label="Mobile version">
         <span class="size-icon">
             <svg viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="7" y="2.5" width="10" height="19" rx="2.5"></rect>
@@ -151,7 +152,7 @@
                 <circle cx="12" cy="18" r="0.8"></circle>
             </svg>
         </span>
-        <span class="label" data-i18n="mobile_version">Mobile Size</span>
+        <span class="label" data-i18n="mobile_version"></span>
     </button>
 </div>
 
@@ -259,7 +260,7 @@
                 <div class="info-container">
                     <div class="info-text">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 15px;">
-                            <h2 id="modalTitle">Wallpaper Title</h2>
+                            <h2 id="modalTitle"></h2>
                             <button id="modalLikeBtn" class="like-btn" title="Like this wallpaper">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="heart-icon"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                                 <span id="modalLikeCount" class="like-count">0</span>
@@ -273,7 +274,7 @@
                         
 
 <div class="size-switch-group" id="modalSizeSwitchGroup">
-    <button class="size-btn active" id="modalDesktopBtn" type="button" aria-label="Desktop size">
+    <button class="size-btn active" id="modalDesktopBtn" type="button" aria-label="Desktop version">
         <span class="size-icon">
             <svg viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="3" y="4" width="18" height="12" rx="2"></rect>
@@ -281,9 +282,9 @@
                 <path d="M12 16v4"></path>
             </svg>
         </span>
-        <span class="label" data-i18n="desktop_version">Desktop Size</span>
+        <span class="label" data-i18n="desktop_version"></span>
     </button>
-    <button class="size-btn" id="modalMobileBtn" type="button" aria-label="Mobile size">
+    <button class="size-btn" id="modalMobileBtn" type="button" aria-label="Mobile version">
         <span class="size-icon">
             <svg viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="7" y="2.5" width="10" height="19" rx="2.5"></rect>
@@ -291,7 +292,7 @@
                 <circle cx="12" cy="18" r="0.8"></circle>
             </svg>
         </span>
-        <span class="label" data-i18n="mobile_version">Mobile Size</span>
+        <span class="label" data-i18n="mobile_version"></span>
     </button>
 </div>
 
