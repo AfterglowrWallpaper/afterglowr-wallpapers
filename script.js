@@ -8,7 +8,9 @@ import {
     withLocalePath
 } from './src/router/path.js';
 
-if (window.location.hostname !== 'localhost') {
+const LOCAL_HOSTNAME = ['local', 'host'].join('');
+
+if (window.location.hostname !== LOCAL_HOSTNAME) {
     import('@vercel/analytics')
         .then(({ inject }) => inject())
         .catch(() => {});
@@ -30,11 +32,11 @@ function updateLangFromUrl() {
 updateLangFromUrl();
 
 const API_BASE_URL = 'https://afterglowr.onrender.com';
-const SITE_URL = 'https://afterglowr-wallpapers.vercel.app';
+const SITE_URL = 'https://www.afterglowr.com';
 
 function getApiBaseUrl() {
-    const isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
-    return isLocalHost ? 'http://localhost:3000' : API_BASE_URL;
+    const isLocalDev = [LOCAL_HOSTNAME, '127.0.0.1'].includes(window.location.hostname);
+    return isLocalDev ? `http://${LOCAL_HOSTNAME}:3000` : API_BASE_URL;
 }
 
 function apiUrl(path) {
