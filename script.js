@@ -1018,6 +1018,50 @@ document.addEventListener('DOMContentLoaded', async () => {
     let isInfiniteLoading = false;
     const ITEMS_PER_PAGE = 20;
 
+    function getAvailableCategories() {
+        return [...new Set(
+            wallpapers
+                .map(wp => String(wp.category || '').trim())
+                .filter(Boolean)
+        )].sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' }));
+    }
+
+    function getCategoryFilterLabel(category) {
+        if (category === 'all') {
+            return translations[currentLang]?.filter_all || 'All';
+        }
+        const key = `filter_${String(category).toLowerCase()}`;
+        return translations[currentLang]?.[key] || category;
+    }
+
+    function renderCategoryFilters() {
+        if (!filtersSection) return;
+
+        const categories = getAvailableCategories();
+        if (currentCategory !== 'all' && !categories.includes(currentCategory)) {
+            currentCategory = 'all';
+            currentPage = 1;
+        }
+
+        filtersSection.innerHTML = '';
+
+        const createButton = (filterValue, label, i18nKey = '') => {
+            const button = document.createElement('button');
+            button.className = 'filter-btn';
+            button.type = 'button';
+            button.dataset.filter = filterValue;
+            button.textContent = label;
+            if (i18nKey) button.dataset.i18n = i18nKey;
+            button.classList.toggle('active', filterValue === currentCategory);
+            return button;
+        };
+
+        filtersSection.appendChild(createButton('all', getCategoryFilterLabel('all'), 'filter_all'));
+        categories.forEach(category => {
+            filtersSection.appendChild(createButton(category, getCategoryFilterLabel(category)));
+        });
+    }
+
     function getFilteredWallpapers() {
         let result = currentCategory === 'all'
             ? [...wallpapers]
@@ -1122,6 +1166,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     function renderGallery(options = {}) {
         const { updateUrl = false, smoothScroll = false } = options;
         const append = false;
+        renderCategoryFilters();
         const filteredWallpapers = getFilteredWallpapers();
         const totalPages = getTotalPages();
 
@@ -1232,16 +1277,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentCategory = btn.getAttribute('data-filter');
+    if (filtersSection) {
+        filtersSection.addEventListener('click', (event) => {
+            const btn = event.target.closest('.filter-btn');
+            if (!btn || !filtersSection.contains(btn)) return;
+
+            currentCategory = btn.getAttribute('data-filter') || 'all';
             currentPage = 1;
+            renderCategoryFilters();
             renderGallery({ updateUrl: true, smoothScroll: true });
         });
-    });
+    }
 
     const gallerySearchInput = document.getElementById('gallerySearchInput');
     const gallerySortSelect = document.getElementById('gallerySortSelect');
@@ -2297,6 +2343,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const key = wp.id || wp.slug;
                 return key && wp.desktopImg && list.findIndex(item => (item.id || item.slug) === key) === index;
             });
+            renderCategoryFilters();
 
             const totalPages = typeof getTotalPages === 'function' ? getTotalPages() : 1;
             if (typeof currentPage !== 'undefined') {
