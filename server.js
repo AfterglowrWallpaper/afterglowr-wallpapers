@@ -16,17 +16,17 @@ const app = express();
 app.set('trust proxy', 1);
 const allowedOrigins = [
   'https://afterglowr.com',
-  'https://www.afterglowr.com',
-  'https://afterglowr-wallpapers.vercel.app',
-  'http://localhost:5173',
-  'http://localhost:3000'
+  'https://www.afterglowr.com'
 ];
 function isAllowedOrigin(origin) {
   if (!origin || allowedOrigins.includes(origin)) return true;
 
   try {
     const url = new URL(origin);
-    return url.protocol === 'https:' && url.hostname.endsWith('.vercel.app');
+    if ((url.hostname === 'localhost' || url.hostname === '127.0.0.1') && /^http:$/.test(url.protocol)) {
+      return /^\d+$/.test(url.port || '');
+    }
+    return false;
   } catch {
     return false;
   }
@@ -47,6 +47,18 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.options(/.*/, cors(corsOptions));
+
+app.use('/api', (req, res, next) => {
+  const origin = req.get('origin');
+  if (isAllowedOrigin(origin) && origin) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Vary', 'Origin');
+  }
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  if (req.method === 'OPTIONS') return res.sendStatus(204);
+  next();
+});
 
 app.use(express.json());
 
@@ -108,7 +120,7 @@ function isOriginalObjectKey(objectKey) {
 }
 
 function isAllowedOriginalKeyForRequest(objectKey, requestedId, requestedType) {
-  if (!isOriginalObjectKey(objectKey) || !/\.(png|jpe?g|webp)$/i.test(objectKey)) return false;
+  if (!isOriginalObjectKey(objectKey) || !/\.png$/i.test(objectKey)) return false;
 
   const { id, type } = getTypeAndBaseName(objectKey);
   return type === requestedType && toSlug(id) === toSlug(requestedId);
@@ -241,47 +253,76 @@ app.post('/api/regenerate-wallpapers', async (req, res) => {
 
 // API: generate one-time download link.
 app.get('/api/generate-link', async (req, res) => {
-  const { id, type, originalKey } = req.query;
+  try {
+    const { id, type, originalKey } = req.query;
 
-  if (!id || !type) {
-    return res.status(400).json({ error: 'Missing id or type parameter' });
-  }
+    if (!id || !type) {
+      console.warn('[Generate Link] Missing id or type', { id, type, query: req.query });
+      return res.status(400).json({ error: 'Missing id or type parameter' });
+    }
 
-  await ensureFreshIndex();
+    if (!['desktop', 'mobile'].includes(String(type))) {
+      console.warn('[Generate Link] Invalid type', { id, type });
+      return res.status(400).json({ error: 'Invalid type parameter', id, type });
+    }
 
-  if (originalKey && !isAllowedOriginalKeyForRequest(originalKey, id, type)) {
-    return res.status(400).json({
-      error: 'Invalid original key',
-      id,
-      type,
-    });
-  }
+    await ensureFreshIndex();
 
-  const lookupKey = `${id}_${type}`;
-  const objectKey = originalKey || fileIndex.get(lookupKey);
+    if (originalKey && !isAllowedOriginalKeyForRequest(originalKey, id, type)) {
+      console.warn('[Generate Link] Invalid original key', {
+        id,
+        type,
+        originalKey,
+        isOriginal: isOriginalObjectKey(originalKey),
+      });
+      return res.status(400).json({
+        error: 'Invalid original key',
+        id,
+        type,
+      });
+    }
 
-  console.log(`[Generate Link] id=${id}, type=${type}, lookupKey=${lookupKey}, objectKey=${objectKey || 'N/A'}`);
+    const lookupKey = `${toSlug(id)}_${type}`;
+    const objectKey = originalKey || fileIndex.get(lookupKey);
 
-  if (!objectKey) {
-    return res.status(404).json({
-      error: 'Original file not found in R2',
-      id,
-      type,
-      lookupKey,
+    console.log(`[Generate Link] id=${id}, type=${type}, lookupKey=${lookupKey}, objectKey=${objectKey || 'N/A'}, indexedFiles=${fileIndex.size}`);
+
+    if (!objectKey || !isAllowedOriginalKeyForRequest(objectKey, id, type)) {
+      console.warn('[Generate Link] Original file not found or invalid', {
+        id,
+        type,
+        lookupKey,
+        objectKey,
+        indexedFiles: fileIndex.size,
+      });
+      return res.status(404).json({
+        error: 'Original file not found in R2',
+        id,
+        type,
+        lookupKey,
+        indexedFiles: fileIndex.size,
+      });
+    }
+
+    const token = crypto.randomUUID();
+    const expiresAt = Date.now() + 60 * 1000;
+
+    tokenPool.set(token, { objectKey, type, expiresAt });
+
+    const baseUrl = `${req.protocol}://${req.get('host')}`;
+    const downloadUrl = `${baseUrl}/api/download?token=${token}`;
+    console.log(`[Generate Link] success id=${id}, type=${type}, objectKey=${objectKey}, url=${downloadUrl}`);
+
+    res.json({ url: downloadUrl });
+  } catch (err) {
+    console.error('[Generate Link] Failed:', {
+      message: err.message,
+      stack: err.stack,
+      query: req.query,
       indexedFiles: fileIndex.size,
     });
+    res.status(500).json({ error: 'Failed to generate download link' });
   }
-
-  const token = crypto.randomUUID();
-  const expiresAt = Date.now() + 60 * 1000;
-
-  tokenPool.set(token, { objectKey, type, expiresAt });
-
-  const baseUrl = `${req.protocol}://${req.get('host')}`;
-
-  res.json({
-    url: `${baseUrl}/api/download?token=${token}`,
-  });
 });
 
 // API: validate token and stream file from R2.

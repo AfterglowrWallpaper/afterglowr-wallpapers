@@ -1,4 +1,3 @@
-import { inject } from '@vercel/analytics';
 import { translations } from './translations.js';
 import {
     getLocaleFromPath,
@@ -9,7 +8,11 @@ import {
     withLocalePath
 } from './src/router/path.js';
 
-inject();
+if (window.location.hostname !== 'localhost') {
+    import('@vercel/analytics')
+        .then(({ inject }) => inject())
+        .catch(() => {});
+}
 
 let currentLang = 'en';
 
@@ -2272,8 +2275,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 const supportCopy = {
     en: {
         kicker: 'AFTERGLOWR PROJECT',
-        title: 'About Afterglowr Wallpapers',
-        lead: 'Afterglowr Wallpapers is a curated collection of high-quality wallpapers built around cinematic lighting, atmospheric depth, and photorealistic detail.',
+        title: 'Support the Project',
+        lead: 'Help keep Afterglowr online and support future wallpapers.',
         story: 'This project started as a personal archive of creative experiments — exploring visual moods through original ideas, AI-assisted workflows, and refined compositions. Over time, it evolved into a platform for sharing these creations with others who appreciate immersive and carefully crafted visuals.',
         free: 'All wallpapers on this site are free to download and use.',
         goal: 'Our goal is simple: to create visuals that feel real, emotional, and timeless — not artificial or overly stylized.',

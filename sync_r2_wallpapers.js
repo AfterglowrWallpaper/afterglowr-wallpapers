@@ -326,7 +326,7 @@ async function readImageResolution(client, bucket, key) {
     const buffer = await bodyToBuffer(result.Body);
     const metadata = await sharp(buffer).metadata();
     if (!metadata.width || !metadata.height) return null;
-    return `${metadata.width} × ${metadata.height} px`;
+    return `${metadata.width} \u00d7 ${metadata.height} px`;
   } catch (error) {
     console.warn(`[R2 Sync] Unable to read image resolution for ${key}: ${error.message}`);
     return null;
@@ -385,8 +385,22 @@ async function ensureThumbnail({ client, bucket, item, originalKey, type, tmpDir
     .toFile(webpPath);
 
   await uploadWebp(client, bucket, thumbKey, webpPath);
+  if (!await objectExists(client, bucket, thumbKey)) {
+    throw new Error(`Thumbnail upload verification failed: ${thumbKey}`);
+  }
+
   console.log(`[R2 Sync] Uploaded thumbnail: ${thumbKey}`);
   return thumbKey;
+}
+
+async function ensureThumbnailSafe(options) {
+  try {
+    const key = await ensureThumbnail(options);
+    return key ? { key, failed: false } : { key: null, failed: false };
+  } catch (error) {
+    console.warn(`[R2 Sync] Thumbnail failed for ${options.originalKey}: ${error.message}`);
+    return { key: null, failed: true };
+  }
 }
 
 function toWallpaperRecord(item) {
@@ -436,8 +450,8 @@ function mergeWallpaperRecord(existing, generated) {
     title: existing.title || generated.title,
     tags: hasOnlyDefaultTags(existing.tags) || hasStopWordTag(existing.tags) ? generated.tags : existing.tags,
     category: existing.category || generated.category,
-    desktopImg: generated.desktopImg || existing.desktopImg || null,
-    mobileImg: generated.mobileImg || existing.mobileImg || null,
+    desktopImg: generated.desktopImg || null,
+    mobileImg: generated.mobileImg || null,
     desktopOriginalKey: generated.desktopOriginalKey || existing.desktopOriginalKey || null,
     mobileOriginalKey: generated.mobileOriginalKey || existing.mobileOriginalKey || null,
     hasDesktop: generated.hasDesktop,
@@ -458,6 +472,10 @@ function mergeWallpaperRecord(existing, generated) {
 
 function getExistingKey(item) {
   return item.id || item.slug;
+}
+
+function hasRenderableThumbnail(item) {
+  return Boolean(item?.desktopThumbKey);
 }
 
 async function main() {
@@ -489,13 +507,18 @@ async function main() {
   const objects = await listR2Objects(client, bucket, originalsPrefix);
   console.log(`[R2 Sync] Found ${objects.length} objects under ${originalsPrefix}`);
 
+  let parsedOriginals = 0;
   for (const object of objects) {
     const parsed = parseOriginalObject(object.Key, originalsPrefix);
-    if (parsed) addOriginalToMap(discovered, parsed);
+    if (parsed) {
+      parsedOriginals += 1;
+      addOriginalToMap(discovered, parsed);
+    }
   }
 
   let uploadedThumbnails = 0;
   let skippedThumbnails = 0;
+  let failedThumbnails = 0;
 
   for (const item of discovered.values()) {
     if (!item.desktopKey && !item.mobileKey) continue;
@@ -504,7 +527,7 @@ async function main() {
 
     if (item.desktopKey) {
       const beforeDesktop = await objectExists(client, bucket, thumbKeyFor(item, 'desktop', thumbnailsPrefix));
-      item.desktopThumbKey = await ensureThumbnail({
+      const desktopResult = await ensureThumbnailSafe({
         client,
         bucket,
         item,
@@ -513,13 +536,15 @@ async function main() {
         tmpDir,
         thumbnailsPrefix,
       });
-      if (beforeDesktop) skippedThumbnails += 1;
-      else uploadedThumbnails += 1;
+      item.desktopThumbKey = desktopResult.key;
+      if (desktopResult.failed) failedThumbnails += 1;
+      else if (beforeDesktop) skippedThumbnails += 1;
+      else if (desktopResult.key) uploadedThumbnails += 1;
     }
 
     if (item.mobileKey) {
       const beforeMobile = await objectExists(client, bucket, thumbKeyFor(item, 'mobile', thumbnailsPrefix));
-      item.mobileThumbKey = await ensureThumbnail({
+      const mobileResult = await ensureThumbnailSafe({
         client,
         bucket,
         item,
@@ -528,8 +553,10 @@ async function main() {
         tmpDir,
         thumbnailsPrefix,
       });
-      if (beforeMobile) skippedThumbnails += 1;
-      else uploadedThumbnails += 1;
+      item.mobileThumbKey = mobileResult.key;
+      if (mobileResult.failed) failedThumbnails += 1;
+      else if (beforeMobile) skippedThumbnails += 1;
+      else if (mobileResult.key) uploadedThumbnails += 1;
     }
   }
 
@@ -540,7 +567,7 @@ async function main() {
   const nextWallpapers = existing.map(item => {
     const key = getExistingKey(item);
     const discoveredItem = key ? discovered.get(key) : null;
-    if (!discoveredItem || (!discoveredItem.desktopKey && !discoveredItem.mobileKey)) {
+    if (!discoveredItem || (!discoveredItem.desktopKey && !discoveredItem.mobileKey) || !hasRenderableThumbnail(discoveredItem)) {
       removedWallpapers += 1;
       return null;
     }
@@ -552,6 +579,7 @@ async function main() {
   const newRecords = [];
   for (const item of discovered.values()) {
     if (!item.desktopKey && !item.mobileKey) continue;
+    if (!hasRenderableThumbnail(item)) continue;
     if (existingByKey.has(item.id) || existingByKey.has(item.slug) || touchedKeys.has(item.id)) continue;
     newRecords.push(toWallpaperRecord(item));
   }
@@ -559,8 +587,10 @@ async function main() {
   newRecords.sort((a, b) => a.slug.localeCompare(b.slug));
   writeWallpapers([...nextWallpapers, ...newRecords]);
 
+  console.log(`[R2 Sync] R2 originals count: ${parsedOriginals}`);
   console.log(`[R2 Sync] Uploaded thumbnails: ${uploadedThumbnails}`);
   console.log(`[R2 Sync] Existing thumbnails skipped: ${skippedThumbnails}`);
+  console.log(`[R2 Sync] Failed thumbnails: ${failedThumbnails}`);
   console.log(`[R2 Sync] Added new wallpapers: ${newRecords.length}`);
   console.log(`[R2 Sync] Removed missing originals: ${removedWallpapers}`);
   console.log(`[R2 Sync] public/wallpapers.json updated with ${nextWallpapers.length + newRecords.length} records.`);
