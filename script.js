@@ -1,3 +1,4 @@
+import { inject } from '@vercel/analytics';
 import { translations } from './translations.js';
 import {
     getLocaleFromPath,
@@ -7,6 +8,8 @@ import {
     switchLocalePath,
     withLocalePath
 } from './src/router/path.js';
+
+inject();
 
 let currentLang = 'en';
 
