@@ -208,7 +208,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-big-ben_PC.webp</image:loc>
+      <image:loc>https://cdn.afterglowr.com/thumbnails/Cyberpunk/cyberpunk-big-ben_PC.webp</image:loc>
       <image:title>Cyberpunk-Big Ben 4K Wallpaper</image:title>
     </image:image>
   </url>
@@ -218,7 +218,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-burj-khalifa_PC.webp</image:loc>
+      <image:loc>https://cdn.afterglowr.com/thumbnails/Cyberpunk/cyberpunk-burj-khalifa_PC.webp</image:loc>
       <image:title>Cyberpunk-Burj Khalifa 4K Wallpaper</image:title>
     </image:image>
   </url>
@@ -228,7 +228,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-oriental-pearl-tower_PC.webp</image:loc>
+      <image:loc>https://cdn.afterglowr.com/thumbnails/Cyberpunk/cyberpunk-oriental-pearl-tower_PC.webp</image:loc>
       <image:title>Cyberpunk-Oriental Pearl Tower 4K Wallpaper</image:title>
     </image:image>
   </url>
@@ -238,7 +238,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-petronas-twin-towers_PC.webp</image:loc>
+      <image:loc>https://cdn.afterglowr.com/thumbnails/Cyberpunk/cyberpunk-petronas-twin-towers_PC.webp</image:loc>
       <image:title>Cyberpunk-Petronas Twin Towers 4K Wallpaper</image:title>
     </image:image>
   </url>
@@ -248,7 +248,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-shibuya-crossing_PC.webp</image:loc>
+      <image:loc>https://cdn.afterglowr.com/thumbnails/Cyberpunk/cyberpunk-shibuya-crossing_PC.webp</image:loc>
       <image:title>Cyberpunk-Shibuya Crossing 4K Wallpaper</image:title>
     </image:image>
   </url>
@@ -258,7 +258,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-shinsaibashi-2_PC.webp</image:loc>
+      <image:loc>https://cdn.afterglowr.com/thumbnails/Cyberpunk/cyberpunk-shinsaibashi-2_PC.webp</image:loc>
       <image:title>Cyberpunk-Shinsaibashi 2 4K Wallpaper</image:title>
     </image:image>
   </url>
@@ -268,7 +268,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-shinsaibashi_PC.webp</image:loc>
+      <image:loc>https://cdn.afterglowr.com/thumbnails/Cyberpunk/cyberpunk-shinsaibashi_PC.webp</image:loc>
       <image:title>Cyberpunk-Shinsaibashi 4K Wallpaper</image:title>
     </image:image>
   </url>
@@ -278,7 +278,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-sydney-opera-house_PC.webp</image:loc>
+      <image:loc>https://cdn.afterglowr.com/thumbnails/Cyberpunk/cyberpunk-sydney-opera-house_PC.webp</image:loc>
       <image:title>Cyberpunk-Sydney Opera House 4K Wallpaper</image:title>
     </image:image>
   </url>
@@ -288,7 +288,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-taipei-101_PC.webp</image:loc>
+      <image:loc>https://cdn.afterglowr.com/thumbnails/Cyberpunk/cyberpunk-taipei-101_PC.webp</image:loc>
       <image:title>Cyberpunk-Taipei 101 4K Wallpaper</image:title>
     </image:image>
   </url>
@@ -298,7 +298,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-tokyo-tower_PC.webp</image:loc>
+      <image:loc>https://cdn.afterglowr.com/thumbnails/Cyberpunk/cyberpunk-tokyo-tower_PC.webp</image:loc>
       <image:title>Cyberpunk-Tokyo Tower 4K Wallpaper</image:title>
     </image:image>
   </url>
@@ -308,7 +308,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-victoria-harbour_PC.webp</image:loc>
+      <image:loc>https://cdn.afterglowr.com/thumbnails/Cyberpunk/cyberpunk-victoria-harbour_PC.webp</image:loc>
       <image:title>Cyberpunk-Victoria Harbour 4K Wallpaper</image:title>
     </image:image>
   </url>
@@ -800,6 +800,16 @@
     <image:image>
       <image:loc>https://cdn.afterglowr.com/thumbnails/Vibe/whiskey-on-the-jazz-bar-counter_PC.webp</image:loc>
       <image:title>Whiskey on the Jazz Bar Counter 4K Wallpaper</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.afterglowr.com/wallpaper/cs2-urban-firefight-2</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.afterglowr.com/thumbnails/Gaming/cs2-urban-firefight-2_PC.webp</image:loc>
+      <image:title>CS2 Urban Firefight 2 4K Wallpaper</image:title>
     </image:image>
   </url>
 </urlset>
