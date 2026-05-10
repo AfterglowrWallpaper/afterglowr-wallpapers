@@ -19,6 +19,14 @@ const envFile = path.join(__dirname, '.env');
 
 const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp']);
 const DEFAULT_TAGS = ['Premium', 'Aesthetic'];
+const STOP_WORDS = new Set(['a', 'an', 'and', 'at', 'by', 'for', 'from', 'in', 'of', 'on', 'or', 'the', 'to', 'under', 'with']);
+const FIXED_KEYWORDS = [
+  '4k wallpaper',
+  'desktop wallpaper',
+  'mobile wallpaper',
+  'free wallpaper',
+  'aesthetic wallpaper',
+];
 const TYPE_SUFFIXES = {
   desktop: /(?:[_-]PC)$/i,
   mobile: /(?:[_-]MP)$/i,
@@ -124,7 +132,7 @@ function parseOriginalObject(key, originalsPrefix) {
 }
 
 function tagsFromSlug(slug) {
-  const words = String(slug || '').split('-').filter(Boolean);
+  const words = wordsFromSlug(slug);
   const tags = words.map(toTag);
 
   for (const tag of DEFAULT_TAGS) {
@@ -139,6 +147,109 @@ function hasOnlyDefaultTags(tags) {
   if (tags.length !== DEFAULT_TAGS.length) return false;
 
   return DEFAULT_TAGS.every((tag, index) => tags[index] === tag);
+}
+
+function hasStopWordTag(tags) {
+  if (!Array.isArray(tags)) return false;
+  return tags.some(tag => STOP_WORDS.has(String(tag || '').trim().toLowerCase()));
+}
+
+function hasSeoValue(value) {
+  if (Array.isArray(value)) return value.length > 0;
+  return String(value || '').trim().length > 0;
+}
+
+function uniqueValues(values, normalizer = value => String(value || '').trim()) {
+  const seen = new Set();
+  const result = [];
+
+  for (const value of values) {
+    const normalized = normalizer(value);
+    if (!normalized) continue;
+
+    const key = normalized.toLowerCase();
+    if (seen.has(key)) continue;
+
+    seen.add(key);
+    result.push(normalized);
+  }
+
+  return result;
+}
+
+function wordsFromSlug(slug) {
+  return String(slug || '')
+    .split('-')
+    .map(word => word.trim())
+    .filter(word => word && !STOP_WORDS.has(word.toLowerCase()));
+}
+
+function seoTagsForDescription(record) {
+  const defaultTagSet = new Set(DEFAULT_TAGS.map(tag => tag.toLowerCase()));
+  const tags = Array.isArray(record.tags) ? record.tags : [];
+  const primaryTags = tags.filter(tag => {
+    const value = String(tag || '').toLowerCase();
+    return value && !defaultTagSet.has(value) && !STOP_WORDS.has(value);
+  });
+  const fallbackTags = [
+    ...wordsFromSlug(record.slug).map(toTag),
+    record.category,
+    ...DEFAULT_TAGS,
+  ];
+
+  const values = uniqueValues([...primaryTags, ...fallbackTags]);
+  while (values.length < 3) {
+    values.push(['Cinematic', 'Aesthetic', 'High Quality'][values.length] || 'Wallpaper');
+  }
+
+  return values.slice(0, 3);
+}
+
+function keywordsForRecord(record) {
+  const values = [
+    ...wordsFromSlug(record.slug),
+    ...(record.title || '').split(/\s+/).filter(word => !STOP_WORDS.has(String(word || '').toLowerCase())),
+    record.category,
+    ...(Array.isArray(record.tags) ? record.tags : []),
+    ...FIXED_KEYWORDS,
+  ];
+
+  return uniqueValues(values, value => {
+    const normalized = String(value || '').trim().toLowerCase();
+    if (!/[a-z0-9]/i.test(normalized)) return '';
+    return STOP_WORDS.has(normalized) ? '' : normalized;
+  });
+}
+
+function buildSeoFields(record) {
+  const readableTitle = record.title || toTitle(record.slug) || 'Cinematic Wallpaper';
+  const category = record.category || 'Wallpaper';
+  const [tag1, tag2, tag3] = seoTagsForDescription(record);
+
+  return {
+    seoTitle: `${readableTitle} 4K Wallpaper for Desktop and Mobile | Afterglowr`,
+    seoDescription: `Download ${readableTitle} in high quality for desktop and mobile. A cinematic ${category.toLowerCase()} wallpaper with ${tag1}, ${tag2}, and ${tag3} aesthetics.`,
+    altText: `${readableTitle} 4K ${category} wallpaper for desktop and mobile`,
+    keywords: keywordsForRecord(record),
+  };
+}
+
+function isAutoSeoDescription(value) {
+  return /^Download .+ in high quality for desktop and mobile\. A cinematic .+ wallpaper with .+, .+, and .+ aesthetics\.$/.test(String(value || ''));
+}
+
+function isAutoSeoTitle(value) {
+  return /^.+ 4K Wallpaper for Desktop and Mobile \| Afterglowr$/.test(String(value || ''));
+}
+
+function isAutoAltText(value) {
+  return /^.+ 4K .+ wallpaper for desktop and mobile$/.test(String(value || ''));
+}
+
+function isAutoKeywords(value) {
+  if (!Array.isArray(value)) return false;
+  const normalized = value.map(item => String(item || '').toLowerCase());
+  return FIXED_KEYWORDS.every(keyword => normalized.includes(keyword));
 }
 
 function thumbKeyFor(item, type, thumbnailsPrefix) {
@@ -207,6 +318,21 @@ async function downloadObject(client, bucket, key, destinationPath) {
   fs.writeFileSync(destinationPath, buffer);
 }
 
+async function readImageResolution(client, bucket, key) {
+  if (!key) return null;
+
+  try {
+    const result = await client.send(new GetObjectCommand({ Bucket: bucket, Key: key }));
+    const buffer = await bodyToBuffer(result.Body);
+    const metadata = await sharp(buffer).metadata();
+    if (!metadata.width || !metadata.height) return null;
+    return `${metadata.width} × ${metadata.height} px`;
+  } catch (error) {
+    console.warn(`[R2 Sync] Unable to read image resolution for ${key}: ${error.message}`);
+    return null;
+  }
+}
+
 async function uploadWebp(client, bucket, key, filePath) {
   await client.send(new PutObjectCommand({
     Bucket: bucket,
@@ -264,7 +390,7 @@ async function ensureThumbnail({ client, bucket, item, originalKey, type, tmpDir
 }
 
 function toWallpaperRecord(item) {
-  return {
+  const record = {
     id: item.id,
     slug: item.slug,
     title: item.title,
@@ -276,7 +402,12 @@ function toWallpaperRecord(item) {
     mobileOriginalKey: item.mobileKey || null,
     hasMobile: Boolean(item.mobileKey),
     hasDesktop: Boolean(item.desktopKey),
-    resolution: 'High Resolution',
+    resolution: item.resolution || 'High Resolution',
+  };
+
+  return {
+    ...record,
+    ...buildSeoFields(record),
   };
 }
 
@@ -298,12 +429,12 @@ function writeWallpapers(wallpapers) {
 function mergeWallpaperRecord(existing, generated) {
   if (!existing) return generated;
 
-  return {
+  const merged = {
     ...existing,
     id: existing.id || generated.id,
     slug: existing.slug || generated.slug,
     title: existing.title || generated.title,
-    tags: hasOnlyDefaultTags(existing.tags) ? generated.tags : existing.tags,
+    tags: hasOnlyDefaultTags(existing.tags) || hasStopWordTag(existing.tags) ? generated.tags : existing.tags,
     category: existing.category || generated.category,
     desktopImg: generated.desktopImg || existing.desktopImg || null,
     mobileImg: generated.mobileImg || existing.mobileImg || null,
@@ -311,7 +442,17 @@ function mergeWallpaperRecord(existing, generated) {
     mobileOriginalKey: generated.mobileOriginalKey || existing.mobileOriginalKey || null,
     hasDesktop: generated.hasDesktop,
     hasMobile: generated.hasMobile,
-    resolution: existing.resolution || generated.resolution,
+    resolution: generated.resolution || existing.resolution || 'High Resolution',
+  };
+
+  const seoFields = buildSeoFields(merged);
+
+  return {
+    ...merged,
+    seoTitle: hasSeoValue(existing.seoTitle) && !isAutoSeoTitle(existing.seoTitle) ? existing.seoTitle : seoFields.seoTitle,
+    seoDescription: hasSeoValue(existing.seoDescription) && !isAutoSeoDescription(existing.seoDescription) ? existing.seoDescription : seoFields.seoDescription,
+    altText: hasSeoValue(existing.altText) && !isAutoAltText(existing.altText) ? existing.altText : seoFields.altText,
+    keywords: hasSeoValue(existing.keywords) && !isAutoKeywords(existing.keywords) ? existing.keywords : seoFields.keywords,
   };
 }
 
@@ -357,23 +498,24 @@ async function main() {
   let skippedThumbnails = 0;
 
   for (const item of discovered.values()) {
-    if (!item.desktopKey) {
-      console.warn(`[R2 Sync] Skipping thumbnails for ${item.slug}: missing _PC desktop original.`);
-      continue;
-    }
+    if (!item.desktopKey && !item.mobileKey) continue;
 
-    const beforeDesktop = await objectExists(client, bucket, thumbKeyFor(item, 'desktop', thumbnailsPrefix));
-    item.desktopThumbKey = await ensureThumbnail({
-      client,
-      bucket,
-      item,
-      originalKey: item.desktopKey,
-      type: 'desktop',
-      tmpDir,
-      thumbnailsPrefix,
-    });
-    if (beforeDesktop) skippedThumbnails += 1;
-    else uploadedThumbnails += 1;
+    item.resolution = await readImageResolution(client, bucket, item.desktopKey || item.mobileKey) || 'High Resolution';
+
+    if (item.desktopKey) {
+      const beforeDesktop = await objectExists(client, bucket, thumbKeyFor(item, 'desktop', thumbnailsPrefix));
+      item.desktopThumbKey = await ensureThumbnail({
+        client,
+        bucket,
+        item,
+        originalKey: item.desktopKey,
+        type: 'desktop',
+        tmpDir,
+        thumbnailsPrefix,
+      });
+      if (beforeDesktop) skippedThumbnails += 1;
+      else uploadedThumbnails += 1;
+    }
 
     if (item.mobileKey) {
       const beforeMobile = await objectExists(client, bucket, thumbKeyFor(item, 'mobile', thumbnailsPrefix));
@@ -394,18 +536,22 @@ async function main() {
   const existing = readExistingWallpapers();
   const existingByKey = new Map(existing.map(item => [getExistingKey(item), item]).filter(([key]) => key));
   const touchedKeys = new Set();
+  let removedWallpapers = 0;
   const nextWallpapers = existing.map(item => {
     const key = getExistingKey(item);
     const discoveredItem = key ? discovered.get(key) : null;
-    if (!discoveredItem || !discoveredItem.desktopKey) return item;
+    if (!discoveredItem || (!discoveredItem.desktopKey && !discoveredItem.mobileKey)) {
+      removedWallpapers += 1;
+      return null;
+    }
 
     touchedKeys.add(key);
     return mergeWallpaperRecord(item, toWallpaperRecord(discoveredItem));
-  });
+  }).filter(Boolean);
 
   const newRecords = [];
   for (const item of discovered.values()) {
-    if (!item.desktopKey) continue;
+    if (!item.desktopKey && !item.mobileKey) continue;
     if (existingByKey.has(item.id) || existingByKey.has(item.slug) || touchedKeys.has(item.id)) continue;
     newRecords.push(toWallpaperRecord(item));
   }
@@ -416,6 +562,7 @@ async function main() {
   console.log(`[R2 Sync] Uploaded thumbnails: ${uploadedThumbnails}`);
   console.log(`[R2 Sync] Existing thumbnails skipped: ${skippedThumbnails}`);
   console.log(`[R2 Sync] Added new wallpapers: ${newRecords.length}`);
+  console.log(`[R2 Sync] Removed missing originals: ${removedWallpapers}`);
   console.log(`[R2 Sync] public/wallpapers.json updated with ${nextWallpapers.length + newRecords.length} records.`);
 }
 

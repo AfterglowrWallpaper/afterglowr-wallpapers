@@ -143,16 +143,6 @@
     </image:image>
   </url>
   <url>
-    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/cs2-urban-firefight-2</loc>
-    <lastmod>2026-05-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://afterglowr-wallpapers.vercel.app/thumbnails/Gaming/cs2-urban-firefight-2_PC.webp</image:loc>
-      <image:title>CS2-Urban Firefight 2 4K Wallpaper</image:title>
-    </image:image>
-  </url>
-  <url>
     <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/cs2-urban-firefight</loc>
     <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
@@ -810,26 +800,6 @@
     <image:image>
       <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Vibe/whiskey-on-the-jazz-bar-counter_PC.webp</image:loc>
       <image:title>Whiskey on the Jazz Bar Counter 4K Wallpaper</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/chatgpt-test</loc>
-    <lastmod>2026-05-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Animals/chatgpt-test_PC.webp</image:loc>
-      <image:title>Chatgpt Test 4K Wallpaper</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/chatgpt-test2</loc>
-    <lastmod>2026-05-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Animals/chatgpt-test2_PC.webp</image:loc>
-      <image:title>Chatgpt Test2 4K Wallpaper</image:title>
     </image:image>
   </url>
 </urlset>

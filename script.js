@@ -37,6 +37,12 @@ function apiUrl(path) {
     return `${baseUrl}${path.startsWith('/') ? path : '/' + path}`;
 }
 
+function absoluteAssetUrl(pathValue = '') {
+    if (!pathValue) return '';
+    if (/^https?:\/\//i.test(pathValue)) return pathValue;
+    return `${SITE_URL}${pathValue.startsWith('/') ? pathValue : `/${pathValue}`}`;
+}
+
 function getAbsoluteUrl(pathValue = '/', locale = currentLang) {
     return `${SITE_URL}${withLocalePath(pathValue || '/', locale)}`;
 }
@@ -85,18 +91,44 @@ function isRecentlyAddedWallpaper(wp) {
 }
 
 function buildSeoTitle(wp, typeLabel = '') {
+    if (wp?.seoTitle) return wp.seoTitle;
     const title = wp?.title || 'Cinematic Wallpaper';
-    const category = wp?.category ? `${wp.category} ` : '';
     const typePart = typeLabel ? `${typeLabel} ` : '';
-    return `${title} ${category}${typePart}4K Wallpaper Download | Afterglowr`.replace(/\s+/g,' ').trim();
+    return `${title} ${typePart}4K Wallpaper for Desktop and Mobile | Afterglowr`.replace(/\s+/g,' ').trim();
 }
 
 function buildSeoDescription(wp, typeLabel = '') {
+    if (wp?.seoDescription) return wp.seoDescription;
     const title = wp?.title || 'this cinematic wallpaper';
-    const tags = (wp?.tags || []).slice(0, 6).join(', ');
-    const resolution = wp?.resolution || 'high resolution';
+    const category = wp?.category || 'wallpaper';
+    const tags = (wp?.tags || []).filter(Boolean);
+    const [tag1 = 'cinematic', tag2 = 'aesthetic', tag3 = 'high quality'] = tags;
     const typePart = typeLabel ? `${typeLabel.toLowerCase()} ` : '';
-    return `Download ${title} as a ${typePart}wallpaper in ${resolution}. Explore cinematic, realistic, atmospheric wallpapers${tags ? ` featuring ${tags}` : ''}.`;
+    return `Download ${title} in high quality for ${typePart || 'desktop and mobile'}. A cinematic ${String(category).toLowerCase()} wallpaper with ${tag1}, ${tag2}, and ${tag3} aesthetics.`;
+}
+
+function getWallpaperAltText(wp) {
+    if (wp?.altText) return wp.altText;
+    const title = wp?.title || 'Wallpaper';
+    const category = wp?.category || 'Wallpaper';
+    return `${title} 4K ${category} wallpaper for desktop and mobile`;
+}
+
+function getWallpaperKeywords(wp) {
+    if (Array.isArray(wp?.keywords)) return wp.keywords.join(', ');
+    if (typeof wp?.keywords === 'string') return wp.keywords;
+    return (wp?.tags || []).join(', ');
+}
+
+function setMetaContent(id, value) {
+    const element = document.getElementById(id);
+    if (element) element.setAttribute('content', value || '');
+}
+
+function syncTwitterMeta(title, description, imageUrl = '') {
+    setMetaContent('twitterTitle', title);
+    setMetaContent('twitterDescription', description);
+    setMetaContent('twitterImage', imageUrl);
 }
 
 function applyTranslations() {
@@ -185,7 +217,6 @@ function getSeoTrafficPage(path = window.location.pathname) {
 function updateTrafficSeoMeta(seoPage) {
     if (!seoPage) return;
 
-    const baseUrl = SITE_URL;
     const key = stripLocalePrefix(window.location.pathname).replace(/^\/+|\/+$/g, '');
     const routePath = key ? `/${key}` : '/';
     const url = setUrlMetaTags(routePath);
@@ -202,6 +233,7 @@ function updateTrafficSeoMeta(seoPage) {
     if (metaDesc) metaDesc.setAttribute('content', desc);
     if (ogTitle) ogTitle.setAttribute('content', title);
     if (ogDesc) ogDesc.setAttribute('content', desc);
+    syncTwitterMeta(title, desc, '');
     if (structuredData) {
         structuredData.textContent = JSON.stringify({
             "@context": "https://schema.org",
@@ -748,7 +780,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (wpMainImage) {
             wpMainImage.src = useMobile ? (wp.mobileImg || wp.desktopImg || '') : (wp.desktopImg || '');
-            wpMainImage.alt = `${wp.title || 'Wallpaper'} ${useMobile ? 'Mobile' : 'Desktop'} Wallpaper`;
+            wpMainImage.alt = getWallpaperAltText(wp);
         }
 
         if (wpDesc) {
@@ -871,6 +903,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (metaDesc) metaDesc.setAttribute('content', desc);
         if (ogTitle) ogTitle.setAttribute('content', title);
         if (ogDesc) ogDesc.setAttribute('content', desc);
+        syncTwitterMeta(title, desc, '');
         if (structuredData) {
             const schema = {
                 "@context": "https://schema.org",
@@ -889,18 +922,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         const badgesStr = wp.hasMobile
             ? `<span class="badge" style="display:flex; gap:8px; align-items:center;">${desktopIcon} ${mobileIcon}</span>`
             : `<span class="badge" style="display:flex; align-items:center;">${desktopIcon}</span>`;
-        const seoTagsStr = (wp.tags || []).join(', ');
         const isNewWallpaper = isRecentlyAddedWallpaper(wp);
         const newBadge = isNewWallpaper ? `<span class="new-badge">NEW</span>` : '';
         const likeCount = appData.likes[wp.id] || 0;
         const cardResolution = wp.resolution || '4K / HD';
+        const imageAlt = getWallpaperAltText(wp);
 
         const card = document.createElement('div');
         card.className = 'wallpaper-card animate-on-scroll page-slide-card';
         card.innerHTML = `
             <div class="card-image-wrap">
                 ${newBadge}
-                <img src="${wp.desktopImg}" alt="${wp.title} 4K wallpaper, ${seoTagsStr}" class="card-image" loading="lazy">
+                <img src="${wp.desktopImg}" alt="${imageAlt}" class="card-image" loading="lazy">
             </div>
             <div class="card-info">
                 <div>
@@ -1086,12 +1119,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             modalTags.classList.add('hidden');
         }
 
-        const tagsString = (currentWallpaper.tags || []).join(', ');
         const useMobile = showingMobile && currentWallpaper.hasMobile;
 
         if (useMobile) {
             modalImage.src = currentWallpaper.mobileImg;
-            modalImage.alt = `${currentWallpaper.title} Mobile Wallpaper - Tags: ${tagsString}`;
+            modalImage.alt = getWallpaperAltText(currentWallpaper);
             downloadUrl = {
                 id: currentWallpaper.id,
                 type: 'mobile',
@@ -1099,7 +1131,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             };
         } else {
             modalImage.src = currentWallpaper.desktopImg;
-            modalImage.alt = `${currentWallpaper.title} Desktop Wallpaper - Tags: ${tagsString}`;
+            modalImage.alt = getWallpaperAltText(currentWallpaper);
             downloadUrl = {
                 id: currentWallpaper.id,
                 type: 'desktop',
@@ -1475,13 +1507,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         const ogImage = document.getElementById('ogImage');
         const structuredData = document.getElementById('structuredData');
         
-        const baseUrl = SITE_URL;
-        
         if (wp) {
             const title = buildSeoTitle(wp);
             const desc = buildSeoDescription(wp);
             const imgPath = wp.desktopImg || wp.mobileImg || '';
-            const fullImgUrl = imgPath ? baseUrl + imgPath : '';
+            const fullImgUrl = absoluteAssetUrl(imgPath);
             const url = setUrlMetaTags(`/wallpaper/${wp.slug}`);
             
             if (pageTitle) pageTitle.textContent = title;
@@ -1489,16 +1519,17 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (ogTitle) ogTitle.setAttribute('content', title);
             if (ogDesc) ogDesc.setAttribute('content', desc);
             if (ogImage) ogImage.setAttribute('content', fullImgUrl);
+            syncTwitterMeta(title, desc, fullImgUrl);
             if (structuredData) {
                 const schema = {
                     "@context": "https://schema.org",
                     "@type": "ImageObject",
                     "name": wp.title,
-                    "description": `Download ${wp.title} in high resolution. Includes desktop and mobile wallpaper versions.`,
+                    "description": desc,
                     "thumbnailUrl": fullImgUrl,
                     "contentUrl": fullImgUrl,
                     "encodingFormat": "image/webp",
-                    "keywords": (wp.tags || []).join(", "),
+                    "keywords": getWallpaperKeywords(wp),
                     "contentLocation": wp.category || "Wallpaper",
                     "creator": {
                         "@type": "Organization",
@@ -1519,7 +1550,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (filteredWps.length > 0) {
                 const firstWp = filteredWps[0];
                 const imgPath = firstWp.desktopImg || firstWp.mobileImg || '';
-                catImgUrl = imgPath ? baseUrl + imgPath : '';
+                catImgUrl = absoluteAssetUrl(imgPath);
             }
             
             if (pageTitle) pageTitle.textContent = title;
@@ -1527,6 +1558,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (ogTitle) ogTitle.setAttribute('content', title);
             if (ogDesc) ogDesc.setAttribute('content', desc);
             if (ogImage) ogImage.setAttribute('content', catImgUrl);
+            syncTwitterMeta(title, desc, catImgUrl);
             if (structuredData) {
                 const schema = {
                     "@context": "https://schema.org",
@@ -1547,6 +1579,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (ogTitle) ogTitle.setAttribute('content', defaultTitle);
             if (ogDesc) ogDesc.setAttribute('content', defaultDesc);
             if (ogImage) ogImage.setAttribute('content', '');
+            syncTwitterMeta(defaultTitle, defaultDesc, '');
             if (structuredData) {
                 const schema = {
                     "@context": "https://schema.org",
@@ -1622,6 +1655,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (ogTitle) ogTitle.setAttribute('content', title);
         if (ogDesc) ogDesc.setAttribute('content', desc);
         if (ogType) ogType.setAttribute('content', 'website');
+        syncTwitterMeta(title, desc, '');
         if (structuredData) {
             structuredData.textContent = JSON.stringify({
                 '@context': 'https://schema.org',
@@ -1775,13 +1809,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 ? `<span class="badge" style="display:flex; gap:8px; align-items:center;">${desktopIcon} ${mobileIcon}</span>`
                 : `<span class="badge" style="display:flex; align-items:center;">${desktopIcon}</span>`;
 
-            const seoTagsStr = wp.tags.join(', ');
+            const imageAlt = getWallpaperAltText(wp);
 
             const card = document.createElement('div');
             card.className = 'wallpaper-card animate-on-scroll is-visible';
             card.innerHTML = `
                 <div class="card-image-wrap">
-                    <img src="${wp.desktopImg || wp.mobileImg}" alt="${wp.title} Wallpaper - Tags: ${seoTagsStr}" class="card-image" loading="lazy">
+                    <img src="${wp.desktopImg || wp.mobileImg}" alt="${imageAlt}" class="card-image" loading="lazy">
                 </div>
                 <div class="card-info">
                     <div class="card-title">${wp.title}</div>
@@ -1808,12 +1842,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             wpTags.classList.add('hidden');
         }
 
-        const tagsString = (currentWpPage.tags || []).join(', ');
         const useMobile = wpShowingMobile && currentWpPage.hasMobile;
 
         if (useMobile) {
             wpMainImage.src = currentWpPage.mobileImg;
-            wpMainImage.alt = `${currentWpPage.title} Mobile Wallpaper - Tags: ${tagsString}`;
+            wpMainImage.alt = getWallpaperAltText(currentWpPage);
             wpDownloadUrl = {
                 id: currentWpPage.id,
                 type: 'mobile',
@@ -1821,7 +1854,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             };
         } else {
             wpMainImage.src = currentWpPage.desktopImg;
-            wpMainImage.alt = `${currentWpPage.title} Desktop Wallpaper - Tags: ${tagsString}`;
+            wpMainImage.alt = getWallpaperAltText(currentWpPage);
             wpDownloadUrl = {
                 id: currentWpPage.id,
                 type: 'desktop',
@@ -1893,12 +1926,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         const tags = (wp.tags || []).slice(0, 3);
         const imgSrc = wp.desktopImg || wp.mobileImg || '';
         const slug = wp.slug || wp.id;
+        const imageAlt = getWallpaperAltText(wp);
 
         const card = document.createElement('article');
         card.className = 'related-smart-card animate-on-scroll';
         card.innerHTML = `
             <div class="related-smart-image-wrap">
-                <img src="${imgSrc}" alt="${wp.title} 4K related wallpaper" loading="lazy">
+                <img src="${imgSrc}" alt="${imageAlt}" loading="lazy">
                 ${reason ? `<span class="related-reason">${reason}</span>` : ''}
             </div>
             <div class="related-smart-body">
