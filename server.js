@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import express from 'express';
 import cors from 'cors';
 import crypto from 'crypto';
@@ -53,6 +56,9 @@ const R2_ENDPOINT = process.env.R2_ENDPOINT;
 const R2_ACCESS_KEY_ID = process.env.R2_ACCESS_KEY_ID;
 const R2_SECRET_ACCESS_KEY = process.env.R2_SECRET_ACCESS_KEY;
 const R2_BUCKET_NAME = process.env.R2_BUCKET_NAME;
+const R2_PREFIX_ORIGINALS = String(process.env.R2_PREFIX_ORIGINALS || 'originals')
+  .replace(/^\/+/, '')
+  .replace(/\/?$/, '/');
 
 if (!R2_ENDPOINT || !R2_ACCESS_KEY_ID || !R2_SECRET_ACCESS_KEY || !R2_BUCKET_NAME) {
   console.warn('[R2] Missing environment variables. Please check Render Environment settings.');
@@ -95,6 +101,17 @@ function getTypeAndBaseName(objectKey) {
   }
 
   return { id, type, ext };
+}
+
+function isOriginalObjectKey(objectKey) {
+  return typeof objectKey === 'string' && objectKey.startsWith(R2_PREFIX_ORIGINALS);
+}
+
+function isAllowedOriginalKeyForRequest(objectKey, requestedId, requestedType) {
+  if (!isOriginalObjectKey(objectKey) || !/\.(png|jpe?g|webp)$/i.test(objectKey)) return false;
+
+  const { id, type } = getTypeAndBaseName(objectKey);
+  return type === requestedType && toSlug(id) === toSlug(requestedId);
 }
 
 function createDownloadFilename(objectKey, downloadType) {
@@ -157,6 +174,7 @@ async function buildR2FileIndex() {
       for (const obj of result.Contents || []) {
         const key = obj.Key;
         if (!key || !/\.(png|jpe?g|webp)$/i.test(key)) continue;
+        if (!isOriginalObjectKey(key)) continue;
 
         const { id, type } = getTypeAndBaseName(key);
         const slugId = toSlug(id);
@@ -223,7 +241,7 @@ app.post('/api/regenerate-wallpapers', async (req, res) => {
 
 // API: generate one-time download link.
 app.get('/api/generate-link', async (req, res) => {
-  const { id, type } = req.query;
+  const { id, type, originalKey } = req.query;
 
   if (!id || !type) {
     return res.status(400).json({ error: 'Missing id or type parameter' });
@@ -231,8 +249,16 @@ app.get('/api/generate-link', async (req, res) => {
 
   await ensureFreshIndex();
 
+  if (originalKey && !isAllowedOriginalKeyForRequest(originalKey, id, type)) {
+    return res.status(400).json({
+      error: 'Invalid original key',
+      id,
+      type,
+    });
+  }
+
   const lookupKey = `${id}_${type}`;
-  const objectKey = fileIndex.get(lookupKey);
+  const objectKey = originalKey || fileIndex.get(lookupKey);
 
   console.log(`[Generate Link] id=${id}, type=${type}, lookupKey=${lookupKey}, objectKey=${objectKey || 'N/A'}`);
 
@@ -286,6 +312,7 @@ app.get('/api/download', async (req, res) => {
     }));
 
     const filename = createDownloadFilename(tokenData.objectKey, tokenData.type);
+    console.log(`[Download] objectKey=${tokenData.objectKey}, filename=${filename}`);
 
     res.setHeader('Content-Type', result.ContentType || 'application/octet-stream');
     res.setHeader('Content-Disposition', `attachment; filename*=UTF-8''${encodeURIComponent(filename)}`);

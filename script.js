@@ -26,9 +26,15 @@ updateLangFromUrl();
 const API_BASE_URL = 'https://afterglowr.onrender.com';
 const SITE_URL = 'https://afterglowr-wallpapers.vercel.app';
 
+function getApiBaseUrl() {
+    const isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+    return isLocalHost ? 'http://localhost:3000' : API_BASE_URL;
+}
+
 function apiUrl(path) {
-    if (!path) return API_BASE_URL;
-    return `${API_BASE_URL}${path.startsWith('/') ? path : '/' + path}`;
+    const baseUrl = getApiBaseUrl();
+    if (!path) return baseUrl;
+    return `${baseUrl}${path.startsWith('/') ? path : '/' + path}`;
 }
 
 function getAbsoluteUrl(pathValue = '/', locale = currentLang) {
@@ -753,7 +759,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             wpDesc.textContent = `${baseText} • ${resolution}`;
         }
 
-        wpDownloadUrl = { id: wp.id, type: useMobile ? 'mobile' : 'desktop' };
+        wpDownloadUrl = {
+            id: wp.id,
+            type: useMobile ? 'mobile' : 'desktop',
+            originalKey: useMobile ? wp.mobileOriginalKey : wp.desktopOriginalKey
+        };
 
         if (wpSizeSwitchGroup) {
             wpSizeSwitchGroup.classList.toggle('no-mobile', !wp.hasMobile);
@@ -1082,11 +1092,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (useMobile) {
             modalImage.src = currentWallpaper.mobileImg;
             modalImage.alt = `${currentWallpaper.title} Mobile Wallpaper - Tags: ${tagsString}`;
-            downloadUrl = { id: currentWallpaper.id, type: 'mobile' };
+            downloadUrl = {
+                id: currentWallpaper.id,
+                type: 'mobile',
+                originalKey: currentWallpaper.mobileOriginalKey
+            };
         } else {
             modalImage.src = currentWallpaper.desktopImg;
             modalImage.alt = `${currentWallpaper.title} Desktop Wallpaper - Tags: ${tagsString}`;
-            downloadUrl = { id: currentWallpaper.id, type: 'desktop' };
+            downloadUrl = {
+                id: currentWallpaper.id,
+                type: 'desktop',
+                originalKey: currentWallpaper.desktopOriginalKey
+            };
         }
 
         const baseText = useMobile
@@ -1257,7 +1275,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     async function generateDownloadLink(data) {
-        const response = await fetch(apiUrl(`/api/generate-link?id=${encodeURIComponent(data.id)}&type=${encodeURIComponent(data.type)}`));
+        const params = new URLSearchParams({
+            id: data.id,
+            type: data.type
+        });
+        if (data.originalKey) {
+            params.set('originalKey', data.originalKey);
+        }
+
+        const response = await fetch(apiUrl(`/api/generate-link?${params.toString()}`));
         if (!response.ok) {
             let errorMsg = 'Network response was not ok';
             try {
@@ -1373,12 +1399,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function forceDownload(data) {
         try {
             const url = await generateDownloadLink(data);
-            // Desktop keeps the existing hidden iframe behavior so the SPA URL does not change.
-            const frame = document.createElement('iframe');
-            frame.hidden = true;
-            frame.src = url;
-            frame.addEventListener('load', () => setTimeout(() => frame.remove(), 1000), { once: true });
-            document.body.appendChild(frame);
+            const link = document.createElement('a');
+            link.href = url;
+            link.rel = 'noopener';
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            setTimeout(() => link.remove(), 1000);
         } catch (error) {
             console.error('Download API error:', error);
             alert(translations[currentLang]?.download_error || 'Download failed, please try again later.');
@@ -1787,11 +1814,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (useMobile) {
             wpMainImage.src = currentWpPage.mobileImg;
             wpMainImage.alt = `${currentWpPage.title} Mobile Wallpaper - Tags: ${tagsString}`;
-            wpDownloadUrl = { id: currentWpPage.id, type: 'mobile' };
+            wpDownloadUrl = {
+                id: currentWpPage.id,
+                type: 'mobile',
+                originalKey: currentWpPage.mobileOriginalKey
+            };
         } else {
             wpMainImage.src = currentWpPage.desktopImg;
             wpMainImage.alt = `${currentWpPage.title} Desktop Wallpaper - Tags: ${tagsString}`;
-            wpDownloadUrl = { id: currentWpPage.id, type: 'desktop' };
+            wpDownloadUrl = {
+                id: currentWpPage.id,
+                type: 'desktop',
+                originalKey: currentWpPage.desktopOriginalKey
+            };
         }
 
         if (wpSizeSwitchGroup) {

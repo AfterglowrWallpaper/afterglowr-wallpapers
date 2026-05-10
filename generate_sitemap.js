@@ -30,7 +30,7 @@ function xmlEscape(value = '') {
 
 function generateSitemap() {
     if (!fs.existsSync(wallpapersFile)) {
-        console.warn('wallpapers.json not found. Please run generate_thumbnails.js first.');
+        console.warn('wallpapers.json not found. Please run npm run sync:r2 first.');
         return;
     }
 

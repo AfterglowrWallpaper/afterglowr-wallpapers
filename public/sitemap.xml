@@ -1,465 +1,835 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://afterglowr.com/</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://afterglowr.com/category/animals</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/zh/</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://afterglowr-wallpapers.vercel.app/cyberpunk-wallpapers</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+  </url>
+  <url>
+    <loc>https://afterglowr-wallpapers.vercel.app/zh/cyberpunk-wallpapers</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.88</priority>
+  </url>
+  <url>
+    <loc>https://afterglowr-wallpapers.vercel.app/dark-wallpapers</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+  </url>
+  <url>
+    <loc>https://afterglowr-wallpapers.vercel.app/zh/dark-wallpapers</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.88</priority>
+  </url>
+  <url>
+    <loc>https://afterglowr-wallpapers.vercel.app/rainy-city-wallpapers</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+  </url>
+  <url>
+    <loc>https://afterglowr-wallpapers.vercel.app/zh/rainy-city-wallpapers</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.88</priority>
+  </url>
+  <url>
+    <loc>https://afterglowr-wallpapers.vercel.app/minimal-wallpapers</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+  </url>
+  <url>
+    <loc>https://afterglowr-wallpapers.vercel.app/zh/minimal-wallpapers</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.88</priority>
+  </url>
+  <url>
+    <loc>https://afterglowr-wallpapers.vercel.app/anime-wallpapers</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+  </url>
+  <url>
+    <loc>https://afterglowr-wallpapers.vercel.app/zh/anime-wallpapers</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.88</priority>
+  </url>
+  <url>
+    <loc>https://afterglowr-wallpapers.vercel.app/category/animals</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://afterglowr.com/category/gaming</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/category/gaming</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://afterglowr.com/category/landscape</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/category/landscape</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://afterglowr.com/category/portrait</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/category/portrait</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://afterglowr.com/category/vibe</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/category/vibe</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/cherry-blossoms-and-cat</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/cherry-blossoms-and-cat</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Animals/cherry-blossoms-and-cat_PC.webp</image:loc>
+      <image:title>Cherry Blossoms &amp; Cat 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/night-cat</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/night-cat</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Animals/night-cat_PC.webp</image:loc>
+      <image:title>Night Cat 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/cs2-ak47-inheritance</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/cs2-ak47-inheritance</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Gaming/cs2-ak47-inheritance_PC.webp</image:loc>
+      <image:title>CS2-AK47-Inheritance 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/cs2-sir-bloody-loudmouth-darryl</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/cs2-sir-bloody-loudmouth-darryl</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Gaming/cs2-sir-bloody-loudmouth-darryl_PC.webp</image:loc>
+      <image:title>CS2-Sir Bloody Loudmouth Darryl 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/cs2-urban-firefight-2</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/cs2-urban-firefight-2</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.app/thumbnails/Gaming/cs2-urban-firefight-2_PC.webp</image:loc>
+      <image:title>CS2-Urban Firefight 2 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/cs2-urban-firefight</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/cs2-urban-firefight</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Gaming/cs2-urban-firefight_PC.webp</image:loc>
+      <image:title>CS2-Urban Firefight 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/abandoned-blue-fishing-boat</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/abandoned-blue-fishing-boat</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/abandoned-blue-fishing-boat_PC.webp</image:loc>
+      <image:title>Abandoned Blue Fishing Boat 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/aurora-over-a-winter-cabin</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/aurora-over-a-winter-cabin</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/aurora-over-a-winter-cabin_PC.webp</image:loc>
+      <image:title>Aurora Over a Winter Cabin 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/aurora-over-frozen-fantasy-mountains</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/aurora-over-frozen-fantasy-mountains</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/aurora-over-frozen-fantasy-mountains_PC.webp</image:loc>
+      <image:title>Aurora Over Frozen Fantasy Mountains 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/beyond-the-clouds</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/beyond-the-clouds</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/beyond-the-clouds_PC.webp</image:loc>
+      <image:title>Beyond the Clouds 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/cliffside-stone-city-at-sunrise</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/cliffside-stone-city-at-sunrise</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/cliffside-stone-city-at-sunrise_PC.webp</image:loc>
+      <image:title>Cliffside Stone City at Sunrise 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/cyberpunk-big-ben</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/cyberpunk-big-ben</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-big-ben_PC.webp</image:loc>
+      <image:title>Cyberpunk-Big Ben 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/cyberpunk-burj-khalifa</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/cyberpunk-burj-khalifa</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-burj-khalifa_PC.webp</image:loc>
+      <image:title>Cyberpunk-Burj Khalifa 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/cyberpunk-oriental-pearl-tower</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/cyberpunk-oriental-pearl-tower</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-oriental-pearl-tower_PC.webp</image:loc>
+      <image:title>Cyberpunk-Oriental Pearl Tower 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/cyberpunk-petronas-twin-towers</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/cyberpunk-petronas-twin-towers</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-petronas-twin-towers_PC.webp</image:loc>
+      <image:title>Cyberpunk-Petronas Twin Towers 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/cyberpunk-shibuya-crossing</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/cyberpunk-shibuya-crossing</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-shibuya-crossing_PC.webp</image:loc>
+      <image:title>Cyberpunk-Shibuya Crossing 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/cyberpunk-shinsaibashi-2</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/cyberpunk-shinsaibashi-2</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-shinsaibashi-2_PC.webp</image:loc>
+      <image:title>Cyberpunk-Shinsaibashi 2 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/cyberpunk-shinsaibashi</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/cyberpunk-shinsaibashi</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-shinsaibashi_PC.webp</image:loc>
+      <image:title>Cyberpunk-Shinsaibashi 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/cyberpunk-sydney-opera-house</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/cyberpunk-sydney-opera-house</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-sydney-opera-house_PC.webp</image:loc>
+      <image:title>Cyberpunk-Sydney Opera House 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/cyberpunk-taipei-101</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/cyberpunk-taipei-101</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-taipei-101_PC.webp</image:loc>
+      <image:title>Cyberpunk-Taipei 101 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/cyberpunk-tokyo-tower</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/cyberpunk-tokyo-tower</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-tokyo-tower_PC.webp</image:loc>
+      <image:title>Cyberpunk-Tokyo Tower 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/cyberpunk-victoria-harbour</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/cyberpunk-victoria-harbour</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-victoria-harbour_PC.webp</image:loc>
+      <image:title>Cyberpunk-Victoria Harbour 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/floating-cliffs-and-endless-waterfalls</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/floating-cliffs-and-endless-waterfalls</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/floating-cliffs-and-endless-waterfalls_PC.webp</image:loc>
+      <image:title>Floating Cliffs and Endless Waterfalls 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/floating-mountain-waterfalls</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/floating-mountain-waterfalls</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/floating-mountain-waterfalls_PC.webp</image:loc>
+      <image:title>Floating Mountain Waterfalls 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/giant-moon-over-calm-lake</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/giant-moon-over-calm-lake</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/giant-moon-over-calm-lake_PC.webp</image:loc>
+      <image:title>Giant Moon Over Calm Lake 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/glowing-mystical-forest-at-night</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/glowing-mystical-forest-at-night</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/glowing-mystical-forest-at-night_PC.webp</image:loc>
+      <image:title>Glowing Mystical Forest at Night 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/golden-sunrise-over-the-mountains</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/golden-sunrise-over-the-mountains</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/golden-sunrise-over-the-mountains_PC.webp</image:loc>
+      <image:title>Golden Sunrise Over the Mountains 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/lonely-mountain-road-in-the-rain</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/lonely-mountain-road-in-the-rain</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/lonely-mountain-road-in-the-rain_PC.webp</image:loc>
+      <image:title>Lonely Mountain Road in the Rain 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/midnight-forest</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/midnight-forest</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/midnight-forest_PC.webp</image:loc>
+      <image:title>Midnight Forest 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/milky-way-over-desert-dunes</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/milky-way-over-desert-dunes</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/milky-way-over-desert-dunes_PC.webp</image:loc>
+      <image:title>Milky Way Over Desert Dunes 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/milky-way-over-the-ocean</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/milky-way-over-the-ocean</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/milky-way-over-the-ocean_PC.webp</image:loc>
+      <image:title>Milky Way Over the Ocean 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/misty-ancient-forest</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/misty-ancient-forest</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/misty-ancient-forest_PC.webp</image:loc>
+      <image:title>Misty Ancient Forest 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/morning-fog-in-a-pine-forest</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/morning-fog-in-a-pine-forest</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/morning-fog-in-a-pine-forest_PC.webp</image:loc>
+      <image:title>Morning Fog in a Pine Forest 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/pink-white-and-blue-santorini</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/pink-white-and-blue-santorini</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/pink-white-and-blue-santorini_PC.webp</image:loc>
+      <image:title>Pink, White, and Blue Santorini 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/rainy-morning-on-a-london-street</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/rainy-morning-on-a-london-street</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/rainy-morning-on-a-london-street_PC.webp</image:loc>
+      <image:title>Rainy Morning on a London Street 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/rocky-coast-sunset</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/rocky-coast-sunset</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/rocky-coast-sunset_PC.webp</image:loc>
+      <image:title>Rocky Coast Sunset 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/sunlight-in-an-old-library</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/sunlight-in-an-old-library</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/sunlight-in-an-old-library_PC.webp</image:loc>
+      <image:title>Sunlight in an Old Library 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/sunlight-in-the-deep-canyon</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/sunlight-in-the-deep-canyon</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/sunlight-in-the-deep-canyon_PC.webp</image:loc>
+      <image:title>Sunlight in the Deep Canyon 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/sunset-canyon-river</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/sunset-canyon-river</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/sunset-canyon-river_PC.webp</image:loc>
+      <image:title>Sunset Canyon River 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/the-secret-gorge</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/the-secret-gorge</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/the-secret-gorge_PC.webp</image:loc>
+      <image:title>The Secret Gorge 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/together-under-the-aurora</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/together-under-the-aurora</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/together-under-the-aurora_PC.webp</image:loc>
+      <image:title>Together Under the Aurora 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/urban-light-trails</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/urban-light-trails</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Landscape/urban-light-trails_PC.webp</image:loc>
+      <image:title>Urban Light Trails 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/arrogant-dark-noble</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/arrogant-dark-noble</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Portrait/arrogant-dark-noble_PC.webp</image:loc>
+      <image:title>Arrogant Dark Noble 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/beautiful-lady-in-black</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/beautiful-lady-in-black</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Portrait/beautiful-lady-in-black_PC.webp</image:loc>
+      <image:title>Beautiful Lady in Black 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/blossom-sunset-elegance</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/blossom-sunset-elegance</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Portrait/blossom-sunset-elegance_PC.webp</image:loc>
+      <image:title>Blossom Sunset Elegance 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/dark-empress-queen</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/dark-empress-queen</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Portrait/dark-empress-queen_PC.webp</image:loc>
+      <image:title>Dark Empress Queen 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/dark-knights-charge</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/dark-knights-charge</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Portrait/dark-knights-charge_PC.webp</image:loc>
+      <image:title>Dark Knight’s Charge 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/dark-spear-warlord</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/dark-spear-warlord</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Portrait/dark-spear-warlord_PC.webp</image:loc>
+      <image:title>Dark Spear Warlord 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/divine-charge</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/divine-charge</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Portrait/divine-charge_PC.webp</image:loc>
+      <image:title>Divine Charge 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/fantasy-blue-lady</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/fantasy-blue-lady</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Portrait/fantasy-blue-lady_PC.webp</image:loc>
+      <image:title>Fantasy Blue Lady 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/imperial-crimson</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/imperial-crimson</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Portrait/imperial-crimson_PC.webp</image:loc>
+      <image:title>Imperial Crimson 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/moonlit-farewell</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/moonlit-farewell</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Portrait/moonlit-farewell_PC.webp</image:loc>
+      <image:title>Moonlit Farewell 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/moonlit-warriors-epic-wuxia-couple-wallpaper</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/moonlit-warriors-epic-wuxia-couple-wallpaper</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Portrait/moonlit-warriors-epic-wuxia-couple-wallpaper_PC.webp</image:loc>
+      <image:title>Moonlit Warriors Epic Wuxia Couple Wallpaper 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/snowfall-serenity</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/snowfall-serenity</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Portrait/snowfall-serenity_PC.webp</image:loc>
+      <image:title>Snowfall Serenity 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/the-black-rider-general</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/the-black-rider-general</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Portrait/the-black-rider-general_PC.webp</image:loc>
+      <image:title>The Black-Rider General 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/white-haired-swordsman</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/white-haired-swordsman</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Portrait/white-haired-swordsman_PC.webp</image:loc>
+      <image:title>White-Haired Swordsman 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/betta-in-silence</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/betta-in-silence</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Vibe/betta-in-silence_PC.webp</image:loc>
+      <image:title>Betta in Silence 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/black-rose</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/black-rose</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Vibe/black-rose_PC.webp</image:loc>
+      <image:title>Black Rose 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/cozy-night-retreat</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/cozy-night-retreat</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Vibe/cozy-night-retreat_PC.webp</image:loc>
+      <image:title>Cozy Night Retreat 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/dark-headphones-wallpaper</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/dark-headphones-wallpaper</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Vibe/dark-headphones-wallpaper_PC.webp</image:loc>
+      <image:title>Dark Headphones Wallpaper 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/handwritten-letter-background</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/handwritten-letter-background</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Vibe/handwritten-letter-background_PC.webp</image:loc>
+      <image:title>Handwritten Letter Background 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/lonely-rooftop-night</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/lonely-rooftop-night</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Vibe/lonely-rooftop-night_PC.webp</image:loc>
+      <image:title>Lonely Rooftop Night 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/message-in-a-bottle</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/message-in-a-bottle</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Vibe/message-in-a-bottle_PC.webp</image:loc>
+      <image:title>Message in a Bottle 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/moonlit-piano</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/moonlit-piano</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Vibe/moonlit-piano_PC.webp</image:loc>
+      <image:title>Moonlit Piano 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/morning-quiet</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/morning-quiet</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Vibe/morning-quiet_PC.webp</image:loc>
+      <image:title>Morning Quiet 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/rainy-caf-table</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/rainy-caf-table</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Vibe/rainy-caf-table_PC.webp</image:loc>
+      <image:title>Rainy Café Table 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/rainy-industrial-loft-workspace</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/rainy-industrial-loft-workspace</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Vibe/rainy-industrial-loft-workspace_PC.webp</image:loc>
+      <image:title>Rainy Industrial Loft Workspace 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/rustic-workshop-wallpaper</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/rustic-workshop-wallpaper</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Vibe/rustic-workshop-wallpaper_PC.webp</image:loc>
+      <image:title>Rustic Workshop Wallpaper 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/urban-contemplation</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/urban-contemplation</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Vibe/urban-contemplation_PC.webp</image:loc>
+      <image:title>Urban Contemplation 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/vintage-film-camera-wallpaper</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/vintage-film-camera-wallpaper</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Vibe/vintage-film-camera-wallpaper_PC.webp</image:loc>
+      <image:title>Vintage Film Camera Wallpaper 4K Wallpaper</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://afterglowr.com/wallpaper/whiskey-on-the-jazz-bar-counter</loc>
-    <lastmod>2026-05-04</lastmod>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/whiskey-on-the-jazz-bar-counter</loc>
+    <lastmod>2026-05-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Vibe/whiskey-on-the-jazz-bar-counter_PC.webp</image:loc>
+      <image:title>Whiskey on the Jazz Bar Counter 4K Wallpaper</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/chatgpt-test</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Animals/chatgpt-test_PC.webp</image:loc>
+      <image:title>Chatgpt Test 4K Wallpaper</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://afterglowr-wallpapers.vercel.app/wallpaper/chatgpt-test2</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://afterglowr-wallpapers.vercel.apphttps://cdn.afterglowr.com/thumbnails/Animals/chatgpt-test2_PC.webp</image:loc>
+      <image:title>Chatgpt Test2 4K Wallpaper</image:title>
+    </image:image>
   </url>
 </urlset>

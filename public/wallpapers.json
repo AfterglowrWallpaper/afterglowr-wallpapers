@@ -4,60 +4,82 @@
     "slug": "cherry-blossoms-and-cat",
     "title": "Cherry Blossoms & Cat",
     "tags": [
+      "Cherry",
+      "Blossoms",
+      "And",
+      "Cat",
       "Premium",
       "Aesthetic"
     ],
     "category": "Animals",
-    "desktopImg": "/thumbnails/Animals/cherry-blossoms-and-cat_PC.webp",
-    "mobileImg": "/thumbnails/Animals/cherry-blossoms-and-cat_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Animals/cherry-blossoms-and-cat_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Animals/cherry-blossoms-and-cat_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5504 × 3072 px"
+    "resolution": "5504 × 3072 px",
+    "desktopOriginalKey": "originals/Animals/Cherry Blossoms & Cat_PC.png",
+    "mobileOriginalKey": "originals/Animals/Cherry Blossoms & Cat_MP.png"
   },
   {
     "id": "night-cat",
     "slug": "night-cat",
     "title": "Night Cat",
     "tags": [
+      "Night",
+      "Cat",
       "Premium",
       "Aesthetic"
     ],
     "category": "Animals",
-    "desktopImg": "/thumbnails/Animals/night-cat_PC.webp",
-    "mobileImg": "/thumbnails/Animals/night-cat_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Animals/night-cat_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Animals/night-cat_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5504 × 3072 px"
+    "resolution": "5504 × 3072 px",
+    "desktopOriginalKey": "originals/Animals/Night Cat_PC.png",
+    "mobileOriginalKey": "originals/Animals/Night Cat_MP.png"
   },
   {
     "id": "cs2-ak47-inheritance",
     "slug": "cs2-ak47-inheritance",
     "title": "CS2-AK47-Inheritance",
     "tags": [
+      "CS2",
+      "Ak47",
+      "Inheritance",
       "Premium",
       "Aesthetic"
     ],
     "category": "Gaming",
-    "desktopImg": "/thumbnails/Gaming/cs2-ak47-inheritance_PC.webp",
-    "mobileImg": "/thumbnails/Gaming/cs2-ak47-inheritance_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Gaming/cs2-ak47-inheritance_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Gaming/cs2-ak47-inheritance_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5504 × 3072 px"
+    "resolution": "5504 × 3072 px",
+    "desktopOriginalKey": "originals/Gaming/CS2-AK47-Inheritance_PC.png",
+    "mobileOriginalKey": "originals/Gaming/CS2-AK47-Inheritance_MP.png"
   },
   {
     "id": "cs2-sir-bloody-loudmouth-darryl",
     "slug": "cs2-sir-bloody-loudmouth-darryl",
     "title": "CS2-Sir Bloody Loudmouth Darryl",
     "tags": [
+      "CS2",
+      "Sir",
+      "Bloody",
+      "Loudmouth",
+      "Darryl",
       "Premium",
       "Aesthetic"
     ],
     "category": "Gaming",
-    "desktopImg": "/thumbnails/Gaming/cs2-sir-bloody-loudmouth-darryl_PC.webp",
-    "mobileImg": "/thumbnails/Gaming/cs2-sir-bloody-loudmouth-darryl_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Gaming/cs2-sir-bloody-loudmouth-darryl_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Gaming/cs2-sir-bloody-loudmouth-darryl_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5504 × 3072 px"
+    "resolution": "5504 × 3072 px",
+    "desktopOriginalKey": "originals/Gaming/CS2-Sir Bloody Loudmouth Darryl_PC.png",
+    "mobileOriginalKey": "originals/Gaming/CS2-Sir Bloody Loudmouth Darryl_MP.png"
   },
   {
     "id": "cs2-urban-firefight-2",
@@ -79,989 +101,1396 @@
     "slug": "cs2-urban-firefight",
     "title": "CS2-Urban Firefight",
     "tags": [
+      "CS2",
+      "Urban",
+      "Firefight",
       "Premium",
       "Aesthetic"
     ],
     "category": "Gaming",
-    "desktopImg": "/thumbnails/Gaming/cs2-urban-firefight_PC.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Gaming/cs2-urban-firefight_PC.webp",
     "mobileImg": null,
     "hasMobile": false,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Gaming/CS2-Urban Firefight_PC.png",
+    "mobileOriginalKey": null
   },
   {
     "id": "abandoned-blue-fishing-boat",
     "slug": "abandoned-blue-fishing-boat",
     "title": "Abandoned Blue Fishing Boat",
     "tags": [
+      "Abandoned",
+      "Blue",
+      "Fishing",
+      "Boat",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/abandoned-blue-fishing-boat_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/abandoned-blue-fishing-boat_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/abandoned-blue-fishing-boat_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/abandoned-blue-fishing-boat_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Abandoned Blue Fishing Boat_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Abandoned Blue Fishing Boat_MP.png"
   },
   {
     "id": "aurora-over-a-winter-cabin",
     "slug": "aurora-over-a-winter-cabin",
     "title": "Aurora Over a Winter Cabin",
     "tags": [
+      "Aurora",
+      "Over",
+      "A",
+      "Winter",
+      "Cabin",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/aurora-over-a-winter-cabin_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/aurora-over-a-winter-cabin_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/aurora-over-a-winter-cabin_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/aurora-over-a-winter-cabin_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Aurora Over a Winter Cabin_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Aurora Over a Winter Cabin_MP.png"
   },
   {
     "id": "aurora-over-frozen-fantasy-mountains",
     "slug": "aurora-over-frozen-fantasy-mountains",
     "title": "Aurora Over Frozen Fantasy Mountains",
     "tags": [
+      "Aurora",
+      "Over",
+      "Frozen",
+      "Fantasy",
+      "Mountains",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/aurora-over-frozen-fantasy-mountains_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/aurora-over-frozen-fantasy-mountains_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/aurora-over-frozen-fantasy-mountains_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/aurora-over-frozen-fantasy-mountains_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Aurora Over Frozen Fantasy Mountains_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Aurora Over Frozen Fantasy Mountains_MP.png"
   },
   {
     "id": "beyond-the-clouds",
     "slug": "beyond-the-clouds",
     "title": "Beyond the Clouds",
     "tags": [
+      "Beyond",
+      "The",
+      "Clouds",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/beyond-the-clouds_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/beyond-the-clouds_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/beyond-the-clouds_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/beyond-the-clouds_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5504 × 3072 px"
+    "resolution": "5504 × 3072 px",
+    "desktopOriginalKey": "originals/Landscape/Beyond the Clouds_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Beyond the Clouds_MP.png"
   },
   {
     "id": "cliffside-stone-city-at-sunrise",
     "slug": "cliffside-stone-city-at-sunrise",
     "title": "Cliffside Stone City at Sunrise",
     "tags": [
+      "Cliffside",
+      "Stone",
+      "City",
+      "At",
+      "Sunrise",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/cliffside-stone-city-at-sunrise_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/cliffside-stone-city-at-sunrise_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cliffside-stone-city-at-sunrise_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cliffside-stone-city-at-sunrise_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Cliffside Stone City at Sunrise_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Cliffside Stone City at Sunrise_MP.png"
   },
   {
     "id": "cyberpunk-big-ben",
     "slug": "cyberpunk-big-ben",
     "title": "Cyberpunk-Big Ben",
     "tags": [
+      "Cyberpunk",
+      "Big",
+      "Ben",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/cyberpunk-big-ben_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/cyberpunk-big-ben_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-big-ben_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-big-ben_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Cyberpunk-Big Ben_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Cyberpunk-Big Ben_MP.png"
   },
   {
     "id": "cyberpunk-burj-khalifa",
     "slug": "cyberpunk-burj-khalifa",
     "title": "Cyberpunk-Burj Khalifa",
     "tags": [
+      "Cyberpunk",
+      "Burj",
+      "Khalifa",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/cyberpunk-burj-khalifa_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/cyberpunk-burj-khalifa_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-burj-khalifa_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-burj-khalifa_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Cyberpunk-Burj Khalifa_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Cyberpunk-Burj Khalifa_MP.png"
   },
   {
     "id": "cyberpunk-oriental-pearl-tower",
     "slug": "cyberpunk-oriental-pearl-tower",
     "title": "Cyberpunk-Oriental Pearl Tower",
     "tags": [
+      "Cyberpunk",
+      "Oriental",
+      "Pearl",
+      "Tower",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/cyberpunk-oriental-pearl-tower_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/cyberpunk-oriental-pearl-tower_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-oriental-pearl-tower_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-oriental-pearl-tower_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Cyberpunk-Oriental Pearl Tower_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Cyberpunk-Oriental Pearl Tower_MP.png"
   },
   {
     "id": "cyberpunk-petronas-twin-towers",
     "slug": "cyberpunk-petronas-twin-towers",
     "title": "Cyberpunk-Petronas Twin Towers",
     "tags": [
+      "Cyberpunk",
+      "Petronas",
+      "Twin",
+      "Towers",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/cyberpunk-petronas-twin-towers_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/cyberpunk-petronas-twin-towers_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-petronas-twin-towers_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-petronas-twin-towers_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Cyberpunk-Petronas Twin Towers_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Cyberpunk-Petronas Twin Towers_MP.png"
   },
   {
     "id": "cyberpunk-shibuya-crossing",
     "slug": "cyberpunk-shibuya-crossing",
     "title": "Cyberpunk-Shibuya Crossing",
     "tags": [
+      "Cyberpunk",
+      "Shibuya",
+      "Crossing",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/cyberpunk-shibuya-crossing_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/cyberpunk-shibuya-crossing_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-shibuya-crossing_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-shibuya-crossing_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Cyberpunk-Shibuya Crossing_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Cyberpunk-Shibuya Crossing_MP.png"
   },
   {
     "id": "cyberpunk-shinsaibashi-2",
     "slug": "cyberpunk-shinsaibashi-2",
     "title": "Cyberpunk-Shinsaibashi 2",
     "tags": [
+      "Cyberpunk",
+      "Shinsaibashi",
+      "2",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/cyberpunk-shinsaibashi-2_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/cyberpunk-shinsaibashi-2_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-shinsaibashi-2_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-shinsaibashi-2_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Cyberpunk_Shinsaibashi 2_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Cyberpunk-Shinsaibashi 2_MP.png"
   },
   {
     "id": "cyberpunk-shinsaibashi",
     "slug": "cyberpunk-shinsaibashi",
     "title": "Cyberpunk-Shinsaibashi",
     "tags": [
+      "Cyberpunk",
+      "Shinsaibashi",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/cyberpunk-shinsaibashi_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/cyberpunk-shinsaibashi_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-shinsaibashi_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-shinsaibashi_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Cyberpunk_Shinsaibashi_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Cyberpunk-Shinsaibashi_MP.png"
   },
   {
     "id": "cyberpunk-sydney-opera-house",
     "slug": "cyberpunk-sydney-opera-house",
     "title": "Cyberpunk-Sydney Opera House",
     "tags": [
+      "Cyberpunk",
+      "Sydney",
+      "Opera",
+      "House",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/cyberpunk-sydney-opera-house_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/cyberpunk-sydney-opera-house_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-sydney-opera-house_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-sydney-opera-house_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Cyberpunk-Sydney Opera House_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Cyberpunk-Sydney Opera House_MP.png"
   },
   {
     "id": "cyberpunk-taipei-101",
     "slug": "cyberpunk-taipei-101",
     "title": "Cyberpunk-Taipei 101",
     "tags": [
+      "Cyberpunk",
+      "Taipei",
+      "101",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/cyberpunk-taipei-101_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/cyberpunk-taipei-101_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-taipei-101_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-taipei-101_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Cyberpunk-Taipei 101_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Cyberpunk-Taipei 101_MP.png"
   },
   {
     "id": "cyberpunk-tokyo-tower",
     "slug": "cyberpunk-tokyo-tower",
     "title": "Cyberpunk-Tokyo Tower",
     "tags": [
+      "Cyberpunk",
+      "Tokyo",
+      "Tower",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/cyberpunk-tokyo-tower_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/cyberpunk-tokyo-tower_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-tokyo-tower_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-tokyo-tower_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Cyberpunk-Tokyo Tower_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Cyberpunk-Tokyo Tower_MP.png"
   },
   {
     "id": "cyberpunk-victoria-harbour",
     "slug": "cyberpunk-victoria-harbour",
     "title": "Cyberpunk-Victoria Harbour",
     "tags": [
+      "Cyberpunk",
+      "Victoria",
+      "Harbour",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/cyberpunk-victoria-harbour_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/cyberpunk-victoria-harbour_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-victoria-harbour_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/cyberpunk-victoria-harbour_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Cyberpunk-Victoria Harbour_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Cyberpunk-Victoria Harbour_MP.png"
   },
   {
     "id": "floating-cliffs-and-endless-waterfalls",
     "slug": "floating-cliffs-and-endless-waterfalls",
     "title": "Floating Cliffs and Endless Waterfalls",
     "tags": [
+      "Floating",
+      "Cliffs",
+      "And",
+      "Endless",
+      "Waterfalls",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/floating-cliffs-and-endless-waterfalls_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/floating-cliffs-and-endless-waterfalls_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/floating-cliffs-and-endless-waterfalls_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/floating-cliffs-and-endless-waterfalls_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Floating Cliffs and Endless Waterfalls_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Floating Cliffs and Endless Waterfalls_MP.png"
   },
   {
     "id": "floating-mountain-waterfalls",
     "slug": "floating-mountain-waterfalls",
     "title": "Floating Mountain Waterfalls",
     "tags": [
+      "Floating",
+      "Mountain",
+      "Waterfalls",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/floating-mountain-waterfalls_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/floating-mountain-waterfalls_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/floating-mountain-waterfalls_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/floating-mountain-waterfalls_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Floating Mountain Waterfalls_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Floating Mountain Waterfalls_MP.png"
   },
   {
     "id": "giant-moon-over-calm-lake",
     "slug": "giant-moon-over-calm-lake",
     "title": "Giant Moon Over Calm Lake",
     "tags": [
+      "Giant",
+      "Moon",
+      "Over",
+      "Calm",
+      "Lake",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/giant-moon-over-calm-lake_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/giant-moon-over-calm-lake_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/giant-moon-over-calm-lake_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/giant-moon-over-calm-lake_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Giant Moon Over Calm Lake_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Giant Moon Over Calm Lake_MP.png"
   },
   {
     "id": "glowing-mystical-forest-at-night",
     "slug": "glowing-mystical-forest-at-night",
     "title": "Glowing Mystical Forest at Night",
     "tags": [
+      "Glowing",
+      "Mystical",
+      "Forest",
+      "At",
+      "Night",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/glowing-mystical-forest-at-night_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/glowing-mystical-forest-at-night_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/glowing-mystical-forest-at-night_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/glowing-mystical-forest-at-night_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Glowing Mystical Forest at Night_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Glowing Mystical Forest at Night_MP.png"
   },
   {
     "id": "golden-sunrise-over-the-mountains",
     "slug": "golden-sunrise-over-the-mountains",
     "title": "Golden Sunrise Over the Mountains",
     "tags": [
+      "Golden",
+      "Sunrise",
+      "Over",
+      "The",
+      "Mountains",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/golden-sunrise-over-the-mountains_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/golden-sunrise-over-the-mountains_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/golden-sunrise-over-the-mountains_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/golden-sunrise-over-the-mountains_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Golden Sunrise Over the Mountains_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Golden Sunrise Over the Mountains_MP.png"
   },
   {
     "id": "lonely-mountain-road-in-the-rain",
     "slug": "lonely-mountain-road-in-the-rain",
     "title": "Lonely Mountain Road in the Rain",
     "tags": [
+      "Lonely",
+      "Mountain",
+      "Road",
+      "In",
+      "The",
+      "Rain",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/lonely-mountain-road-in-the-rain_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/lonely-mountain-road-in-the-rain_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/lonely-mountain-road-in-the-rain_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/lonely-mountain-road-in-the-rain_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Lonely Mountain Road in the Rain_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Lonely Mountain Road in the Rain_MP.png"
   },
   {
     "id": "midnight-forest",
     "slug": "midnight-forest",
     "title": "Midnight Forest",
     "tags": [
+      "Midnight",
+      "Forest",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/midnight-forest_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/midnight-forest_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/midnight-forest_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/midnight-forest_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5504 × 3072 px"
+    "resolution": "5504 × 3072 px",
+    "desktopOriginalKey": "originals/Landscape/Midnight Forest_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Midnight Forest_MP.png"
   },
   {
     "id": "milky-way-over-desert-dunes",
     "slug": "milky-way-over-desert-dunes",
     "title": "Milky Way Over Desert Dunes",
     "tags": [
+      "Milky",
+      "Way",
+      "Over",
+      "Desert",
+      "Dunes",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/milky-way-over-desert-dunes_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/milky-way-over-desert-dunes_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/milky-way-over-desert-dunes_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/milky-way-over-desert-dunes_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Milky Way Over Desert Dunes_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Milky Way Over Desert Dunes_MP.png"
   },
   {
     "id": "milky-way-over-the-ocean",
     "slug": "milky-way-over-the-ocean",
     "title": "Milky Way Over the Ocean",
     "tags": [
+      "Milky",
+      "Way",
+      "Over",
+      "The",
+      "Ocean",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/milky-way-over-the-ocean_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/milky-way-over-the-ocean_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/milky-way-over-the-ocean_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/milky-way-over-the-ocean_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Milky Way Over the Ocean_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Milky Way Over the Ocean_MP.png"
   },
   {
     "id": "misty-ancient-forest",
     "slug": "misty-ancient-forest",
     "title": "Misty Ancient Forest",
     "tags": [
+      "Misty",
+      "Ancient",
+      "Forest",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/misty-ancient-forest_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/misty-ancient-forest_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/misty-ancient-forest_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/misty-ancient-forest_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Misty Ancient Forest_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Misty Ancient Forest_MP.png"
   },
   {
     "id": "morning-fog-in-a-pine-forest",
     "slug": "morning-fog-in-a-pine-forest",
     "title": "Morning Fog in a Pine Forest",
     "tags": [
+      "Morning",
+      "Fog",
+      "In",
+      "A",
+      "Pine",
+      "Forest",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/morning-fog-in-a-pine-forest_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/morning-fog-in-a-pine-forest_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/morning-fog-in-a-pine-forest_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/morning-fog-in-a-pine-forest_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Morning Fog in a Pine Forest_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Morning Fog in a Pine Forest_MP.png"
   },
   {
     "id": "pink-white-and-blue-santorini",
     "slug": "pink-white-and-blue-santorini",
     "title": "Pink, White, and Blue Santorini",
     "tags": [
+      "Pink",
+      "White",
+      "And",
+      "Blue",
+      "Santorini",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/pink-white-and-blue-santorini_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/pink-white-and-blue-santorini_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/pink-white-and-blue-santorini_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/pink-white-and-blue-santorini_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5504 × 3072 px"
+    "resolution": "5504 × 3072 px",
+    "desktopOriginalKey": "originals/Landscape/Pink, White, and Blue Santorini_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Pink, White, and Blue Santorini_MP.png"
   },
   {
     "id": "rainy-morning-on-a-london-street",
     "slug": "rainy-morning-on-a-london-street",
     "title": "Rainy Morning on a London Street",
     "tags": [
+      "Rainy",
+      "Morning",
+      "On",
+      "A",
+      "London",
+      "Street",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/rainy-morning-on-a-london-street_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/rainy-morning-on-a-london-street_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/rainy-morning-on-a-london-street_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/rainy-morning-on-a-london-street_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Rainy Morning on a London Street_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Rainy Morning on a London Street_MP.png"
   },
   {
     "id": "rocky-coast-sunset",
     "slug": "rocky-coast-sunset",
     "title": "Rocky Coast Sunset",
     "tags": [
+      "Rocky",
+      "Coast",
+      "Sunset",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/rocky-coast-sunset_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/rocky-coast-sunset_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/rocky-coast-sunset_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/rocky-coast-sunset_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Rocky Coast Sunset_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Rocky Coast Sunset_MP.png"
   },
   {
     "id": "sunlight-in-an-old-library",
     "slug": "sunlight-in-an-old-library",
     "title": "Sunlight in an Old Library",
     "tags": [
+      "Sunlight",
+      "In",
+      "An",
+      "Old",
+      "Library",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/sunlight-in-an-old-library_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/sunlight-in-an-old-library_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/sunlight-in-an-old-library_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/sunlight-in-an-old-library_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Sunlight in an Old Library_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Sunlight in an Old Library_MP.png"
   },
   {
     "id": "sunlight-in-the-deep-canyon",
     "slug": "sunlight-in-the-deep-canyon",
     "title": "Sunlight in the Deep Canyon",
     "tags": [
+      "Sunlight",
+      "In",
+      "The",
+      "Deep",
+      "Canyon",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/sunlight-in-the-deep-canyon_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/sunlight-in-the-deep-canyon_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/sunlight-in-the-deep-canyon_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/sunlight-in-the-deep-canyon_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Sunlight in the Deep Canyon_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Sunlight in the Deep Canyon_MP.png"
   },
   {
     "id": "sunset-canyon-river",
     "slug": "sunset-canyon-river",
     "title": "Sunset Canyon River",
     "tags": [
+      "Sunset",
+      "Canyon",
+      "River",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/sunset-canyon-river_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/sunset-canyon-river_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/sunset-canyon-river_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/sunset-canyon-river_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Landscape/Sunset Canyon River_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Sunset Canyon River_MP.png"
   },
   {
     "id": "the-secret-gorge",
     "slug": "the-secret-gorge",
     "title": "The Secret Gorge",
     "tags": [
+      "The",
+      "Secret",
+      "Gorge",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/the-secret-gorge_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/the-secret-gorge_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/the-secret-gorge_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/the-secret-gorge_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5504 × 3072 px"
+    "resolution": "5504 × 3072 px",
+    "desktopOriginalKey": "originals/Landscape/The Secret Gorge_PC.png",
+    "mobileOriginalKey": "originals/Landscape/The Secret Gorge_MP.png"
   },
   {
     "id": "together-under-the-aurora",
     "slug": "together-under-the-aurora",
     "title": "Together Under the Aurora",
     "tags": [
+      "Together",
+      "Under",
+      "The",
+      "Aurora",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/together-under-the-aurora_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/together-under-the-aurora_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/together-under-the-aurora_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/together-under-the-aurora_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5504 × 3072 px"
+    "resolution": "5504 × 3072 px",
+    "desktopOriginalKey": "originals/Landscape/Together Under the Aurora_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Together Under the Aurora_MP.png"
   },
   {
     "id": "urban-light-trails",
     "slug": "urban-light-trails",
     "title": "Urban Light Trails",
     "tags": [
+      "Urban",
+      "Light",
+      "Trails",
       "Premium",
       "Aesthetic"
     ],
     "category": "Landscape",
-    "desktopImg": "/thumbnails/Landscape/urban-light-trails_PC.webp",
-    "mobileImg": "/thumbnails/Landscape/urban-light-trails_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Landscape/urban-light-trails_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Landscape/urban-light-trails_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5504 × 3072 px"
+    "resolution": "5504 × 3072 px",
+    "desktopOriginalKey": "originals/Landscape/Urban Light Trails_PC.png",
+    "mobileOriginalKey": "originals/Landscape/Urban Light Trails_MP.png"
   },
   {
     "id": "arrogant-dark-noble",
     "slug": "arrogant-dark-noble",
     "title": "Arrogant Dark Noble",
     "tags": [
+      "Arrogant",
+      "Dark",
+      "Noble",
       "Premium",
       "Aesthetic"
     ],
     "category": "Portrait",
-    "desktopImg": "/thumbnails/Portrait/arrogant-dark-noble_PC.webp",
-    "mobileImg": "/thumbnails/Portrait/arrogant-dark-noble_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Portrait/arrogant-dark-noble_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Portrait/arrogant-dark-noble_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Portrait/Arrogant Dark Noble_PC.png",
+    "mobileOriginalKey": "originals/Portrait/Arrogant Dark Noble_MP.png"
   },
   {
     "id": "beautiful-lady-in-black",
     "slug": "beautiful-lady-in-black",
     "title": "Beautiful Lady in Black",
     "tags": [
+      "Beautiful",
+      "Lady",
+      "In",
+      "Black",
       "Premium",
       "Aesthetic"
     ],
     "category": "Portrait",
-    "desktopImg": "/thumbnails/Portrait/beautiful-lady-in-black_PC.webp",
-    "mobileImg": "/thumbnails/Portrait/beautiful-lady-in-black_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Portrait/beautiful-lady-in-black_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Portrait/beautiful-lady-in-black_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5504 × 3072 px"
+    "resolution": "5504 × 3072 px",
+    "desktopOriginalKey": "originals/Portrait/Beautiful Lady in Black_PC.png",
+    "mobileOriginalKey": "originals/Portrait/Beautiful Lady in Black_MP.png"
   },
   {
     "id": "blossom-sunset-elegance",
     "slug": "blossom-sunset-elegance",
     "title": "Blossom Sunset Elegance",
     "tags": [
+      "Blossom",
+      "Sunset",
+      "Elegance",
       "Premium",
       "Aesthetic"
     ],
     "category": "Portrait",
-    "desktopImg": "/thumbnails/Portrait/blossom-sunset-elegance_PC.webp",
-    "mobileImg": "/thumbnails/Portrait/blossom-sunset-elegance_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Portrait/blossom-sunset-elegance_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Portrait/blossom-sunset-elegance_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Portrait/Blossom Sunset Elegance_PC.png",
+    "mobileOriginalKey": "originals/Portrait/Blossom Sunset Elegance_MP.png"
   },
   {
     "id": "dark-empress-queen",
     "slug": "dark-empress-queen",
     "title": "Dark Empress Queen",
     "tags": [
+      "Dark",
+      "Empress",
+      "Queen",
       "Premium",
       "Aesthetic"
     ],
     "category": "Portrait",
-    "desktopImg": "/thumbnails/Portrait/dark-empress-queen_PC.webp",
-    "mobileImg": "/thumbnails/Portrait/dark-empress-queen_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Portrait/dark-empress-queen_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Portrait/dark-empress-queen_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Portrait/Dark Empress Queen_PC.png",
+    "mobileOriginalKey": "originals/Portrait/Dark Empress Queen_MP.png"
   },
   {
     "id": "dark-knights-charge",
     "slug": "dark-knights-charge",
     "title": "Dark Knight’s Charge",
     "tags": [
+      "Dark",
+      "Knights",
+      "Charge",
       "Premium",
       "Aesthetic"
     ],
     "category": "Portrait",
-    "desktopImg": "/thumbnails/Portrait/dark-knights-charge_PC.webp",
-    "mobileImg": "/thumbnails/Portrait/dark-knights-charge_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Portrait/dark-knights-charge_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Portrait/dark-knights-charge_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Portrait/Dark Knight’s Charge_PC.png",
+    "mobileOriginalKey": "originals/Portrait/Dark Knight’s Charge_MP.png"
   },
   {
     "id": "dark-spear-warlord",
     "slug": "dark-spear-warlord",
     "title": "Dark Spear Warlord",
     "tags": [
+      "Dark",
+      "Spear",
+      "Warlord",
       "Premium",
       "Aesthetic"
     ],
     "category": "Portrait",
-    "desktopImg": "/thumbnails/Portrait/dark-spear-warlord_PC.webp",
-    "mobileImg": "/thumbnails/Portrait/dark-spear-warlord_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Portrait/dark-spear-warlord_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Portrait/dark-spear-warlord_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Portrait/Dark Spear Warlord_PC.png",
+    "mobileOriginalKey": "originals/Portrait/Dark Spear Warlord_MP.png"
   },
   {
     "id": "divine-charge",
     "slug": "divine-charge",
     "title": "Divine Charge",
     "tags": [
+      "Divine",
+      "Charge",
       "Premium",
       "Aesthetic"
     ],
     "category": "Portrait",
-    "desktopImg": "/thumbnails/Portrait/divine-charge_PC.webp",
-    "mobileImg": "/thumbnails/Portrait/divine-charge_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Portrait/divine-charge_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Portrait/divine-charge_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Portrait/Divine Charge_PC.png",
+    "mobileOriginalKey": "originals/Portrait/Divine Charge_MP.png"
   },
   {
     "id": "fantasy-blue-lady",
     "slug": "fantasy-blue-lady",
     "title": "Fantasy Blue Lady",
     "tags": [
+      "Fantasy",
+      "Blue",
+      "Lady",
       "Premium",
       "Aesthetic"
     ],
     "category": "Portrait",
-    "desktopImg": "/thumbnails/Portrait/fantasy-blue-lady_PC.webp",
-    "mobileImg": "/thumbnails/Portrait/fantasy-blue-lady_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Portrait/fantasy-blue-lady_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Portrait/fantasy-blue-lady_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Portrait/Fantasy Blue Lady_PC.png",
+    "mobileOriginalKey": "originals/Portrait/Fantasy Blue Lady_MP.png"
   },
   {
     "id": "imperial-crimson",
     "slug": "imperial-crimson",
     "title": "Imperial Crimson",
     "tags": [
+      "Imperial",
+      "Crimson",
       "Premium",
       "Aesthetic"
     ],
     "category": "Portrait",
-    "desktopImg": "/thumbnails/Portrait/imperial-crimson_PC.webp",
-    "mobileImg": "/thumbnails/Portrait/imperial-crimson_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Portrait/imperial-crimson_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Portrait/imperial-crimson_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Portrait/Imperial Crimson_PC.png",
+    "mobileOriginalKey": "originals/Portrait/Imperial Crimson_MP.png"
   },
   {
     "id": "moonlit-farewell",
     "slug": "moonlit-farewell",
     "title": "Moonlit Farewell",
     "tags": [
+      "Moonlit",
+      "Farewell",
       "Premium",
       "Aesthetic"
     ],
     "category": "Portrait",
-    "desktopImg": "/thumbnails/Portrait/moonlit-farewell_PC.webp",
-    "mobileImg": "/thumbnails/Portrait/moonlit-farewell_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Portrait/moonlit-farewell_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Portrait/moonlit-farewell_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Portrait/Moonlit Farewell_PC.png",
+    "mobileOriginalKey": "originals/Portrait/Moonlit Farewell_MP.png"
   },
   {
     "id": "moonlit-warriors-epic-wuxia-couple-wallpaper",
     "slug": "moonlit-warriors-epic-wuxia-couple-wallpaper",
     "title": "Moonlit Warriors Epic Wuxia Couple Wallpaper",
     "tags": [
+      "Moonlit",
+      "Warriors",
+      "Epic",
+      "Wuxia",
+      "Couple",
+      "Wallpaper",
       "Premium",
       "Aesthetic"
     ],
     "category": "Portrait",
-    "desktopImg": "/thumbnails/Portrait/moonlit-warriors-epic-wuxia-couple-wallpaper_PC.webp",
-    "mobileImg": "/thumbnails/Portrait/moonlit-warriors-epic-wuxia-couple-wallpaper_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Portrait/moonlit-warriors-epic-wuxia-couple-wallpaper_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Portrait/moonlit-warriors-epic-wuxia-couple-wallpaper_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Portrait/Moonlit Warriors Epic Wuxia Couple Wallpaper_PC.png",
+    "mobileOriginalKey": "originals/Portrait/Moonlit Warriors Epic Wuxia Couple Wallpaper_MP.png"
   },
   {
     "id": "snowfall-serenity",
     "slug": "snowfall-serenity",
     "title": "Snowfall Serenity",
     "tags": [
+      "Snowfall",
+      "Serenity",
       "Premium",
       "Aesthetic"
     ],
     "category": "Portrait",
-    "desktopImg": "/thumbnails/Portrait/snowfall-serenity_PC.webp",
-    "mobileImg": "/thumbnails/Portrait/snowfall-serenity_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Portrait/snowfall-serenity_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Portrait/snowfall-serenity_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Portrait/Snowfall Serenity_PC.png",
+    "mobileOriginalKey": "originals/Portrait/Snowfall Serenity_MP.png"
   },
   {
     "id": "the-black-rider-general",
     "slug": "the-black-rider-general",
     "title": "The Black-Rider General",
     "tags": [
+      "The",
+      "Black",
+      "Rider",
+      "General",
       "Premium",
       "Aesthetic"
     ],
     "category": "Portrait",
-    "desktopImg": "/thumbnails/Portrait/the-black-rider-general_PC.webp",
-    "mobileImg": "/thumbnails/Portrait/the-black-rider-general_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Portrait/the-black-rider-general_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Portrait/the-black-rider-general_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5504 × 3072 px"
+    "resolution": "5504 × 3072 px",
+    "desktopOriginalKey": "originals/Portrait/The Black-Rider General_PC.png",
+    "mobileOriginalKey": "originals/Portrait/The Black-Rider General_MP.png"
   },
   {
     "id": "white-haired-swordsman",
     "slug": "white-haired-swordsman",
     "title": "White-Haired Swordsman",
     "tags": [
+      "White",
+      "Haired",
+      "Swordsman",
       "Premium",
       "Aesthetic"
     ],
     "category": "Portrait",
-    "desktopImg": "/thumbnails/Portrait/white-haired-swordsman_PC.webp",
-    "mobileImg": "/thumbnails/Portrait/white-haired-swordsman_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Portrait/white-haired-swordsman_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Portrait/white-haired-swordsman_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Portrait/White-Haired Swordsman_PC.png",
+    "mobileOriginalKey": "originals/Portrait/White-Haired Swordsman_MP.png"
   },
   {
     "id": "betta-in-silence",
     "slug": "betta-in-silence",
     "title": "Betta in Silence",
     "tags": [
+      "Betta",
+      "In",
+      "Silence",
       "Premium",
       "Aesthetic"
     ],
     "category": "Vibe",
-    "desktopImg": "/thumbnails/Vibe/betta-in-silence_PC.webp",
-    "mobileImg": "/thumbnails/Vibe/betta-in-silence_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Vibe/betta-in-silence_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Vibe/betta-in-silence_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Vibe/Betta in Silence_PC.png",
+    "mobileOriginalKey": "originals/Vibe/Betta in Silence_MP.png"
   },
   {
     "id": "black-rose",
     "slug": "black-rose",
     "title": "Black Rose",
     "tags": [
+      "Black",
+      "Rose",
       "Premium",
       "Aesthetic"
     ],
     "category": "Vibe",
-    "desktopImg": "/thumbnails/Vibe/black-rose_PC.webp",
-    "mobileImg": "/thumbnails/Vibe/black-rose_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Vibe/black-rose_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Vibe/black-rose_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5504 × 3072 px"
+    "resolution": "5504 × 3072 px",
+    "desktopOriginalKey": "originals/Vibe/Black Rose_PC.png",
+    "mobileOriginalKey": "originals/Vibe/Black Rose_MP.png"
   },
   {
     "id": "cozy-night-retreat",
     "slug": "cozy-night-retreat",
     "title": "Cozy Night Retreat",
     "tags": [
+      "Cozy",
+      "Night",
+      "Retreat",
       "Premium",
       "Aesthetic"
     ],
     "category": "Vibe",
-    "desktopImg": "/thumbnails/Vibe/cozy-night-retreat_PC.webp",
-    "mobileImg": "/thumbnails/Vibe/cozy-night-retreat_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Vibe/cozy-night-retreat_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Vibe/cozy-night-retreat_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Vibe/Cozy Night Retreat_PC.png",
+    "mobileOriginalKey": "originals/Vibe/Cozy Night Retreat_MP.png"
   },
   {
     "id": "dark-headphones-wallpaper",
     "slug": "dark-headphones-wallpaper",
     "title": "Dark Headphones Wallpaper",
     "tags": [
+      "Dark",
+      "Headphones",
+      "Wallpaper",
       "Premium",
       "Aesthetic"
     ],
     "category": "Vibe",
-    "desktopImg": "/thumbnails/Vibe/dark-headphones-wallpaper_PC.webp",
-    "mobileImg": "/thumbnails/Vibe/dark-headphones-wallpaper_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Vibe/dark-headphones-wallpaper_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Vibe/dark-headphones-wallpaper_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "4608 × 3072 px"
+    "resolution": "4608 × 3072 px",
+    "desktopOriginalKey": "originals/Vibe/Dark Headphones Wallpaper_PC.png",
+    "mobileOriginalKey": "originals/Vibe/Dark Headphones Wallpaper_MP.png"
   },
   {
     "id": "handwritten-letter-background",
     "slug": "handwritten-letter-background",
     "title": "Handwritten Letter Background",
     "tags": [
+      "Handwritten",
+      "Letter",
+      "Background",
       "Premium",
       "Aesthetic"
     ],
     "category": "Vibe",
-    "desktopImg": "/thumbnails/Vibe/handwritten-letter-background_PC.webp",
-    "mobileImg": "/thumbnails/Vibe/handwritten-letter-background_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Vibe/handwritten-letter-background_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Vibe/handwritten-letter-background_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Vibe/Handwritten Letter Background_PC.png",
+    "mobileOriginalKey": "originals/Vibe/Handwritten Letter Background_MP.png"
   },
   {
     "id": "lonely-rooftop-night",
     "slug": "lonely-rooftop-night",
     "title": "Lonely Rooftop Night",
     "tags": [
+      "Lonely",
+      "Rooftop",
+      "Night",
       "Premium",
       "Aesthetic"
     ],
     "category": "Vibe",
-    "desktopImg": "/thumbnails/Vibe/lonely-rooftop-night_PC.webp",
-    "mobileImg": "/thumbnails/Vibe/lonely-rooftop-night_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Vibe/lonely-rooftop-night_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Vibe/lonely-rooftop-night_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Vibe/Lonely Rooftop Night_PC.png",
+    "mobileOriginalKey": "originals/Vibe/Lonely Rooftop Night_MP.png"
   },
   {
     "id": "message-in-a-bottle",
     "slug": "message-in-a-bottle",
     "title": "Message in a Bottle",
     "tags": [
+      "Message",
+      "In",
+      "A",
+      "Bottle",
       "Premium",
       "Aesthetic"
     ],
     "category": "Vibe",
-    "desktopImg": "/thumbnails/Vibe/message-in-a-bottle_PC.webp",
-    "mobileImg": "/thumbnails/Vibe/message-in-a-bottle_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Vibe/message-in-a-bottle_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Vibe/message-in-a-bottle_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Vibe/Message in a Bottle_PC.png",
+    "mobileOriginalKey": "originals/Vibe/Message in a Bottle_MP.png"
   },
   {
     "id": "moonlit-piano",
     "slug": "moonlit-piano",
     "title": "Moonlit Piano",
     "tags": [
+      "Moonlit",
+      "Piano",
       "Premium",
       "Aesthetic"
     ],
     "category": "Vibe",
-    "desktopImg": "/thumbnails/Vibe/moonlit-piano_PC.webp",
-    "mobileImg": "/thumbnails/Vibe/moonlit-piano_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Vibe/moonlit-piano_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Vibe/moonlit-piano_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Vibe/Moonlit Piano_PC.png",
+    "mobileOriginalKey": "originals/Vibe/Moonlit Piano_MP.png"
   },
   {
     "id": "morning-quiet",
     "slug": "morning-quiet",
     "title": "Morning Quiet",
     "tags": [
+      "Morning",
+      "Quiet",
       "Premium",
       "Aesthetic"
     ],
     "category": "Vibe",
-    "desktopImg": "/thumbnails/Vibe/morning-quiet_PC.webp",
-    "mobileImg": "/thumbnails/Vibe/morning-quiet_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Vibe/morning-quiet_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Vibe/morning-quiet_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Vibe/Morning Quiet_PC.png",
+    "mobileOriginalKey": "originals/Vibe/Morning Quiet_MP.png"
   },
   {
     "id": "rainy-caf-table",
     "slug": "rainy-caf-table",
     "title": "Rainy Café Table",
     "tags": [
+      "Rainy",
+      "Caf",
+      "Table",
       "Premium",
       "Aesthetic"
     ],
     "category": "Vibe",
-    "desktopImg": "/thumbnails/Vibe/rainy-caf-table_PC.webp",
-    "mobileImg": "/thumbnails/Vibe/rainy-caf-table_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Vibe/rainy-caf-table_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Vibe/rainy-caf-table_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Vibe/Rainy Café Table_PC.png",
+    "mobileOriginalKey": "originals/Vibe/Rainy Café Table_MP.png"
   },
   {
     "id": "rainy-industrial-loft-workspace",
     "slug": "rainy-industrial-loft-workspace",
     "title": "Rainy Industrial Loft Workspace",
     "tags": [
+      "Rainy",
+      "Industrial",
+      "Loft",
+      "Workspace",
       "Premium",
       "Aesthetic"
     ],
     "category": "Vibe",
-    "desktopImg": "/thumbnails/Vibe/rainy-industrial-loft-workspace_PC.webp",
-    "mobileImg": "/thumbnails/Vibe/rainy-industrial-loft-workspace_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Vibe/rainy-industrial-loft-workspace_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Vibe/rainy-industrial-loft-workspace_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Vibe/Rainy Industrial Loft Workspace_PC.png",
+    "mobileOriginalKey": "originals/Vibe/Rainy Industrial Loft Workspace_MP.png"
   },
   {
     "id": "rustic-workshop-wallpaper",
     "slug": "rustic-workshop-wallpaper",
     "title": "Rustic Workshop Wallpaper",
     "tags": [
+      "Rustic",
+      "Workshop",
+      "Wallpaper",
       "Premium",
       "Aesthetic"
     ],
     "category": "Vibe",
-    "desktopImg": "/thumbnails/Vibe/rustic-workshop-wallpaper_PC.webp",
-    "mobileImg": "/thumbnails/Vibe/rustic-workshop-wallpaper_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Vibe/rustic-workshop-wallpaper_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Vibe/rustic-workshop-wallpaper_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Vibe/Rustic Workshop Wallpaper_PC.png",
+    "mobileOriginalKey": "originals/Vibe/Rustic Workshop Wallpaper_MP.png"
   },
   {
     "id": "urban-contemplation",
     "slug": "urban-contemplation",
     "title": "Urban Contemplation",
     "tags": [
+      "Urban",
+      "Contemplation",
       "Premium",
       "Aesthetic"
     ],
     "category": "Vibe",
-    "desktopImg": "/thumbnails/Vibe/urban-contemplation_PC.webp",
-    "mobileImg": "/thumbnails/Vibe/urban-contemplation_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Vibe/urban-contemplation_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Vibe/urban-contemplation_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5504 × 3072 px"
+    "resolution": "5504 × 3072 px",
+    "desktopOriginalKey": "originals/Vibe/Urban Contemplation_PC.png",
+    "mobileOriginalKey": "originals/Vibe/Urban Contemplation_MP.png"
   },
   {
     "id": "vintage-film-camera-wallpaper",
     "slug": "vintage-film-camera-wallpaper",
     "title": "Vintage Film Camera Wallpaper",
     "tags": [
+      "Vintage",
+      "Film",
+      "Camera",
+      "Wallpaper",
       "Premium",
       "Aesthetic"
     ],
     "category": "Vibe",
-    "desktopImg": "/thumbnails/Vibe/vintage-film-camera-wallpaper_PC.webp",
-    "mobileImg": "/thumbnails/Vibe/vintage-film-camera-wallpaper_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Vibe/vintage-film-camera-wallpaper_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Vibe/vintage-film-camera-wallpaper_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Vibe/Vintage Film Camera Wallpaper_PC.png",
+    "mobileOriginalKey": "originals/Vibe/Vintage Film Camera Wallpaper_MP.png"
   },
   {
     "id": "whiskey-on-the-jazz-bar-counter",
     "slug": "whiskey-on-the-jazz-bar-counter",
     "title": "Whiskey on the Jazz Bar Counter",
     "tags": [
+      "Whiskey",
+      "On",
+      "The",
+      "Jazz",
+      "Bar",
+      "Counter",
       "Premium",
       "Aesthetic"
     ],
     "category": "Vibe",
-    "desktopImg": "/thumbnails/Vibe/whiskey-on-the-jazz-bar-counter_PC.webp",
-    "mobileImg": "/thumbnails/Vibe/whiskey-on-the-jazz-bar-counter_MP.webp",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Vibe/whiskey-on-the-jazz-bar-counter_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Vibe/whiskey-on-the-jazz-bar-counter_MP.webp",
     "hasMobile": true,
     "hasDesktop": true,
-    "resolution": "5016 × 2823 px"
+    "resolution": "5016 × 2823 px",
+    "desktopOriginalKey": "originals/Vibe/Whiskey on the Jazz Bar Counter_PC.png",
+    "mobileOriginalKey": "originals/Vibe/Whiskey on the Jazz Bar Counter_MP.png"
+  },
+  {
+    "id": "chatgpt-test",
+    "slug": "chatgpt-test",
+    "title": "Chatgpt Test",
+    "tags": [
+      "Chatgpt",
+      "Test",
+      "Premium",
+      "Aesthetic"
+    ],
+    "category": "Animals",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Animals/chatgpt-test_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Animals/chatgpt-test_MP.webp",
+    "hasMobile": true,
+    "hasDesktop": true,
+    "resolution": "High Resolution",
+    "desktopOriginalKey": "originals/Animals/ChatGPT Test_PC.png",
+    "mobileOriginalKey": "originals/Animals/ChatGPT Test_MP.png"
+  },
+  {
+    "id": "chatgpt-test2",
+    "slug": "chatgpt-test2",
+    "title": "Chatgpt Test2",
+    "tags": [
+      "Chatgpt",
+      "Test2",
+      "Premium",
+      "Aesthetic"
+    ],
+    "category": "Animals",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Animals/chatgpt-test2_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Animals/chatgpt-test2_MP.webp",
+    "hasMobile": true,
+    "hasDesktop": true,
+    "resolution": "High Resolution",
+    "desktopOriginalKey": "originals/Animals/ChatGPT Test2_PC.png",
+    "mobileOriginalKey": "originals/Animals/ChatGPT Test2_MP.png"
   }
 ]

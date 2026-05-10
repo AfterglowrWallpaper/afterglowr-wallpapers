@@ -4,8 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node generate_thumbnails.js && node generate_sitemap.js && concurrently \"vite --open\" \"node server.js\"",
-    "build": "node generate_thumbnails.js && node generate_sitemap.js && vite build",
+    "dev": "node generate_sitemap.js && concurrently \"vite --open\" \"node server.js\"",
+    "build": "node generate_sitemap.js && vite build",
+    "sync:r2": "node sync_r2_wallpapers.js",
     "start": "node server.js",
     "preview": "vite preview"
   },
@@ -19,6 +20,7 @@
     "chokidar": "^3.6.0",
     "concurrently": "^9.2.1",
     "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1"
   }
 }
