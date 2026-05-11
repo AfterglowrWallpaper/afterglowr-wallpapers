@@ -15,6 +15,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const wallpapersFile = path.join(__dirname, 'public', 'wallpapers.json');
+const syncCacheFile = path.join(__dirname, 'public', 'sync-cache.json');
 const envFile = path.join(__dirname, '.env');
 
 const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp']);
@@ -267,6 +268,50 @@ function thumbUrlForKey(key) {
   return `/${safeKey}`;
 }
 
+function normalizeEtag(etag) {
+  return String(etag || '').replace(/^"|"$/g, '');
+}
+
+function normalizeLastModified(value) {
+  if (!value) return '';
+  const date = value instanceof Date ? value : new Date(value);
+  return Number.isNaN(date.getTime()) ? '' : date.toISOString();
+}
+
+function formatResolution(width, height) {
+  return width && height ? `${width} \u00d7 ${height} px` : null;
+}
+
+function readSyncCache() {
+  if (!fs.existsSync(syncCacheFile)) {
+    return { version: 2, records: [] };
+  }
+
+  try {
+    const parsed = JSON.parse(fs.readFileSync(syncCacheFile, 'utf8'));
+    const records = Array.isArray(parsed?.records)
+      ? parsed.records
+      : Object.values(parsed?.records || {});
+    return { version: 2, records };
+  } catch (error) {
+    throw new Error(`Unable to parse public/sync-cache.json: ${error.message}`);
+  }
+}
+
+function writeSyncCache(records) {
+  const sortedRecords = [...records].sort((a, b) => a.slug.localeCompare(b.slug));
+  const payload = {
+    version: 2,
+    updatedAt: new Date().toISOString(),
+    records: sortedRecords,
+  };
+  fs.writeFileSync(syncCacheFile, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
+}
+
+function cacheBySlug(cache) {
+  return new Map((cache.records || []).filter(record => record?.slug).map(record => [record.slug, record]));
+}
+
 async function bodyToBuffer(body) {
   if (!body) return Buffer.alloc(0);
   if (typeof body.transformToByteArray === 'function') {
@@ -318,7 +363,7 @@ async function downloadObject(client, bucket, key, destinationPath) {
   fs.writeFileSync(destinationPath, buffer);
 }
 
-async function readImageResolution(client, bucket, key) {
+async function readImageMetadata(client, bucket, key) {
   if (!key) return null;
 
   try {
@@ -326,7 +371,11 @@ async function readImageResolution(client, bucket, key) {
     const buffer = await bodyToBuffer(result.Body);
     const metadata = await sharp(buffer).metadata();
     if (!metadata.width || !metadata.height) return null;
-    return `${metadata.width} \u00d7 ${metadata.height} px`;
+    return {
+      width: metadata.width,
+      height: metadata.height,
+      resolution: formatResolution(metadata.width, metadata.height),
+    };
   } catch (error) {
     console.warn(`[R2 Sync] Unable to read image resolution for ${key}: ${error.message}`);
     return null;
@@ -353,6 +402,14 @@ function addOriginalToMap(map, parsed) {
       tags: tagsFromSlug(parsed.slug),
       desktopKey: null,
       mobileKey: null,
+      desktopEtag: null,
+      mobileEtag: null,
+      desktopLastModified: null,
+      mobileLastModified: null,
+      desktopWidth: null,
+      desktopHeight: null,
+      mobileWidth: null,
+      mobileHeight: null,
       desktopThumbKey: null,
       mobileThumbKey: null,
       sourceCategories: new Set([parsed.category]),
@@ -370,8 +427,16 @@ function addOriginalToMap(map, parsed) {
     item.category = parsed.category;
   }
 
-  if (parsed.type === 'desktop') item.desktopKey = parsed.key;
-  if (parsed.type === 'mobile') item.mobileKey = parsed.key;
+  if (parsed.type === 'desktop') {
+    item.desktopKey = parsed.key;
+    item.desktopEtag = parsed.etag || null;
+    item.desktopLastModified = parsed.lastModified || null;
+  }
+  if (parsed.type === 'mobile') {
+    item.mobileKey = parsed.key;
+    item.mobileEtag = parsed.etag || null;
+    item.mobileLastModified = parsed.lastModified || null;
+  }
 }
 
 async function ensureThumbnail({ client, bucket, item, originalKey, type, tmpDir, thumbnailsPrefix }) {
@@ -414,7 +479,84 @@ async function ensureThumbnailSafe(options) {
   }
 }
 
+function typeField(type, field) {
+  return `${type}${field}`;
+}
+
+function isCachedTypeUnchanged(item, cacheRecord, type, thumbKey) {
+  if (!cacheRecord || !thumbKey) return false;
+
+  return cacheRecord[typeField(type, 'OriginalKey')] === item[typeField(type, 'Key')]
+    && cacheRecord[typeField(type, 'Etag')] === item[typeField(type, 'Etag')]
+    && cacheRecord[typeField(type, 'LastModified')] === item[typeField(type, 'LastModified')]
+    && cacheRecord[typeField(type, 'ThumbKey')] === thumbKey;
+}
+
+function hasCachedDimensions(cacheRecord, type) {
+  return Boolean(cacheRecord?.[typeField(type, 'Width')] && cacheRecord?.[typeField(type, 'Height')]);
+}
+
+function applyCachedDimensions(item, cacheRecord, type) {
+  item[typeField(type, 'Width')] = cacheRecord[typeField(type, 'Width')] || null;
+  item[typeField(type, 'Height')] = cacheRecord[typeField(type, 'Height')] || null;
+}
+
+async function ensureImageMetadata({ client, bucket, item, type, cacheRecord, cacheUnchanged }) {
+  const originalKey = item[typeField(type, 'Key')];
+  if (!originalKey) return;
+
+  if (cacheUnchanged && hasCachedDimensions(cacheRecord, type)) {
+    applyCachedDimensions(item, cacheRecord, type);
+    return;
+  }
+
+  const metadata = await readImageMetadata(client, bucket, originalKey);
+  if (!metadata) return;
+
+  item[typeField(type, 'Width')] = metadata.width;
+  item[typeField(type, 'Height')] = metadata.height;
+}
+
+async function ensureThumbnailIncremental({ client, bucket, item, type, tmpDir, thumbnailsPrefix, cacheRecord }) {
+  const originalKey = item[typeField(type, 'Key')];
+  if (!originalKey) {
+    return { key: null, failed: false, uploaded: false, skipped: false, unchanged: false };
+  }
+
+  const thumbKey = thumbKeyFor(item, type, thumbnailsPrefix);
+  const cacheUnchanged = isCachedTypeUnchanged(item, cacheRecord, type, thumbKey);
+
+  if (cacheUnchanged && await objectExists(client, bucket, thumbKey)) {
+    console.log(`[R2 Sync] Unchanged thumbnail skipped: ${thumbKey}`);
+    return { key: thumbKey, failed: false, uploaded: false, skipped: true, unchanged: true };
+  }
+
+  const beforeExists = await objectExists(client, bucket, thumbKey);
+  const result = await ensureThumbnailSafe({
+    client,
+    bucket,
+    item,
+    originalKey,
+    type,
+    tmpDir,
+    thumbnailsPrefix,
+  });
+
+  return {
+    key: result.key,
+    failed: result.failed,
+    uploaded: Boolean(result.key && !beforeExists && !result.failed),
+    skipped: Boolean(result.key && beforeExists && !result.failed),
+    unchanged: false,
+  };
+}
+
 function toWallpaperRecord(item) {
+  const resolution = formatResolution(item.desktopWidth, item.desktopHeight)
+    || formatResolution(item.mobileWidth, item.mobileHeight)
+    || item.resolution
+    || 'High Resolution';
+
   const record = {
     id: item.id,
     slug: item.slug,
@@ -427,7 +569,7 @@ function toWallpaperRecord(item) {
     mobileOriginalKey: item.mobileKey || null,
     hasMobile: Boolean(item.mobileKey),
     hasDesktop: Boolean(item.desktopKey),
-    resolution: item.resolution || 'High Resolution',
+    resolution,
   };
 
   return {
@@ -489,6 +631,33 @@ function hasRenderableThumbnail(item) {
   return Boolean(item?.desktopThumbKey);
 }
 
+function toCacheRecord(item) {
+  return {
+    slug: item.slug,
+    category: item.category,
+    desktopOriginalKey: item.desktopKey || null,
+    mobileOriginalKey: item.mobileKey || null,
+    desktopEtag: item.desktopEtag || null,
+    mobileEtag: item.mobileEtag || null,
+    desktopLastModified: item.desktopLastModified || null,
+    mobileLastModified: item.mobileLastModified || null,
+    desktopThumbKey: item.desktopThumbKey || null,
+    mobileThumbKey: item.mobileThumbKey || null,
+    desktopWidth: item.desktopWidth || null,
+    desktopHeight: item.desktopHeight || null,
+    mobileWidth: item.mobileWidth || null,
+    mobileHeight: item.mobileHeight || null,
+  };
+}
+
+function isWallpaperCachedUnchanged(item, cacheRecord, thumbnailsPrefix) {
+  if (!cacheRecord || cacheRecord.category !== item.category) return false;
+  const types = ['desktop', 'mobile'].filter(type => item[typeField(type, 'Key')]);
+  if (types.length === 0) return false;
+
+  return types.every(type => isCachedTypeUnchanged(item, cacheRecord, type, thumbKeyFor(item, type, thumbnailsPrefix)));
+}
+
 async function main() {
   loadEnvFile();
 
@@ -514,6 +683,8 @@ async function main() {
   console.log(`[R2 Sync] Scanning originals prefix: ${originalsPrefix}`);
   console.log(`[R2 Sync] Writing thumbnails prefix: ${thumbnailsPrefix}`);
 
+  const previousCache = readSyncCache();
+  const previousCacheBySlug = cacheBySlug(previousCache);
   const discovered = new Map();
   const objects = await listR2Objects(client, bucket, originalsPrefix);
   console.log(`[R2 Sync] Found ${objects.length} objects under ${originalsPrefix}`);
@@ -522,6 +693,8 @@ async function main() {
   for (const object of objects) {
     const parsed = parseOriginalObject(object.Key, originalsPrefix);
     if (parsed) {
+      parsed.etag = normalizeEtag(object.ETag);
+      parsed.lastModified = normalizeLastModified(object.LastModified);
       parsedOriginals += 1;
       addOriginalToMap(discovered, parsed);
     }
@@ -536,6 +709,7 @@ async function main() {
         console.warn(`[R2 Sync]     ${key}`);
       }
     }
+    throw new Error('Duplicate slugs found across categories. Resolve R2 originals before syncing.');
   }
 
   let uploadedThumbnails = 0;
@@ -545,46 +719,64 @@ async function main() {
   for (const item of discovered.values()) {
     if (!item.desktopKey && !item.mobileKey) continue;
 
-    item.resolution = await readImageResolution(client, bucket, item.desktopKey || item.mobileKey) || 'High Resolution';
+    const cacheRecord = previousCacheBySlug.get(item.slug);
 
     if (item.desktopKey) {
-      const beforeDesktop = await objectExists(client, bucket, thumbKeyFor(item, 'desktop', thumbnailsPrefix));
-      const desktopResult = await ensureThumbnailSafe({
+      const desktopResult = await ensureThumbnailIncremental({
         client,
         bucket,
         item,
-        originalKey: item.desktopKey,
         type: 'desktop',
         tmpDir,
         thumbnailsPrefix,
+        cacheRecord,
       });
       item.desktopThumbKey = desktopResult.key;
       if (desktopResult.failed) failedThumbnails += 1;
-      else if (beforeDesktop) skippedThumbnails += 1;
-      else if (desktopResult.key) uploadedThumbnails += 1;
-    }
-
-    if (item.mobileKey) {
-      const beforeMobile = await objectExists(client, bucket, thumbKeyFor(item, 'mobile', thumbnailsPrefix));
-      const mobileResult = await ensureThumbnailSafe({
+      else if (desktopResult.uploaded) uploadedThumbnails += 1;
+      else if (desktopResult.skipped) skippedThumbnails += 1;
+      await ensureImageMetadata({
         client,
         bucket,
         item,
-        originalKey: item.mobileKey,
+        type: 'desktop',
+        cacheRecord,
+        cacheUnchanged: desktopResult.unchanged,
+      });
+    }
+
+    if (item.mobileKey) {
+      const mobileResult = await ensureThumbnailIncremental({
+        client,
+        bucket,
+        item,
         type: 'mobile',
         tmpDir,
         thumbnailsPrefix,
+        cacheRecord,
       });
       item.mobileThumbKey = mobileResult.key;
       if (mobileResult.failed) failedThumbnails += 1;
-      else if (beforeMobile) skippedThumbnails += 1;
-      else if (mobileResult.key) uploadedThumbnails += 1;
+      else if (mobileResult.uploaded) uploadedThumbnails += 1;
+      else if (mobileResult.skipped) skippedThumbnails += 1;
+      await ensureImageMetadata({
+        client,
+        bucket,
+        item,
+        type: 'mobile',
+        cacheRecord,
+        cacheUnchanged: mobileResult.unchanged,
+      });
     }
   }
 
   const existing = readExistingWallpapers();
   const existingByKey = new Map(existing.map(item => [getExistingKey(item), item]).filter(([key]) => key));
   const touchedKeys = new Set();
+  const nextCacheRecords = [];
+  let changedWallpapers = 0;
+  let movedWallpapers = 0;
+  let skippedUnchanged = 0;
   let removedWallpapers = 0;
   const nextWallpapers = existing.map(item => {
     const key = getExistingKey(item);
@@ -595,6 +787,15 @@ async function main() {
     }
 
     touchedKeys.add(key);
+    const cacheRecord = previousCacheBySlug.get(key);
+    const moved = item.category !== discoveredItem.category
+      || item.desktopOriginalKey !== (discoveredItem.desktopKey || null)
+      || item.mobileOriginalKey !== (discoveredItem.mobileKey || null);
+    const unchanged = isWallpaperCachedUnchanged(discoveredItem, cacheRecord, thumbnailsPrefix) && !moved;
+    if (moved) movedWallpapers += 1;
+    else if (unchanged) skippedUnchanged += 1;
+    else changedWallpapers += 1;
+    nextCacheRecords.push(toCacheRecord(discoveredItem));
     return mergeWallpaperRecord(item, toWallpaperRecord(discoveredItem));
   }).filter(Boolean);
 
@@ -604,19 +805,25 @@ async function main() {
     if (!hasRenderableThumbnail(item)) continue;
     if (existingByKey.has(item.id) || existingByKey.has(item.slug) || touchedKeys.has(item.id)) continue;
     newRecords.push(toWallpaperRecord(item));
+    nextCacheRecords.push(toCacheRecord(item));
   }
 
   newRecords.sort((a, b) => a.slug.localeCompare(b.slug));
   writeWallpapers([...nextWallpapers, ...newRecords]);
+  writeSyncCache(nextCacheRecords);
 
-  console.log(`[R2 Sync] R2 originals count: ${parsedOriginals}`);
-  console.log(`[R2 Sync] Uploaded thumbnails: ${uploadedThumbnails}`);
-  console.log(`[R2 Sync] Existing thumbnails skipped: ${skippedThumbnails}`);
-  console.log(`[R2 Sync] Failed thumbnails: ${failedThumbnails}`);
-  console.log(`[R2 Sync] Added new wallpapers: ${newRecords.length}`);
-  console.log(`[R2 Sync] Removed missing originals: ${removedWallpapers}`);
-  console.log(`[R2 Sync] Duplicate slugs: ${duplicateSlugItems.length}`);
+  console.log(`[R2 Sync] total originals found: ${parsedOriginals}`);
+  console.log(`[R2 Sync] new wallpapers: ${newRecords.length}`);
+  console.log(`[R2 Sync] changed wallpapers: ${changedWallpapers}`);
+  console.log(`[R2 Sync] moved wallpapers: ${movedWallpapers}`);
+  console.log(`[R2 Sync] deleted wallpapers: ${removedWallpapers}`);
+  console.log(`[R2 Sync] skipped unchanged: ${skippedUnchanged}`);
+  console.log(`[R2 Sync] thumbnails uploaded: ${uploadedThumbnails}`);
+  console.log(`[R2 Sync] thumbnails skipped: ${skippedThumbnails}`);
+  console.log(`[R2 Sync] failed thumbnails: ${failedThumbnails}`);
+  console.log(`[R2 Sync] duplicate slugs: ${duplicateSlugItems.length}`);
   console.log(`[R2 Sync] public/wallpapers.json updated with ${nextWallpapers.length + newRecords.length} records.`);
+  console.log(`[R2 Sync] public/sync-cache.json updated with ${nextCacheRecords.length} records.`);
 }
 
 main().catch(error => {
