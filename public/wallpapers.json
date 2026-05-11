@@ -2589,5 +2589,77 @@
       "free wallpaper",
       "aesthetic wallpaper"
     ]
+  },
+  {
+    "id": "gemini-duality-wallpaper",
+    "slug": "gemini-duality-wallpaper",
+    "title": "Gemini Duality Wallpaper",
+    "tags": [
+      "Gemini",
+      "Duality",
+      "Wallpaper",
+      "Premium",
+      "Aesthetic"
+    ],
+    "category": "Anime",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Anime/gemini-duality-wallpaper_PC.webp",
+    "mobileImg": null,
+    "desktopOriginalKey": "originals/Anime/Gemini Duality Wallpaper_PC.png",
+    "mobileOriginalKey": null,
+    "hasMobile": false,
+    "hasDesktop": true,
+    "resolution": "5016 × 2823 px",
+    "seoTitle": "Gemini Duality Wallpaper 4K Wallpaper for Desktop and Mobile | Afterglowr",
+    "seoDescription": "Download Gemini Duality Wallpaper in high quality for desktop and mobile. A cinematic anime wallpaper with Gemini, Duality, and Wallpaper aesthetics.",
+    "altText": "Gemini Duality Wallpaper 4K Anime wallpaper for desktop and mobile",
+    "keywords": [
+      "gemini",
+      "duality",
+      "wallpaper",
+      "anime",
+      "premium",
+      "aesthetic",
+      "4k wallpaper",
+      "desktop wallpaper",
+      "mobile wallpaper",
+      "free wallpaper",
+      "aesthetic wallpaper"
+    ]
+  },
+  {
+    "id": "virgo-sacred-geometry",
+    "slug": "virgo-sacred-geometry",
+    "title": "Virgo Sacred Geometry",
+    "tags": [
+      "Virgo",
+      "Sacred",
+      "Geometry",
+      "Premium",
+      "Aesthetic"
+    ],
+    "category": "Anime",
+    "desktopImg": "https://cdn.afterglowr.com/thumbnails/Anime/virgo-sacred-geometry_PC.webp",
+    "mobileImg": "https://cdn.afterglowr.com/thumbnails/Anime/virgo-sacred-geometry_MP.webp",
+    "desktopOriginalKey": "originals/Anime/Virgo Sacred Geometry_PC.png",
+    "mobileOriginalKey": "originals/Anime/Virgo Sacred Geometry_MP.png",
+    "hasMobile": true,
+    "hasDesktop": true,
+    "resolution": "5016 × 2823 px",
+    "seoTitle": "Virgo Sacred Geometry 4K Wallpaper for Desktop and Mobile | Afterglowr",
+    "seoDescription": "Download Virgo Sacred Geometry in high quality for desktop and mobile. A cinematic anime wallpaper with Virgo, Sacred, and Geometry aesthetics.",
+    "altText": "Virgo Sacred Geometry 4K Anime wallpaper for desktop and mobile",
+    "keywords": [
+      "virgo",
+      "sacred",
+      "geometry",
+      "anime",
+      "premium",
+      "aesthetic",
+      "4k wallpaper",
+      "desktop wallpaper",
+      "mobile wallpaper",
+      "free wallpaper",
+      "aesthetic wallpaper"
+    ]
   }
 ]

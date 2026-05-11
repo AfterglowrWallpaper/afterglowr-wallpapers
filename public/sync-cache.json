@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-05-11T11:11:47.013Z",
+  "updatedAt": "2026-05-11T11:23:34.604Z",
   "records": [
     {
       "slug": "abandoned-blue-fishing-boat",
@@ -563,6 +563,22 @@
       "mobileHeight": 5016
     },
     {
+      "slug": "gemini-duality-wallpaper",
+      "category": "Anime",
+      "desktopOriginalKey": "originals/Anime/Gemini Duality Wallpaper_PC.png",
+      "mobileOriginalKey": null,
+      "desktopEtag": "245a0b14e549caba770bcb8117034996",
+      "mobileEtag": null,
+      "desktopLastModified": "2026-05-11T11:21:30.441Z",
+      "mobileLastModified": null,
+      "desktopThumbKey": "thumbnails/Anime/gemini-duality-wallpaper_PC.webp",
+      "mobileThumbKey": null,
+      "desktopWidth": 5016,
+      "desktopHeight": 2823,
+      "mobileWidth": null,
+      "mobileHeight": null
+    },
+    {
       "slug": "giant-moon-over-calm-lake",
       "category": "Landscape",
       "desktopOriginalKey": "originals/Landscape/Giant Moon Over Calm Lake_PC.png",
@@ -1101,6 +1117,22 @@
       "mobileLastModified": "2026-05-09T12:13:39.196Z",
       "desktopThumbKey": "thumbnails/Vibe/vintage-film-camera-wallpaper_PC.webp",
       "mobileThumbKey": "thumbnails/Vibe/vintage-film-camera-wallpaper_MP.webp",
+      "desktopWidth": 5016,
+      "desktopHeight": 2823,
+      "mobileWidth": 2559,
+      "mobileHeight": 5532
+    },
+    {
+      "slug": "virgo-sacred-geometry",
+      "category": "Anime",
+      "desktopOriginalKey": "originals/Anime/Virgo Sacred Geometry_PC.png",
+      "mobileOriginalKey": "originals/Anime/Virgo Sacred Geometry_MP.png",
+      "desktopEtag": "150457eafc432deb83c281fbd35e2c02",
+      "mobileEtag": "c5081e2908a59a3e760b3b77ba59ae83",
+      "desktopLastModified": "2026-05-11T11:21:29.167Z",
+      "mobileLastModified": "2026-05-11T11:21:28.696Z",
+      "desktopThumbKey": "thumbnails/Anime/virgo-sacred-geometry_PC.webp",
+      "mobileThumbKey": "thumbnails/Anime/virgo-sacred-geometry_MP.webp",
       "desktopWidth": 5016,
       "desktopHeight": 2823,
       "mobileWidth": 2559,

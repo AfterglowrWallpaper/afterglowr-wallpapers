@@ -109,6 +109,12 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://www.afterglowr.com/category/anime</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://www.afterglowr.com/wallpaper/cherry-blossoms-and-cat</loc>
     <lastmod>2026-05-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -816,6 +822,26 @@
     <image:image>
       <image:loc>https://cdn.afterglowr.com/thumbnails/Gaming/cs2-urban-firefight-2_PC.webp</image:loc>
       <image:title>CS2 Urban Firefight 2 4K Wallpaper</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.afterglowr.com/wallpaper/gemini-duality-wallpaper</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.afterglowr.com/thumbnails/Anime/gemini-duality-wallpaper_PC.webp</image:loc>
+      <image:title>Gemini Duality Wallpaper 4K Wallpaper</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.afterglowr.com/wallpaper/virgo-sacred-geometry</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.afterglowr.com/thumbnails/Anime/virgo-sacred-geometry_PC.webp</image:loc>
+      <image:title>Virgo Sacred Geometry 4K Wallpaper</image:title>
     </image:image>
   </url>
 </urlset>
