@@ -502,8 +502,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     let tagsData = {};
     try {
         const response = await fetch('/tags.json');
-        if (response.ok) {
+        const contentType = response.headers.get('content-type') || '';
+        if (response.ok && contentType.includes('application/json')) {
             tagsData = await response.json();
+        } else if (response.ok && contentType.includes('text/html')) {
+            console.info('tags.json is not configured; skipping tag overrides.');
         }
     } catch (e) {
         console.warn('Could not load tags.json', e);
