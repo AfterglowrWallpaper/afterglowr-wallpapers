@@ -1044,6 +1044,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         filtersSection.innerHTML = '';
+        filtersSection.classList.toggle('has-more', categories.length >= 6);
 
         const createButton = (filterValue, label, i18nKey = '') => {
             const button = document.createElement('button');
@@ -1057,9 +1058,44 @@ document.addEventListener('DOMContentLoaded', async () => {
         };
 
         filtersSection.appendChild(createButton('all', getCategoryFilterLabel('all'), 'filter_all'));
-        categories.forEach(category => {
-            filtersSection.appendChild(createButton(category, getCategoryFilterLabel(category)));
+
+        const primaryCategories = categories.slice(0, 5);
+
+        primaryCategories.forEach(category => {
+            const button = createButton(category, getCategoryFilterLabel(category));
+            button.classList.add('primary-category-btn');
+            filtersSection.appendChild(button);
         });
+
+        if (categories.length >= 6) {
+            const moreWrap = document.createElement('div');
+            moreWrap.className = 'category-more';
+
+            const moreButton = document.createElement('button');
+            moreButton.className = 'filter-btn category-more-toggle';
+            moreButton.type = 'button';
+            moreButton.setAttribute('aria-haspopup', 'menu');
+            moreButton.setAttribute('aria-expanded', 'false');
+            moreButton.textContent = 'More';
+            moreButton.classList.toggle('active', currentCategory !== 'all' && !primaryCategories.includes(currentCategory));
+
+            const menu = document.createElement('div');
+            menu.className = 'category-more-menu';
+            menu.setAttribute('role', 'menu');
+
+            categories.forEach((category, index) => {
+                const item = createButton(category, getCategoryFilterLabel(category));
+                item.classList.add('category-more-item');
+                item.setAttribute('role', 'menuitem');
+                if (index < 5) item.classList.add('is-primary-category');
+                item.classList.toggle('active', category === currentCategory);
+                menu.appendChild(item);
+            });
+
+            moreWrap.appendChild(moreButton);
+            moreWrap.appendChild(menu);
+            filtersSection.appendChild(moreWrap);
+        }
     }
 
     function getFilteredWallpapers() {
@@ -1279,8 +1315,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (filtersSection) {
         filtersSection.addEventListener('click', (event) => {
+            const moreToggle = event.target.closest('.category-more-toggle');
+            if (moreToggle && filtersSection.contains(moreToggle)) {
+                const moreWrap = moreToggle.closest('.category-more');
+                const isOpen = moreWrap?.classList.toggle('open');
+                moreToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                return;
+            }
+
             const btn = event.target.closest('.filter-btn');
-            if (!btn || !filtersSection.contains(btn)) return;
+            if (!btn || !filtersSection.contains(btn) || !btn.dataset.filter) return;
 
             currentCategory = btn.getAttribute('data-filter') || 'all';
             currentPage = 1;
@@ -1288,6 +1332,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             renderGallery({ updateUrl: true, smoothScroll: true });
         });
     }
+
+    document.addEventListener('click', (event) => {
+        if (!filtersSection || filtersSection.contains(event.target)) return;
+        const openMore = filtersSection.querySelector('.category-more.open');
+        if (!openMore) return;
+        openMore.classList.remove('open');
+        openMore.querySelector('.category-more-toggle')?.setAttribute('aria-expanded', 'false');
+    });
 
     const gallerySearchInput = document.getElementById('gallerySearchInput');
     const gallerySortSelect = document.getElementById('gallerySortSelect');

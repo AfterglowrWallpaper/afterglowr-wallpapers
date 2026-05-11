@@ -52,11 +52,14 @@
             <p data-i18n="hero_desc">Download cinematic wallpapers with realistic lighting, dark atmosphere, and no CGI feel.</p>
         </div>
         
-        <div class="category-filters animate-on-scroll">
-            <button class="filter-btn active" data-filter="all" data-i18n="filter_all">All</button>
+        <div class="gallery-toolbar animate-on-scroll">
+        <div class="category-filters-wrapper">
+            <div class="category-filters">
+                <button class="filter-btn active" data-filter="all" data-i18n="filter_all">All</button>
+            </div>
         </div>
 
-        <section class="gallery-tools animate-on-scroll" aria-label="Wallpaper search and sort controls">
+        <section class="gallery-tools" aria-label="Wallpaper search and sort controls">
             <div class="gallery-search-wrap">
                 <span class="gallery-search-icon">⌕</span>
                 <input id="gallerySearchInput" class="gallery-search-input" type="search" placeholder="Search wallpapers..." autocomplete="off" aria-label="Search wallpapers">
@@ -68,6 +71,7 @@
                 <option value="random">Random</option>
             </select>
         </section>
+        </div>
 
         <div class="gallery" id="gallery">
             <!-- Dynamically generated -->
