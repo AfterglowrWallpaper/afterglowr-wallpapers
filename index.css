@@ -4151,6 +4151,98 @@ footer {
 }
 
 /* 取消舊 emoji icon 的殘留影響 */
+.kofi-support-btn {
+    width: 100% !important;
+    min-height: 42px !important;
+    height: 42px !important;
+    padding: 10px 18px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    border-radius: 999px !important;
+    text-decoration: none !important;
+    font-size: 0.88rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.01em !important;
+    color: rgba(247, 242, 232, 0.86) !important;
+    background: rgba(255, 255, 255, 0.055) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 12px 28px rgba(0,0,0,0.18) !important;
+    backdrop-filter: blur(16px) saturate(130%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(130%) !important;
+    transition: transform .24s ease, color .24s ease, background .24s ease, border-color .24s ease !important;
+}
+
+@media (max-width: 900px) {
+    header.glass-header {
+        gap: 10px !important;
+    }
+
+    header.glass-header nav,
+    #navMenu {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        flex: 0 0 auto !important;
+    }
+
+    header.glass-header nav a,
+    #supportBtn {
+        display: inline-flex !important;
+        margin-left: 0 !important;
+        font-size: 0.82rem !important;
+        white-space: nowrap !important;
+    }
+
+    #langToggleBtn {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 34px !important;
+        padding: 6px 9px !important;
+        margin-right: 0 !important;
+        font-size: 0.78rem !important;
+        white-space: nowrap !important;
+    }
+
+    .logo img {
+        max-width: min(170px, 42vw) !important;
+    }
+}
+
+@media (max-width: 420px) {
+    header.glass-header {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    #supportBtn {
+        font-size: 0.78rem !important;
+    }
+
+    #langToggleBtn {
+        padding: 6px 8px !important;
+        font-size: 0.74rem !important;
+    }
+
+    .logo img {
+        max-width: min(150px, 38vw) !important;
+    }
+}
+
+.kofi-support-btn:hover {
+    transform: translateY(-2px) !important;
+    color: #fff !important;
+    background: rgba(240, 166, 92, 0.12) !important;
+    border-color: rgba(240, 166, 92, 0.34) !important;
+}
+
+#wallpaperModal .action-buttons .kofi-support-btn,
+#wallpaperView .wp-full-actions .kofi-support-btn {
+    order: 3 !important;
+}
+
 #downloadBtn .icon,
 #wpDownloadBtn .icon {
     display: none !important;

@@ -18,6 +18,21 @@ if (window.location.hostname !== LOCAL_HOSTNAME) {
 
 let currentLang = 'en';
 
+Object.assign(translations.en, {
+    filter_anime: 'Anime',
+    filter_cyberpunk: 'Cyberpunk',
+    copy_pinterest_text: 'Copy Pinterest Text',
+    kofi_support: 'Support the Project'
+});
+
+Object.assign(translations.zh, {
+    support: '支援',
+    filter_anime: '動漫',
+    filter_cyberpunk: '賽博龐克',
+    copy_pinterest_text: '複製 Pinterest 文字',
+    kofi_support: '支持創作'
+});
+
 function updateLangFromUrl() {
     const normalizedPath = normalizePathname(window.location.pathname);
     if (normalizedPath !== window.location.pathname) {
@@ -335,6 +350,13 @@ function applyTranslations() {
         langToggleBtn.textContent = currentLang === 'en' ? '🌐 中文' : '🌐 English';
     }
 
+}
+
+function updateHeaderLabels() {
+    const langToggleBtn = document.getElementById('langToggleBtn');
+    if (langToggleBtn) {
+        langToggleBtn.textContent = currentLang === 'en' ? '🌐 中文' : '🌐 English';
+    }
 }
 
 const SEO_TRAFFIC_PAGES = {
@@ -1762,6 +1784,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             window.history.pushState({}, '', targetPath);
             updateLangFromUrl();
             applyTranslations();
+            updateHeaderLabels();
             handleRoute();
         });
     }
@@ -2025,6 +2048,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         resetDownloadGateState();
         updateLangFromUrl();
         applyTranslations();
+        updateHeaderLabels();
         handleRoute();
     });
 
@@ -2499,6 +2523,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Initialize
 
     applyTranslations();
+    updateHeaderLabels();
     handleRoute();
     setupInfiniteScroll();
     setupRealtimeWallpaperEvents();
