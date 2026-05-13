@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-05-13T15:14:34.957Z",
+  "updatedAt": "2026-05-13T15:20:53.405Z",
   "records": [
     {
       "slug": "abandoned-blue-fishing-boat",
@@ -13,6 +13,38 @@
       "mobileLastModified": "2026-05-09T12:11:50.102Z",
       "desktopThumbKey": "thumbnails/Landscape/abandoned-blue-fishing-boat_PC.webp",
       "mobileThumbKey": "thumbnails/Landscape/abandoned-blue-fishing-boat_MP.webp",
+      "desktopWidth": 5016,
+      "desktopHeight": 2823,
+      "mobileWidth": 2559,
+      "mobileHeight": 5532
+    },
+    {
+      "slug": "aries-celestial-flame-goddess-wallpaper",
+      "category": "Anime",
+      "desktopOriginalKey": "originals/Anime/Aries Celestial Flame Goddess Wallpaper_PC.png",
+      "mobileOriginalKey": "originals/Anime/Aries Celestial Flame Goddess Wallpaper_MP.png",
+      "desktopEtag": "8979553062aaf3bd5c9b7be6a5119b53",
+      "mobileEtag": "c0518346a2bb1e0a3ea710319691733c",
+      "desktopLastModified": "2026-05-13T15:19:27.870Z",
+      "mobileLastModified": "2026-05-13T15:19:28.204Z",
+      "desktopThumbKey": "thumbnails/Anime/aries-celestial-flame-goddess-wallpaper_PC.webp",
+      "mobileThumbKey": "thumbnails/Anime/aries-celestial-flame-goddess-wallpaper_MP.webp",
+      "desktopWidth": 5016,
+      "desktopHeight": 2823,
+      "mobileWidth": 2559,
+      "mobileHeight": 5532
+    },
+    {
+      "slug": "aries-flame-sovereign-wallpaper",
+      "category": "Anime",
+      "desktopOriginalKey": "originals/Anime/Aries Flame Sovereign Wallpaper_PC.png",
+      "mobileOriginalKey": "originals/Anime/Aries Flame Sovereign Wallpaper_MP.png",
+      "desktopEtag": "2798a8839ba0ccabd0a1de8da994b1b2",
+      "mobileEtag": "463f401141359ebeb9e63ba3d5b0db25",
+      "desktopLastModified": "2026-05-13T15:19:28.129Z",
+      "mobileLastModified": "2026-05-13T15:19:27.685Z",
+      "desktopThumbKey": "thumbnails/Anime/aries-flame-sovereign-wallpaper_PC.webp",
+      "mobileThumbKey": "thumbnails/Anime/aries-flame-sovereign-wallpaper_MP.webp",
       "desktopWidth": 5016,
       "desktopHeight": 2823,
       "mobileWidth": 2559,

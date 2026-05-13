@@ -844,4 +844,24 @@
       <image:title>Virgo Sacred Geometry 4K Wallpaper</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://www.afterglowr.com/wallpaper/aries-celestial-flame-goddess-wallpaper</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.afterglowr.com/thumbnails/Anime/aries-celestial-flame-goddess-wallpaper_PC.webp</image:loc>
+      <image:title>Aries Celestial Flame Goddess Wallpaper 4K Wallpaper</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.afterglowr.com/wallpaper/aries-flame-sovereign-wallpaper</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.afterglowr.com/thumbnails/Anime/aries-flame-sovereign-wallpaper_PC.webp</image:loc>
+      <image:title>Aries Flame Sovereign Wallpaper 4K Wallpaper</image:title>
+    </image:image>
+  </url>
 </urlset>
