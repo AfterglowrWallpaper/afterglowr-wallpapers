@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-05-11T11:23:34.604Z",
+  "updatedAt": "2026-05-13T15:14:34.957Z",
   "records": [
     {
       "slug": "abandoned-blue-fishing-boat",
@@ -566,17 +566,17 @@
       "slug": "gemini-duality-wallpaper",
       "category": "Anime",
       "desktopOriginalKey": "originals/Anime/Gemini Duality Wallpaper_PC.png",
-      "mobileOriginalKey": null,
+      "mobileOriginalKey": "originals/Anime/Gemini Duality Wallpaper_MP.png",
       "desktopEtag": "245a0b14e549caba770bcb8117034996",
-      "mobileEtag": null,
+      "mobileEtag": "7b60fcb2d56442c1e78df402a165522f",
       "desktopLastModified": "2026-05-11T11:21:30.441Z",
-      "mobileLastModified": null,
+      "mobileLastModified": "2026-05-11T15:45:06.043Z",
       "desktopThumbKey": "thumbnails/Anime/gemini-duality-wallpaper_PC.webp",
-      "mobileThumbKey": null,
+      "mobileThumbKey": "thumbnails/Anime/gemini-duality-wallpaper_MP.webp",
       "desktopWidth": 5016,
       "desktopHeight": 2823,
-      "mobileWidth": null,
-      "mobileHeight": null
+      "mobileWidth": 2559,
+      "mobileHeight": 5532
     },
     {
       "slug": "giant-moon-over-calm-lake",
