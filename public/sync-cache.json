@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-05-13T15:20:53.405Z",
+  "updatedAt": "2026-05-14T15:56:29.989Z",
   "records": [
     {
       "slug": "abandoned-blue-fishing-boat",
@@ -1057,6 +1057,38 @@
       "desktopHeight": 2823,
       "mobileWidth": 2823,
       "mobileHeight": 5016
+    },
+    {
+      "slug": "taurus-celestial-garden-goddess-wallpaper",
+      "category": "Anime",
+      "desktopOriginalKey": "originals/Anime/Taurus Celestial Garden Goddess Wallpaper_PC.png",
+      "mobileOriginalKey": "originals/Anime/Taurus Celestial Garden Goddess Wallpaper_MP.png",
+      "desktopEtag": "5a132f14cc4575e5d002bf9034cd56b6",
+      "mobileEtag": "c98f13584bd88eb144d8430c62ffb2dc",
+      "desktopLastModified": "2026-05-14T15:54:38.003Z",
+      "mobileLastModified": "2026-05-14T15:54:37.755Z",
+      "desktopThumbKey": "thumbnails/Anime/taurus-celestial-garden-goddess-wallpaper_PC.webp",
+      "mobileThumbKey": "thumbnails/Anime/taurus-celestial-garden-goddess-wallpaper_MP.webp",
+      "desktopWidth": 5016,
+      "desktopHeight": 2823,
+      "mobileWidth": 2559,
+      "mobileHeight": 5532
+    },
+    {
+      "slug": "taurus-golden-sovereign-wallpaper",
+      "category": "Anime",
+      "desktopOriginalKey": "originals/Anime/Taurus Golden Sovereign Wallpaper_PC.png",
+      "mobileOriginalKey": "originals/Anime/Taurus Golden Sovereign Wallpaper_MP.png",
+      "desktopEtag": "69ba7221a0d55eb48afd90e5ef6c155c",
+      "mobileEtag": "ef7306c077ee10fb0f8008fadaea1c27",
+      "desktopLastModified": "2026-05-14T15:54:37.776Z",
+      "mobileLastModified": "2026-05-14T15:54:38.104Z",
+      "desktopThumbKey": "thumbnails/Anime/taurus-golden-sovereign-wallpaper_PC.webp",
+      "mobileThumbKey": "thumbnails/Anime/taurus-golden-sovereign-wallpaper_MP.webp",
+      "desktopWidth": 5016,
+      "desktopHeight": 2823,
+      "mobileWidth": 2559,
+      "mobileHeight": 5532
     },
     {
       "slug": "the-black-rider-general",

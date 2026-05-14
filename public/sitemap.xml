@@ -864,4 +864,24 @@
       <image:title>Aries Flame Sovereign Wallpaper 4K Wallpaper</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://www.afterglowr.com/wallpaper/taurus-celestial-garden-goddess-wallpaper</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.afterglowr.com/thumbnails/Anime/taurus-celestial-garden-goddess-wallpaper_PC.webp</image:loc>
+      <image:title>Taurus Celestial Garden Goddess Wallpaper 4K Wallpaper</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.afterglowr.com/wallpaper/taurus-golden-sovereign-wallpaper</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cdn.afterglowr.com/thumbnails/Anime/taurus-golden-sovereign-wallpaper_PC.webp</image:loc>
+      <image:title>Taurus Golden Sovereign Wallpaper 4K Wallpaper</image:title>
+    </image:image>
+  </url>
 </urlset>
