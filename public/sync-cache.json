@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-05-14T15:56:29.989Z",
+  "updatedAt": "2026-05-15T15:21:56.948Z",
   "records": [
     {
       "slug": "abandoned-blue-fishing-boat",
@@ -13,6 +13,38 @@
       "mobileLastModified": "2026-05-09T12:11:50.102Z",
       "desktopThumbKey": "thumbnails/Landscape/abandoned-blue-fishing-boat_PC.webp",
       "mobileThumbKey": "thumbnails/Landscape/abandoned-blue-fishing-boat_MP.webp",
+      "desktopWidth": 5016,
+      "desktopHeight": 2823,
+      "mobileWidth": 2559,
+      "mobileHeight": 5532
+    },
+    {
+      "slug": "aquarius-celestial-awakening-wallpaper",
+      "category": "Anime",
+      "desktopOriginalKey": "originals/Anime/Aquarius Celestial Awakening Wallpaper_PC.png",
+      "mobileOriginalKey": "originals/Anime/Aquarius Celestial Awakening Wallpaper_MP.png",
+      "desktopEtag": "cbae2a3166e868efc3a1067775334342",
+      "mobileEtag": "68fd69d74b586a7912f32b520ef45f1f",
+      "desktopLastModified": "2026-05-15T15:19:47.965Z",
+      "mobileLastModified": "2026-05-15T15:19:28.173Z",
+      "desktopThumbKey": "thumbnails/Anime/aquarius-celestial-awakening-wallpaper_PC.webp",
+      "mobileThumbKey": "thumbnails/Anime/aquarius-celestial-awakening-wallpaper_MP.webp",
+      "desktopWidth": 5016,
+      "desktopHeight": 2823,
+      "mobileWidth": 2559,
+      "mobileHeight": 5532
+    },
+    {
+      "slug": "aquarius-celestial-water-goddess-wallpaper",
+      "category": "Anime",
+      "desktopOriginalKey": "originals/Anime/Aquarius Celestial Water Goddess Wallpaper_PC.png",
+      "mobileOriginalKey": "originals/Anime/Aquarius Celestial Water Goddess Wallpaper_MP.png",
+      "desktopEtag": "177415e63ea4da0e4129cfdbb7ba507b",
+      "mobileEtag": "730ab605718d3337116e15e010b772c7",
+      "desktopLastModified": "2026-05-15T15:19:28.598Z",
+      "mobileLastModified": "2026-05-15T15:19:27.206Z",
+      "desktopThumbKey": "thumbnails/Anime/aquarius-celestial-water-goddess-wallpaper_PC.webp",
+      "mobileThumbKey": "thumbnails/Anime/aquarius-celestial-water-goddess-wallpaper_MP.webp",
       "desktopWidth": 5016,
       "desktopHeight": 2823,
       "mobileWidth": 2559,
