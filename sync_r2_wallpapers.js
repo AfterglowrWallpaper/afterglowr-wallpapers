@@ -17,6 +17,7 @@ const __dirname = path.dirname(__filename);
 const wallpapersFile = path.join(__dirname, 'public', 'wallpapers.json');
 const syncCacheFile = path.join(__dirname, 'public', 'sync-cache.json');
 const envFile = path.join(__dirname, '.env');
+const ADD_ONLY_MODE = process.argv.includes('--add-only');
 
 const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp']);
 const DEFAULT_TAGS = ['Premium', 'Aesthetic'];
@@ -658,6 +659,106 @@ function isWallpaperCachedUnchanged(item, cacheRecord, thumbnailsPrefix) {
   return types.every(type => isCachedTypeUnchanged(item, cacheRecord, type, thumbKeyFor(item, type, thumbnailsPrefix)));
 }
 
+async function prepareNewWallpaperItem({ client, bucket, item, tmpDir, thumbnailsPrefix }) {
+  const result = {
+    uploadedThumbnails: 0,
+    failedUploads: 0,
+  };
+
+  for (const type of ['desktop', 'mobile']) {
+    const originalKey = item[typeField(type, 'Key')];
+    if (!originalKey) continue;
+
+    const thumbKey = thumbKeyFor(item, type, thumbnailsPrefix);
+    const beforeExists = await objectExists(client, bucket, thumbKey);
+    const thumbnailResult = await ensureThumbnailSafe({
+      client,
+      bucket,
+      item,
+      originalKey,
+      type,
+      tmpDir,
+      thumbnailsPrefix,
+    });
+
+    item[typeField(type, 'ThumbKey')] = thumbnailResult.key;
+    if (thumbnailResult.failed) {
+      result.failedUploads += 1;
+    } else if (thumbnailResult.key && !beforeExists) {
+      result.uploadedThumbnails += 1;
+    }
+
+    await ensureImageMetadata({
+      client,
+      bucket,
+      item,
+      type,
+      cacheRecord: null,
+      cacheUnchanged: false,
+    });
+  }
+
+  return result;
+}
+
+async function runAddOnlySync({ client, bucket, discovered, tmpDir, thumbnailsPrefix }) {
+  const previousCache = readSyncCache();
+  const previousCacheBySlug = cacheBySlug(previousCache);
+  const existing = readExistingWallpapers();
+  const existingKeys = new Set(existing.flatMap(item => [item.id, item.slug]).filter(Boolean));
+  const newRecords = [];
+  const newCacheRecords = [];
+  let skippedExisting = 0;
+  let uploadedThumbnails = 0;
+  let failedUploads = 0;
+
+  for (const item of discovered.values()) {
+    if (!item.desktopKey && !item.mobileKey) continue;
+
+    const knownWallpaper = previousCacheBySlug.has(item.slug) || existingKeys.has(item.id) || existingKeys.has(item.slug);
+    if (knownWallpaper) {
+      skippedExisting += 1;
+      continue;
+    }
+
+    const prepared = await prepareNewWallpaperItem({
+      client,
+      bucket,
+      item,
+      tmpDir,
+      thumbnailsPrefix,
+    });
+    uploadedThumbnails += prepared.uploadedThumbnails;
+    failedUploads += prepared.failedUploads;
+
+    if (!hasRenderableThumbnail(item)) {
+      console.warn(`[R2 Add] Skipped ${item.slug}: desktop thumbnail was not available.`);
+      continue;
+    }
+
+    newRecords.push(toWallpaperRecord(item));
+    newCacheRecords.push(toCacheRecord(item));
+  }
+
+  if (newRecords.length > 0) {
+    newRecords.sort((a, b) => a.slug.localeCompare(b.slug));
+    writeWallpapers([...existing, ...newRecords]);
+    writeSyncCache([...(previousCache.records || []), ...newCacheRecords]);
+  }
+
+  console.log('[R2 Add] Mode: add-only');
+  console.log(`[R2 Add] new wallpapers: ${newRecords.length}`);
+  console.log(`[R2 Add] skipped existing: ${skippedExisting}`);
+  console.log(`[R2 Add] uploaded thumbnails: ${uploadedThumbnails}`);
+  console.log(`[R2 Add] failed uploads: ${failedUploads}`);
+  if (newRecords.length > 0) {
+    console.log(`[R2 Add] public/wallpapers.json appended with ${newRecords.length} records.`);
+    console.log(`[R2 Add] public/sync-cache.json appended with ${newCacheRecords.length} records.`);
+  } else {
+    console.log('[R2 Add] No new wallpapers found. Files were not rewritten.');
+  }
+}
+
 async function main() {
   loadEnvFile();
 
@@ -710,6 +811,17 @@ async function main() {
       }
     }
     throw new Error('Duplicate slugs found across categories. Resolve R2 originals before syncing.');
+  }
+
+  if (ADD_ONLY_MODE) {
+    await runAddOnlySync({
+      client,
+      bucket,
+      discovered,
+      tmpDir,
+      thumbnailsPrefix,
+    });
+    return;
   }
 
   let uploadedThumbnails = 0;
