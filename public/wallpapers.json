@@ -33,7 +33,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Animals/cherry-blossoms-and-cat_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Animals/cherry-blossoms-and-cat_MP.jpg"
   },
   {
     "id": "night-cat",
@@ -67,7 +69,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Animals/night-cat_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Animals/night-cat_MP.jpg"
   },
   {
     "id": "cs2-ak47-inheritance",
@@ -104,7 +108,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Gaming/cs2-ak47-inheritance_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Gaming/cs2-ak47-inheritance_MP.jpg"
   },
   {
     "id": "cs2-sir-bloody-loudmouth-darryl",
@@ -145,7 +151,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Gaming/cs2-sir-bloody-loudmouth-darryl_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Gaming/cs2-sir-bloody-loudmouth-darryl_MP.jpg"
   },
   {
     "id": "cs2-urban-firefight",
@@ -182,7 +190,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Gaming/cs2-urban-firefight_PC.jpg",
+    "mobileSocialImg": null
   },
   {
     "id": "abandoned-blue-fishing-boat",
@@ -220,7 +230,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/abandoned-blue-fishing-boat_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/abandoned-blue-fishing-boat_MP.jpg"
   },
   {
     "id": "aurora-over-a-winter-cabin",
@@ -258,7 +270,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/aurora-over-a-winter-cabin_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/aurora-over-a-winter-cabin_MP.jpg"
   },
   {
     "id": "aurora-over-frozen-fantasy-mountains",
@@ -298,7 +312,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/aurora-over-frozen-fantasy-mountains_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/aurora-over-frozen-fantasy-mountains_MP.jpg"
   },
   {
     "id": "beyond-the-clouds",
@@ -332,7 +348,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/beyond-the-clouds_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/beyond-the-clouds_MP.jpg"
   },
   {
     "id": "cliffside-stone-city-at-sunrise",
@@ -370,7 +388,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/cliffside-stone-city-at-sunrise_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/cliffside-stone-city-at-sunrise_MP.jpg"
   },
   {
     "id": "cyberpunk-big-ben",
@@ -406,7 +426,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-big-ben_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-big-ben_MP.jpg"
   },
   {
     "id": "cyberpunk-burj-khalifa",
@@ -442,7 +464,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-burj-khalifa_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-burj-khalifa_MP.jpg"
   },
   {
     "id": "cyberpunk-oriental-pearl-tower",
@@ -480,7 +504,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-oriental-pearl-tower_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-oriental-pearl-tower_MP.jpg"
   },
   {
     "id": "cyberpunk-petronas-twin-towers",
@@ -518,7 +544,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-petronas-twin-towers_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-petronas-twin-towers_MP.jpg"
   },
   {
     "id": "cyberpunk-shibuya-crossing",
@@ -554,7 +582,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-shibuya-crossing_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-shibuya-crossing_MP.jpg"
   },
   {
     "id": "cyberpunk-shinsaibashi-2",
@@ -590,7 +620,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-shinsaibashi-2_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-shinsaibashi-2_MP.jpg"
   },
   {
     "id": "cyberpunk-shinsaibashi",
@@ -624,7 +656,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-shinsaibashi_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-shinsaibashi_MP.jpg"
   },
   {
     "id": "cyberpunk-sydney-opera-house",
@@ -662,7 +696,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-sydney-opera-house_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-sydney-opera-house_MP.jpg"
   },
   {
     "id": "cyberpunk-taipei-101",
@@ -698,7 +734,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-taipei-101_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-taipei-101_MP.jpg"
   },
   {
     "id": "cyberpunk-tokyo-tower",
@@ -734,7 +772,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-tokyo-tower_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-tokyo-tower_MP.jpg"
   },
   {
     "id": "cyberpunk-victoria-harbour",
@@ -770,7 +810,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-victoria-harbour_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Cyberpunk/cyberpunk-victoria-harbour_MP.jpg"
   },
   {
     "id": "floating-cliffs-and-endless-waterfalls",
@@ -808,7 +850,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/floating-cliffs-and-endless-waterfalls_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/floating-cliffs-and-endless-waterfalls_MP.jpg"
   },
   {
     "id": "floating-mountain-waterfalls",
@@ -844,7 +888,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/floating-mountain-waterfalls_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/floating-mountain-waterfalls_MP.jpg"
   },
   {
     "id": "giant-moon-over-calm-lake",
@@ -884,7 +930,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/giant-moon-over-calm-lake_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/giant-moon-over-calm-lake_MP.jpg"
   },
   {
     "id": "glowing-mystical-forest-at-night",
@@ -922,7 +970,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/glowing-mystical-forest-at-night_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/glowing-mystical-forest-at-night_MP.jpg"
   },
   {
     "id": "golden-sunrise-over-the-mountains",
@@ -960,7 +1010,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/golden-sunrise-over-the-mountains_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/golden-sunrise-over-the-mountains_MP.jpg"
   },
   {
     "id": "lonely-mountain-road-in-the-rain",
@@ -998,7 +1050,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/lonely-mountain-road-in-the-rain_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/lonely-mountain-road-in-the-rain_MP.jpg"
   },
   {
     "id": "midnight-forest",
@@ -1032,7 +1086,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/midnight-forest_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/midnight-forest_MP.jpg"
   },
   {
     "id": "milky-way-over-desert-dunes",
@@ -1072,7 +1128,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/milky-way-over-desert-dunes_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/milky-way-over-desert-dunes_MP.jpg"
   },
   {
     "id": "milky-way-over-the-ocean",
@@ -1110,7 +1168,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/milky-way-over-the-ocean_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/milky-way-over-the-ocean_MP.jpg"
   },
   {
     "id": "misty-ancient-forest",
@@ -1146,7 +1206,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/misty-ancient-forest_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/misty-ancient-forest_MP.jpg"
   },
   {
     "id": "morning-fog-in-a-pine-forest",
@@ -1184,7 +1246,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/morning-fog-in-a-pine-forest_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/morning-fog-in-a-pine-forest_MP.jpg"
   },
   {
     "id": "pink-white-and-blue-santorini",
@@ -1224,7 +1288,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/pink-white-and-blue-santorini_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/pink-white-and-blue-santorini_MP.jpg"
   },
   {
     "id": "rainy-morning-on-a-london-street",
@@ -1262,7 +1328,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/rainy-morning-on-a-london-street_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/rainy-morning-on-a-london-street_MP.jpg"
   },
   {
     "id": "rocky-coast-sunset",
@@ -1298,7 +1366,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/rocky-coast-sunset_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/rocky-coast-sunset_MP.jpg"
   },
   {
     "id": "sunlight-in-an-old-library",
@@ -1334,7 +1404,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/sunlight-in-an-old-library_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/sunlight-in-an-old-library_MP.jpg"
   },
   {
     "id": "sunlight-in-the-deep-canyon",
@@ -1370,7 +1442,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/sunlight-in-the-deep-canyon_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/sunlight-in-the-deep-canyon_MP.jpg"
   },
   {
     "id": "sunset-canyon-river",
@@ -1406,7 +1480,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/sunset-canyon-river_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/sunset-canyon-river_MP.jpg"
   },
   {
     "id": "the-secret-gorge",
@@ -1440,7 +1516,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/the-secret-gorge_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/the-secret-gorge_MP.jpg"
   },
   {
     "id": "together-under-the-aurora",
@@ -1474,7 +1552,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/together-under-the-aurora_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/together-under-the-aurora_MP.jpg"
   },
   {
     "id": "urban-light-trails",
@@ -1510,7 +1590,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Landscape/urban-light-trails_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Landscape/urban-light-trails_MP.jpg"
   },
   {
     "id": "arrogant-dark-noble",
@@ -1546,7 +1628,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Portrait/arrogant-dark-noble_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Portrait/arrogant-dark-noble_MP.jpg"
   },
   {
     "id": "beautiful-lady-in-black",
@@ -1582,7 +1666,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Portrait/beautiful-lady-in-black_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Portrait/beautiful-lady-in-black_MP.jpg"
   },
   {
     "id": "blossom-sunset-elegance",
@@ -1618,7 +1704,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Portrait/blossom-sunset-elegance_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Portrait/blossom-sunset-elegance_MP.jpg"
   },
   {
     "id": "dark-empress-queen",
@@ -1654,7 +1742,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Portrait/dark-empress-queen_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Portrait/dark-empress-queen_MP.jpg"
   },
   {
     "id": "dark-knights-charge",
@@ -1691,7 +1781,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Portrait/dark-knights-charge_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Portrait/dark-knights-charge_MP.jpg"
   },
   {
     "id": "dark-spear-warlord",
@@ -1727,7 +1819,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Portrait/dark-spear-warlord_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Portrait/dark-spear-warlord_MP.jpg"
   },
   {
     "id": "divine-charge",
@@ -1761,7 +1855,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Portrait/divine-charge_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Portrait/divine-charge_MP.jpg"
   },
   {
     "id": "fantasy-blue-lady",
@@ -1797,7 +1893,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Portrait/fantasy-blue-lady_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Portrait/fantasy-blue-lady_MP.jpg"
   },
   {
     "id": "imperial-crimson",
@@ -1831,7 +1929,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Portrait/imperial-crimson_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Portrait/imperial-crimson_MP.jpg"
   },
   {
     "id": "moonlit-farewell",
@@ -1865,7 +1965,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Portrait/moonlit-farewell_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Portrait/moonlit-farewell_MP.jpg"
   },
   {
     "id": "moonlit-warriors-epic-wuxia-couple-wallpaper",
@@ -1907,7 +2009,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Portrait/moonlit-warriors-epic-wuxia-couple-wallpaper_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Portrait/moonlit-warriors-epic-wuxia-couple-wallpaper_MP.jpg"
   },
   {
     "id": "snowfall-serenity",
@@ -1941,7 +2045,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Portrait/snowfall-serenity_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Portrait/snowfall-serenity_MP.jpg"
   },
   {
     "id": "the-black-rider-general",
@@ -1978,7 +2084,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Portrait/the-black-rider-general_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Portrait/the-black-rider-general_MP.jpg"
   },
   {
     "id": "white-haired-swordsman",
@@ -2015,7 +2123,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Portrait/white-haired-swordsman_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Portrait/white-haired-swordsman_MP.jpg"
   },
   {
     "id": "betta-in-silence",
@@ -2049,7 +2159,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Vibe/betta-in-silence_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Vibe/betta-in-silence_MP.jpg"
   },
   {
     "id": "black-rose",
@@ -2083,7 +2195,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Vibe/black-rose_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Vibe/black-rose_MP.jpg"
   },
   {
     "id": "cozy-night-retreat",
@@ -2119,7 +2233,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Vibe/cozy-night-retreat_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Vibe/cozy-night-retreat_MP.jpg"
   },
   {
     "id": "dark-headphones-wallpaper",
@@ -2155,7 +2271,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Vibe/dark-headphones-wallpaper_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Vibe/dark-headphones-wallpaper_MP.jpg"
   },
   {
     "id": "handwritten-letter-background",
@@ -2191,7 +2309,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Vibe/handwritten-letter-background_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Vibe/handwritten-letter-background_MP.jpg"
   },
   {
     "id": "lonely-rooftop-night",
@@ -2227,7 +2347,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Vibe/lonely-rooftop-night_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Vibe/lonely-rooftop-night_MP.jpg"
   },
   {
     "id": "message-in-a-bottle",
@@ -2261,7 +2383,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Vibe/message-in-a-bottle_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Vibe/message-in-a-bottle_MP.jpg"
   },
   {
     "id": "moonlit-piano",
@@ -2295,7 +2419,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Vibe/moonlit-piano_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Vibe/moonlit-piano_MP.jpg"
   },
   {
     "id": "morning-quiet",
@@ -2329,7 +2455,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Vibe/morning-quiet_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Vibe/morning-quiet_MP.jpg"
   },
   {
     "id": "rainy-caf-table",
@@ -2366,7 +2494,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Vibe/rainy-caf-table_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Vibe/rainy-caf-table_MP.jpg"
   },
   {
     "id": "rainy-industrial-loft-workspace",
@@ -2404,7 +2534,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Vibe/rainy-industrial-loft-workspace_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Vibe/rainy-industrial-loft-workspace_MP.jpg"
   },
   {
     "id": "rustic-workshop-wallpaper",
@@ -2440,7 +2572,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Vibe/rustic-workshop-wallpaper_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Vibe/rustic-workshop-wallpaper_MP.jpg"
   },
   {
     "id": "urban-contemplation",
@@ -2474,7 +2608,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Vibe/urban-contemplation_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Vibe/urban-contemplation_MP.jpg"
   },
   {
     "id": "vintage-film-camera-wallpaper",
@@ -2512,7 +2648,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Vibe/vintage-film-camera-wallpaper_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Vibe/vintage-film-camera-wallpaper_MP.jpg"
   },
   {
     "id": "whiskey-on-the-jazz-bar-counter",
@@ -2550,7 +2688,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Vibe/whiskey-on-the-jazz-bar-counter_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Vibe/whiskey-on-the-jazz-bar-counter_MP.jpg"
   },
   {
     "id": "cs2-urban-firefight-2",
@@ -2588,7 +2728,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Gaming/cs2-urban-firefight-2_PC.jpg",
+    "mobileSocialImg": null
   },
   {
     "id": "gemini-duality-wallpaper",
@@ -2624,7 +2766,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Anime/gemini-duality-wallpaper_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Anime/gemini-duality-wallpaper_MP.jpg"
   },
   {
     "id": "virgo-sacred-geometry",
@@ -2660,7 +2804,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Anime/virgo-sacred-geometry_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Anime/virgo-sacred-geometry_MP.jpg"
   },
   {
     "id": "aries-celestial-flame-goddess-wallpaper",
@@ -2700,7 +2846,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Anime/aries-celestial-flame-goddess-wallpaper_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Anime/aries-celestial-flame-goddess-wallpaper_MP.jpg"
   },
   {
     "id": "aries-flame-sovereign-wallpaper",
@@ -2738,7 +2886,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Anime/aries-flame-sovereign-wallpaper_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Anime/aries-flame-sovereign-wallpaper_MP.jpg"
   },
   {
     "id": "taurus-celestial-garden-goddess-wallpaper",
@@ -2778,7 +2928,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Anime/taurus-celestial-garden-goddess-wallpaper_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Anime/taurus-celestial-garden-goddess-wallpaper_MP.jpg"
   },
   {
     "id": "taurus-golden-sovereign-wallpaper",
@@ -2816,7 +2968,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Anime/taurus-golden-sovereign-wallpaper_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Anime/taurus-golden-sovereign-wallpaper_MP.jpg"
   },
   {
     "id": "aquarius-celestial-awakening-wallpaper",
@@ -2854,7 +3008,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Anime/aquarius-celestial-awakening-wallpaper_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Anime/aquarius-celestial-awakening-wallpaper_MP.jpg"
   },
   {
     "id": "aquarius-celestial-water-goddess-wallpaper",
@@ -2894,7 +3050,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Anime/aquarius-celestial-water-goddess-wallpaper_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Anime/aquarius-celestial-water-goddess-wallpaper_MP.jpg"
   },
   {
     "id": "gemini-duality-anime-zodiac-wallpaper",
@@ -2933,7 +3091,9 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Anime/gemini-duality-anime-zodiac-wallpaper_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Anime/gemini-duality-anime-zodiac-wallpaper_MP.jpg"
   },
   {
     "id": "gemini-twin-celestial-goddess-wallpaper",
@@ -2973,6 +3133,8 @@
       "mobile wallpaper",
       "free wallpaper",
       "aesthetic wallpaper"
-    ]
+    ],
+    "desktopSocialImg": "https://cdn.afterglowr.com/social/Anime/gemini-twin-celestial-goddess-wallpaper_PC.jpg",
+    "mobileSocialImg": "https://cdn.afterglowr.com/social/Anime/gemini-twin-celestial-goddess-wallpaper_MP.jpg"
   }
 ]

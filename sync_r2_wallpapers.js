@@ -18,6 +18,7 @@ const wallpapersFile = path.join(__dirname, 'public', 'wallpapers.json');
 const syncCacheFile = path.join(__dirname, 'public', 'sync-cache.json');
 const envFile = path.join(__dirname, '.env');
 const ADD_ONLY_MODE = process.argv.includes('--add-only');
+const WATERMARK_TEXT = 'afterglowr.com';
 
 const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp']);
 const DEFAULT_TAGS = ['Premium', 'Aesthetic'];
@@ -259,7 +260,12 @@ function thumbKeyFor(item, type, thumbnailsPrefix) {
   return `${thumbnailsPrefix}${item.category}/${item.slug}_${suffix}.webp`;
 }
 
-function thumbUrlForKey(key) {
+function socialKeyFor(item, type, socialPrefix) {
+  const suffix = type === 'mobile' ? 'MP' : 'PC';
+  return `${socialPrefix}${item.category}/${item.slug}_${suffix}.jpg`;
+}
+
+function mediaUrlForKey(key) {
   const safeKey = key.replace(/^\/+/, '');
   const cdnBaseUrl = process.env.R2_CDN_BASE_URL;
   if (cdnBaseUrl) {
@@ -267,6 +273,14 @@ function thumbUrlForKey(key) {
   }
 
   return `/${safeKey}`;
+}
+
+function thumbUrlForKey(key) {
+  return mediaUrlForKey(key);
+}
+
+function socialUrlForKey(key) {
+  return mediaUrlForKey(key);
 }
 
 function normalizeEtag(etag) {
@@ -393,6 +407,40 @@ async function uploadWebp(client, bucket, key, filePath) {
   }));
 }
 
+async function uploadJpeg(client, bucket, key, filePath) {
+  await client.send(new PutObjectCommand({
+    Bucket: bucket,
+    Key: key,
+    Body: fs.readFileSync(filePath),
+    ContentType: 'image/jpeg',
+    CacheControl: 'public, max-age=31536000, immutable',
+  }));
+}
+
+function watermarkSvg(width, height) {
+  const fontSize = Math.max(22, Math.min(34, Math.round(Math.min(width, height) * 0.028)));
+  const padding = Math.round(fontSize * 0.85);
+  const textWidth = Math.round(fontSize * 8.2);
+  const boxWidth = textWidth + padding * 2;
+  const boxHeight = Math.round(fontSize * 2.05);
+  const x = width - boxWidth - padding;
+  const y = height - boxHeight - padding;
+  const textX = width - padding * 2;
+  const textY = y + Math.round(boxHeight * 0.64);
+
+  return Buffer.from(`
+    <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.45"/>
+        </filter>
+      </defs>
+      <rect x="${x}" y="${y}" width="${boxWidth}" height="${boxHeight}" rx="${Math.round(fontSize * 0.45)}" fill="rgba(0,0,0,0.34)" filter="url(#soft-shadow)"/>
+      <text x="${textX}" y="${textY}" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="${fontSize}" font-weight="600" letter-spacing="0.6" fill="rgba(255,255,255,0.68)">${WATERMARK_TEXT}</text>
+    </svg>
+  `);
+}
+
 function addOriginalToMap(map, parsed) {
   if (!map.has(parsed.slug)) {
     map.set(parsed.slug, {
@@ -413,6 +461,12 @@ function addOriginalToMap(map, parsed) {
       mobileHeight: null,
       desktopThumbKey: null,
       mobileThumbKey: null,
+      desktopSocialKey: null,
+      mobileSocialKey: null,
+      desktopSocialUrl: null,
+      mobileSocialUrl: null,
+      desktopSocialEtag: null,
+      mobileSocialEtag: null,
       sourceCategories: new Set([parsed.category]),
       sourceKeys: [parsed.key],
     });
@@ -480,6 +534,51 @@ async function ensureThumbnailSafe(options) {
   }
 }
 
+async function generateSocialImage({ client, bucket, item, originalKey, type, tmpDir, socialPrefix }) {
+  if (!originalKey) return null;
+
+  const socialKey = socialKeyFor(item, type, socialPrefix);
+  const originalExt = path.extname(originalKey) || '.img';
+  const originalPath = path.join(tmpDir, `${item.slug}_${type}_social_source${originalExt}`);
+  const jpgPath = path.join(tmpDir, `${item.slug}_${type}_social.jpg`);
+
+  console.log(`[R2 Sync] Generating social image: ${socialKey}`);
+  await downloadObject(client, bucket, originalKey, originalPath);
+
+  const { data, info } = await sharp(originalPath)
+    .rotate()
+    .resize({
+      width: 1600,
+      height: 1600,
+      fit: 'inside',
+      withoutEnlargement: true,
+    })
+    .toBuffer({ resolveWithObject: true });
+
+  await sharp(data)
+    .composite([{ input: watermarkSvg(info.width, info.height), blend: 'over' }])
+    .jpeg({ quality: 82, mozjpeg: true })
+    .toFile(jpgPath);
+
+  await uploadJpeg(client, bucket, socialKey, jpgPath);
+  if (!await objectExists(client, bucket, socialKey)) {
+    throw new Error(`Social image upload verification failed: ${socialKey}`);
+  }
+
+  console.log(`[R2 Sync] Uploaded social image: ${socialKey}`);
+  return socialKey;
+}
+
+async function ensureSocialSafe(options) {
+  try {
+    const key = await generateSocialImage(options);
+    return key ? { key, failed: false } : { key: null, failed: false };
+  } catch (error) {
+    console.warn(`[R2 Sync] Social image failed for ${options.originalKey}: ${error.message}`);
+    return { key: null, failed: true };
+  }
+}
+
 function typeField(type, field) {
   return `${type}${field}`;
 }
@@ -491,6 +590,24 @@ function isCachedTypeUnchanged(item, cacheRecord, type, thumbKey) {
     && cacheRecord[typeField(type, 'Etag')] === item[typeField(type, 'Etag')]
     && cacheRecord[typeField(type, 'LastModified')] === item[typeField(type, 'LastModified')]
     && cacheRecord[typeField(type, 'ThumbKey')] === thumbKey;
+}
+
+function isCachedOriginalUnchanged(item, cacheRecord, type) {
+  if (!cacheRecord) return false;
+
+  return cacheRecord[typeField(type, 'OriginalKey')] === item[typeField(type, 'Key')]
+    && cacheRecord[typeField(type, 'Etag')] === item[typeField(type, 'Etag')]
+    && cacheRecord[typeField(type, 'LastModified')] === item[typeField(type, 'LastModified')];
+}
+
+function isCachedSocialUnchanged(item, cacheRecord, type, socialKey) {
+  if (!cacheRecord || !socialKey) return false;
+  const cachedSocialKey = cacheRecord[typeField(type, 'SocialKey')];
+  const cachedSocialEtag = cacheRecord[typeField(type, 'SocialEtag')];
+
+  return isCachedOriginalUnchanged(item, cacheRecord, type)
+    && (!cachedSocialKey || cachedSocialKey === socialKey)
+    && (!cachedSocialEtag || cachedSocialEtag === item[typeField(type, 'Etag')]);
 }
 
 function hasCachedDimensions(cacheRecord, type) {
@@ -552,6 +669,40 @@ async function ensureThumbnailIncremental({ client, bucket, item, type, tmpDir, 
   };
 }
 
+async function ensureSocialIncremental({ client, bucket, item, type, tmpDir, socialPrefix, cacheRecord }) {
+  const originalKey = item[typeField(type, 'Key')];
+  if (!originalKey) {
+    return { key: null, failed: false, uploaded: false, skipped: false, unchanged: false };
+  }
+
+  const socialKey = socialKeyFor(item, type, socialPrefix);
+  const cacheUnchanged = isCachedSocialUnchanged(item, cacheRecord, type, socialKey);
+  const exists = await objectExists(client, bucket, socialKey);
+
+  if (cacheUnchanged && exists) {
+    console.log(`[R2 Sync] Unchanged social image skipped: ${socialKey}`);
+    return { key: socialKey, failed: false, uploaded: false, skipped: true, unchanged: true };
+  }
+
+  const result = await ensureSocialSafe({
+    client,
+    bucket,
+    item,
+    originalKey,
+    type,
+    tmpDir,
+    socialPrefix,
+  });
+
+  return {
+    key: result.key,
+    failed: result.failed,
+    uploaded: Boolean(result.key && !result.failed),
+    skipped: false,
+    unchanged: false,
+  };
+}
+
 function toWallpaperRecord(item) {
   const resolution = formatResolution(item.desktopWidth, item.desktopHeight)
     || formatResolution(item.mobileWidth, item.mobileHeight)
@@ -566,6 +717,8 @@ function toWallpaperRecord(item) {
     category: item.category,
     desktopImg: item.desktopThumbKey ? thumbUrlForKey(item.desktopThumbKey) : null,
     mobileImg: item.mobileThumbKey ? thumbUrlForKey(item.mobileThumbKey) : null,
+    desktopSocialImg: item.desktopSocialKey ? socialUrlForKey(item.desktopSocialKey) : null,
+    mobileSocialImg: item.mobileSocialKey ? socialUrlForKey(item.mobileSocialKey) : null,
     desktopOriginalKey: item.desktopKey || null,
     mobileOriginalKey: item.mobileKey || null,
     hasMobile: Boolean(item.mobileKey),
@@ -606,6 +759,8 @@ function mergeWallpaperRecord(existing, generated) {
     category: generated.category,
     desktopImg: generated.desktopImg || null,
     mobileImg: generated.mobileImg || null,
+    desktopSocialImg: generated.desktopSocialImg || existing.desktopSocialImg || null,
+    mobileSocialImg: generated.mobileSocialImg || existing.mobileSocialImg || null,
     desktopOriginalKey: generated.desktopOriginalKey || null,
     mobileOriginalKey: generated.mobileOriginalKey || null,
     hasDesktop: generated.hasDesktop,
@@ -644,6 +799,12 @@ function toCacheRecord(item) {
     mobileLastModified: item.mobileLastModified || null,
     desktopThumbKey: item.desktopThumbKey || null,
     mobileThumbKey: item.mobileThumbKey || null,
+    desktopSocialKey: item.desktopSocialKey || null,
+    mobileSocialKey: item.mobileSocialKey || null,
+    desktopSocialUrl: item.desktopSocialKey ? socialUrlForKey(item.desktopSocialKey) : null,
+    mobileSocialUrl: item.mobileSocialKey ? socialUrlForKey(item.mobileSocialKey) : null,
+    desktopSocialEtag: item.desktopSocialKey ? item.desktopEtag || null : null,
+    mobileSocialEtag: item.mobileSocialKey ? item.mobileEtag || null : null,
     desktopWidth: item.desktopWidth || null,
     desktopHeight: item.desktopHeight || null,
     mobileWidth: item.mobileWidth || null,
@@ -656,12 +817,14 @@ function isWallpaperCachedUnchanged(item, cacheRecord, thumbnailsPrefix) {
   const types = ['desktop', 'mobile'].filter(type => item[typeField(type, 'Key')]);
   if (types.length === 0) return false;
 
-  return types.every(type => isCachedTypeUnchanged(item, cacheRecord, type, thumbKeyFor(item, type, thumbnailsPrefix)));
+  return types.every(type => isCachedTypeUnchanged(item, cacheRecord, type, thumbKeyFor(item, type, thumbnailsPrefix))
+    && isCachedSocialUnchanged(item, cacheRecord, type, item[typeField(type, 'SocialKey')]));
 }
 
-async function prepareNewWallpaperItem({ client, bucket, item, tmpDir, thumbnailsPrefix }) {
+async function prepareNewWallpaperItem({ client, bucket, item, tmpDir, thumbnailsPrefix, socialPrefix }) {
   const result = {
     uploadedThumbnails: 0,
+    uploadedSocialImages: 0,
     failedUploads: 0,
   };
 
@@ -688,6 +851,22 @@ async function prepareNewWallpaperItem({ client, bucket, item, tmpDir, thumbnail
       result.uploadedThumbnails += 1;
     }
 
+    const socialResult = await ensureSocialIncremental({
+      client,
+      bucket,
+      item,
+      type,
+      tmpDir,
+      socialPrefix,
+      cacheRecord: null,
+    });
+    item[typeField(type, 'SocialKey')] = socialResult.key;
+    if (socialResult.failed) {
+      result.failedUploads += 1;
+    } else if (socialResult.uploaded) {
+      result.uploadedSocialImages += 1;
+    }
+
     await ensureImageMetadata({
       client,
       bucket,
@@ -701,7 +880,7 @@ async function prepareNewWallpaperItem({ client, bucket, item, tmpDir, thumbnail
   return result;
 }
 
-async function runAddOnlySync({ client, bucket, discovered, tmpDir, thumbnailsPrefix }) {
+async function runAddOnlySync({ client, bucket, discovered, tmpDir, thumbnailsPrefix, socialPrefix }) {
   const previousCache = readSyncCache();
   const previousCacheBySlug = cacheBySlug(previousCache);
   const existing = readExistingWallpapers();
@@ -710,6 +889,7 @@ async function runAddOnlySync({ client, bucket, discovered, tmpDir, thumbnailsPr
   const newCacheRecords = [];
   let skippedExisting = 0;
   let uploadedThumbnails = 0;
+  let uploadedSocialImages = 0;
   let failedUploads = 0;
 
   for (const item of discovered.values()) {
@@ -727,8 +907,10 @@ async function runAddOnlySync({ client, bucket, discovered, tmpDir, thumbnailsPr
       item,
       tmpDir,
       thumbnailsPrefix,
+      socialPrefix,
     });
     uploadedThumbnails += prepared.uploadedThumbnails;
+    uploadedSocialImages += prepared.uploadedSocialImages;
     failedUploads += prepared.failedUploads;
 
     if (!hasRenderableThumbnail(item)) {
@@ -750,6 +932,7 @@ async function runAddOnlySync({ client, bucket, discovered, tmpDir, thumbnailsPr
   console.log(`[R2 Add] new wallpapers: ${newRecords.length}`);
   console.log(`[R2 Add] skipped existing: ${skippedExisting}`);
   console.log(`[R2 Add] uploaded thumbnails: ${uploadedThumbnails}`);
+  console.log(`[R2 Add] uploaded social images: ${uploadedSocialImages}`);
   console.log(`[R2 Add] failed uploads: ${failedUploads}`);
   if (newRecords.length > 0) {
     console.log(`[R2 Add] public/wallpapers.json appended with ${newRecords.length} records.`);
@@ -768,6 +951,7 @@ async function main() {
   const bucket = process.env.R2_BUCKET_NAME || 'afterglowr-originals';
   const originalsPrefix = normalizePrefix(process.env.R2_PREFIX_ORIGINALS || 'originals');
   const thumbnailsPrefix = normalizePrefix(process.env.R2_PREFIX_THUMBNAILS || 'thumbnails');
+  const socialPrefix = normalizePrefix(process.env.R2_PREFIX_SOCIAL || 'social');
   const tmpDir = process.env.R2_SYNC_TMP_DIR
     ? path.resolve(process.env.R2_SYNC_TMP_DIR)
     : fs.mkdtempSync(path.join(os.tmpdir(), 'afterglowr-r2-sync-'));
@@ -783,6 +967,7 @@ async function main() {
   console.log(`[R2 Sync] Bucket: ${bucket}`);
   console.log(`[R2 Sync] Scanning originals prefix: ${originalsPrefix}`);
   console.log(`[R2 Sync] Writing thumbnails prefix: ${thumbnailsPrefix}`);
+  console.log(`[R2 Sync] Writing social prefix: ${socialPrefix}`);
 
   const previousCache = readSyncCache();
   const previousCacheBySlug = cacheBySlug(previousCache);
@@ -820,6 +1005,7 @@ async function main() {
       discovered,
       tmpDir,
       thumbnailsPrefix,
+      socialPrefix,
     });
     return;
   }
@@ -827,6 +1013,9 @@ async function main() {
   let uploadedThumbnails = 0;
   let skippedThumbnails = 0;
   let failedThumbnails = 0;
+  let uploadedSocialImages = 0;
+  let skippedSocialImages = 0;
+  let failedSocialImages = 0;
 
   for (const item of discovered.values()) {
     if (!item.desktopKey && !item.mobileKey) continue;
@@ -855,6 +1044,19 @@ async function main() {
         cacheRecord,
         cacheUnchanged: desktopResult.unchanged,
       });
+      const desktopSocialResult = await ensureSocialIncremental({
+        client,
+        bucket,
+        item,
+        type: 'desktop',
+        tmpDir,
+        socialPrefix,
+        cacheRecord,
+      });
+      item.desktopSocialKey = desktopSocialResult.key;
+      if (desktopSocialResult.failed) failedSocialImages += 1;
+      else if (desktopSocialResult.uploaded) uploadedSocialImages += 1;
+      else if (desktopSocialResult.skipped) skippedSocialImages += 1;
     }
 
     if (item.mobileKey) {
@@ -879,6 +1081,19 @@ async function main() {
         cacheRecord,
         cacheUnchanged: mobileResult.unchanged,
       });
+      const mobileSocialResult = await ensureSocialIncremental({
+        client,
+        bucket,
+        item,
+        type: 'mobile',
+        tmpDir,
+        socialPrefix,
+        cacheRecord,
+      });
+      item.mobileSocialKey = mobileSocialResult.key;
+      if (mobileSocialResult.failed) failedSocialImages += 1;
+      else if (mobileSocialResult.uploaded) uploadedSocialImages += 1;
+      else if (mobileSocialResult.skipped) skippedSocialImages += 1;
     }
   }
 
@@ -933,6 +1148,9 @@ async function main() {
   console.log(`[R2 Sync] thumbnails uploaded: ${uploadedThumbnails}`);
   console.log(`[R2 Sync] thumbnails skipped: ${skippedThumbnails}`);
   console.log(`[R2 Sync] failed thumbnails: ${failedThumbnails}`);
+  console.log(`[R2 Sync] social images uploaded: ${uploadedSocialImages}`);
+  console.log(`[R2 Sync] social images skipped: ${skippedSocialImages}`);
+  console.log(`[R2 Sync] failed social images: ${failedSocialImages}`);
   console.log(`[R2 Sync] duplicate slugs: ${duplicateSlugItems.length}`);
   console.log(`[R2 Sync] public/wallpapers.json updated with ${nextWallpapers.length + newRecords.length} records.`);
   console.log(`[R2 Sync] public/sync-cache.json updated with ${nextCacheRecords.length} records.`);
