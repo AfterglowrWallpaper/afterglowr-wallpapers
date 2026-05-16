@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-05-15T15:21:56.948Z",
+  "updatedAt": "2026-05-16T11:59:19.316Z",
   "records": [
     {
       "slug": "abandoned-blue-fishing-boat",
@@ -627,6 +627,22 @@
       "mobileHeight": 5016
     },
     {
+      "slug": "gemini-duality-anime-zodiac-wallpaper",
+      "category": "Anime",
+      "desktopOriginalKey": "originals/Anime/Gemini Duality  Anime Zodiac Wallpaper_PC.png",
+      "mobileOriginalKey": "originals/Anime/Gemini Duality  Anime Zodiac Wallpaper_MP.png",
+      "desktopEtag": "426be41cc7eeb42e089a94de1f855341",
+      "mobileEtag": "dc843daea98c35db6b614745982bb43e",
+      "desktopLastModified": "2026-05-16T11:58:05.838Z",
+      "mobileLastModified": "2026-05-16T11:58:04.468Z",
+      "desktopThumbKey": "thumbnails/Anime/gemini-duality-anime-zodiac-wallpaper_PC.webp",
+      "mobileThumbKey": "thumbnails/Anime/gemini-duality-anime-zodiac-wallpaper_MP.webp",
+      "desktopWidth": 4608,
+      "desktopHeight": 3072,
+      "mobileWidth": 2559,
+      "mobileHeight": 5532
+    },
+    {
       "slug": "gemini-duality-wallpaper",
       "category": "Anime",
       "desktopOriginalKey": "originals/Anime/Gemini Duality Wallpaper_PC.png",
@@ -637,6 +653,22 @@
       "mobileLastModified": "2026-05-11T15:45:06.043Z",
       "desktopThumbKey": "thumbnails/Anime/gemini-duality-wallpaper_PC.webp",
       "mobileThumbKey": "thumbnails/Anime/gemini-duality-wallpaper_MP.webp",
+      "desktopWidth": 5016,
+      "desktopHeight": 2823,
+      "mobileWidth": 2559,
+      "mobileHeight": 5532
+    },
+    {
+      "slug": "gemini-twin-celestial-goddess-wallpaper",
+      "category": "Anime",
+      "desktopOriginalKey": "originals/Anime/Gemini Twin Celestial Goddess Wallpaper_PC.png",
+      "mobileOriginalKey": "originals/Anime/Gemini Twin Celestial Goddess Wallpaper_MP.png",
+      "desktopEtag": "1e0f423525acb5a047c90cca2bb760b6",
+      "mobileEtag": "579eb4e2e092d5b6264c7a3f9e748383",
+      "desktopLastModified": "2026-05-16T11:58:06.359Z",
+      "mobileLastModified": "2026-05-16T11:58:05.136Z",
+      "desktopThumbKey": "thumbnails/Anime/gemini-twin-celestial-goddess-wallpaper_PC.webp",
+      "mobileThumbKey": "thumbnails/Anime/gemini-twin-celestial-goddess-wallpaper_MP.webp",
       "desktopWidth": 5016,
       "desktopHeight": 2823,
       "mobileWidth": 2559,
