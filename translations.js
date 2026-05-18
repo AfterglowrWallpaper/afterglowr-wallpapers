@@ -14,7 +14,6 @@ export const translations = {
         filter_vibe: "Vibe",
         filter_anime: "Anime",
         filter_cyberpunk: "Cyberpunk",
-        copy_pinterest_text: "Copy Pinterest Text",
         kofi_support: "Support the Project",
         desktop_version: "Desktop Version",
         mobile_version: "Mobile Version",

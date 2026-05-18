@@ -21,7 +21,6 @@ let currentLang = 'en';
 Object.assign(translations.en, {
     filter_anime: 'Anime',
     filter_cyberpunk: 'Cyberpunk',
-    copy_pinterest_text: 'Copy Pinterest Text',
     kofi_support: 'Support the Project'
 });
 
@@ -29,7 +28,6 @@ Object.assign(translations.zh, {
     support: '支援',
     filter_anime: '動漫',
     filter_cyberpunk: '賽博龐克',
-    copy_pinterest_text: '複製 Pinterest 文字',
     kofi_support: '支持創作'
 });
 
@@ -453,53 +451,6 @@ function updateTrafficSeoBlock(seoPage) {
 }
 
 
-// === Pinterest SEO Generator ===
-function generatePinterestContent(wp) {
-    if (!wp) return '';
-
-    const title = wp.title || 'Cinematic Wallpaper';
-    const tags = (wp.tags || []).slice(0, 5);
-    const category = wp.category || 'wallpaper';
-
-    const pinTitle = `${title} | 4K ${category} Wallpaper`;
-
-    const pinDesc = `Download ${title} in 4K resolution. Cinematic lighting, realistic atmosphere, high quality wallpaper${tags.length ? ` featuring ${tags.join(', ')}` : ''}. Free download on Afterglowr.`;
-
-    const hashtags = [
-        '#wallpaper',
-        '#4kwallpaper',
-        '#aesthetic',
-        '#cinematic',
-        '#desktopwallpaper',
-        '#mobilewallpaper',
-        ...tags.map(t => '#' + String(t).replace(/\s+/g, '').replace(/[^\w]/g, ''))
-    ].join(' ');
-
-    return `${pinTitle}\n\n${pinDesc}\n\n${hashtags}`;
-}
-
-async function copyPinterestText(wp, buttonEl = null) {
-    const text = generatePinterestContent(wp);
-    if (!text) return;
-
-    try {
-        await navigator.clipboard.writeText(text);
-        if (buttonEl) {
-            const oldText = buttonEl.innerHTML;
-            buttonEl.innerHTML = '<span class="icon">✅</span><span>Copied</span>';
-            setTimeout(() => {
-                buttonEl.innerHTML = oldText;
-            }, 1300);
-        } else {
-            alert(currentLang === 'zh' ? '已複製 Pinterest 文案' : 'Pinterest text copied');
-        }
-    } catch (err) {
-        console.warn('Pinterest copy failed:', err);
-        alert(currentLang === 'zh' ? '複製失敗，請再試一次' : 'Copy failed, please try again.');
-    }
-}
-
-
 document.addEventListener('DOMContentLoaded', async () => {
     const observerOptions = {
         root: null,
@@ -776,22 +727,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const wpDownloadBtn = document.getElementById('wpDownloadBtn');
     const wpLikeBtn = document.getElementById('wpLikeBtn');
     const wpLikeCount = document.getElementById('wpLikeCount');
-    const copyPinBtn = document.getElementById('copyPinBtn');
-    const modalCopyPinBtn = document.getElementById('modalCopyPinBtn');
-
-
-    if (copyPinBtn) {
-        copyPinBtn.addEventListener('click', () => {
-            copyPinterestText(currentWpPage, copyPinBtn);
-        });
-    }
-
-    if (modalCopyPinBtn) {
-        modalCopyPinBtn.addEventListener('click', () => {
-            copyPinterestText(currentWallpaper, modalCopyPinBtn);
-        });
-    }
-
     function updateSizeSwitchState(desktopBtn, mobileBtn, isMobile, hasMobile = true) {
         if (desktopBtn) desktopBtn.classList.toggle('active', !isMobile);
         if (mobileBtn) {

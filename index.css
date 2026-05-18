@@ -5247,24 +5247,6 @@ footer {
 }
 
 
-/* === Pinterest Copy Button === */
-.pinterest-copy-btn {
-    border-radius: 16px;
-    font-weight: 700;
-}
-
-.pinterest-copy-btn .icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.wp-full-actions .pinterest-copy-btn {
-    width: 100%;
-}
-
-
-
 /* === Afterglowr Step 4: Related Wallpapers Upgrade === */
 .related-upgraded-section {
     width: min(1280px, 94%);
