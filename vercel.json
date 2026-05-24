@@ -4,11 +4,29 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
 
-  "cleanUrls": true,
-
   "rewrites": [
     {
-      "source": "/((?!ads.txt|robots.txt|sitemap.xml).*)",
+      "source": "/ads.txt",
+      "destination": "/ads.txt"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/robots.txt"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap.xml"
+    },
+    {
+      "source": "/zh",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/zh/(.*)",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
